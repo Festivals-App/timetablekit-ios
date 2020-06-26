@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol TimetableDataSource {
+    
+}
+
 protocol TimetableDelegate {
     
 }
