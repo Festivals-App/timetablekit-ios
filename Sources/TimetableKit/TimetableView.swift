@@ -5,18 +5,14 @@
 //  Created by Simon Gaus on 20.05.20.
 //
 
-import Foundation
-
-protocol TimetableDataSource {
-    
-}
-
-protocol TimetableDelegate {
-    
-}
+#if !os(iOS)
+import AppKit
+#else
+import UIKit
+#endif
 
 /// The style of the timetable view.
-enum TimetableStyle: TimetableBaseView {
+enum TimetableStyle {
     /// A dark timetable view style.
     case dark
     /// A light timetable view style.
@@ -51,16 +47,15 @@ enum TimetableStyle: TimetableBaseView {
  * The timetable view is meant for displaying events that have a duration of houres not days. If you need to display lengthy events please consider to use a calendar view.
  
  */
-class TimetableView: UIView {
+class TimetableView: TimetableBaseView {
     
-    var style: TimetableStyle
+    var style: TimetableStyle = .automatic
     
     //initWithFrame to init view from code
-    override init(_ frame: CGRect, with style: TimetableStyle) {
-        
-        super.init(frame: frame)
+    init(_ frame: CGRect, with style: TimetableStyle) {
         
         self.style = style
+        super.init(frame: frame)
         setupView()
     }
     
@@ -74,11 +69,27 @@ class TimetableView: UIView {
     private func setupView() {
         backgroundColor = .red
     }
+    
+    /// Reloads the rows, tiles and sections of the timetable view.
+    ///
+    /// Call this method to reload all the data that is used to construct the timetable, including cells, section headers, index arrays, tiles and so on.
+    func reloadData() {
+        
+    }
+    
+    /// Transitions to the specified timetable view style.
+    /// - Parameters:
+    ///   - style: The new timtable view stlye.
+    ///   - animated: If `true`, the style is changed using an animation. Defaults to `true`.
+    func transition(to style: TimetableStyle, animated: Bool = true) {
+        
+    }
+    
 }
 
 
 
-class TimetableBaseView: UIView {
+class TimetableBaseView: View {
     //initWithFrame to init view from code
     override init(frame: CGRect) {
         super.init(frame: frame)
