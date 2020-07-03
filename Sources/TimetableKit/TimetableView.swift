@@ -5,11 +5,7 @@
 //  Created by Simon Gaus on 20.05.20.
 //
 
-#if !os(iOS)
-import AppKit
-#else
 import UIKit
-#endif
 
 /// The style of the timetable view.
 enum TimetableStyle {
@@ -68,6 +64,9 @@ class TimetableView: TimetableBaseView {
     //common func to init our view
     private func setupView() {
         backgroundColor = .red
+        
+        
+        
     }
     
     /// Reloads the rows, tiles and sections of the timetable view.
@@ -84,14 +83,30 @@ class TimetableView: TimetableBaseView {
     func transition(to style: TimetableStyle, animated: Bool = true) {
         
     }
-    
 }
 
 
+class TimetableRow: UITableViewCell {
+    
+    static let cellIdentifier = "timetableRowReuseIdentifier"
+}
 
-class TimetableBaseView: View {
+
+class TimetableBaseView: UIView {
+    
+    var horizontalControl: HorizontalControl!
+    var timescale: UIView!
+    var tableView: UITableView!
+    var navigationScrollView: UIScrollView!
+    
+    var rowController = [UIViewController]()
+    var unusedRowController = [UIViewController]()
+    var rowControllerByIndexPath: [IndexPath: UIViewController]!
+    
+    
     //initWithFrame to init view from code
     override init(frame: CGRect) {
+        
         super.init(frame: frame)
         setupView()
     }
@@ -105,5 +120,21 @@ class TimetableBaseView: View {
     //common func to init our view
     private func setupView() {
         backgroundColor = .red
+        
+        tableView = UITableView.init(frame: .zero)
+        tableView.register(TimetableRow.self, forCellReuseIdentifier: TimetableRow.cellIdentifier)
+        tableView.allowsSelection = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.sectionFooterHeight = 0.0
+        tableView.backgroundView = nil
+        self.addSubview(tableView)
+        let _ = tableView.fit(to: self, leading: 0.0, trailing: 0.0, top: 88.0, bottom: 0.0)
+        
+        horizontalControl = HorizontalControl.init(frame: .zero)
+        horizontalControl.font = UIFont.systemFont(ofSize: 17.0, weight: .light)
+        self.addSubview(horizontalControl)
+        horizontalControl.stickToTop(of: self, height: 44.0)
+        
     }
 }

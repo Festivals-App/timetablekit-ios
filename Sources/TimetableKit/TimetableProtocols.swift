@@ -5,18 +5,14 @@
 //  Created by Simon Gaus on 26.06.20.
 //
 
-#if !os(iOS)
-import AppKit
-#else
 import UIKit
-#endif
+
+// MARK: Timetable Data Source
 
 /// The `TimetableDataSource` protocol is adopted by an object that mediates the application’s data model for a `TimetableView` object.
 /// The data source provides the timetable view object with the information it needs to construct a timetable.
 protocol TimetableDataSource {
-    
-    // Configuring a Timetable View
-    
+
     /// Asks the data source for the events associated with a row at a particular row in the timetable.
     /// - Parameters:
     ///   - timetableView: The timetable view requesting the data.
@@ -52,8 +48,6 @@ protocol TimetableDataSource {
     /// - Returns: The title for the given row.
     func timetableView(_ timetableView: TimetableView, titleForRowAt indexPath: IndexPath) -> String
     
-    // Providing information about the timespan represented by the Timetable.
-    
     /// Asks the data source for the time interval the timetable view should display.
     ///
     /// This is not necessarily equal to the interval defined by the start date of the first event and the end date of the last event.
@@ -85,12 +79,12 @@ protocol TimetableDataSource {
     func timetableView(_ timetableView: TimetableView, intervalForDayAt index: Int) -> DateInterval
 }
 
+// MARK: Timetable Delegate
+
 /// The delegate of a `TimetableView` object must adopt the `TimetableDelegate` protocol.
 /// The methods of the protocol allow the delegate to manage selections and configure section headers and rows.
 protocol TimetableDelegate {
-    
-    // Managing Selection
-    
+
     /// Tells the delegate that the specified row was taped by the user.
     /// - Parameters:
     ///   - timetableView: The timetable view informing the delegate about the selected row.
@@ -103,6 +97,8 @@ protocol TimetableDelegate {
     ///   - indexPath: The index path identifying the selected event in the timetable view.
     func timetableView(_ timetableView: TimetableView, didSelectEventAt indexPath: IndexPath) -> Void
 }
+
+// MARK: Timetable Appearance Delegate
 
 /**
 The `TimetableAppearanceDelegate` protocol is adopted by an object that mediates the application’s appearance  for the `TimetableView` object.
@@ -131,6 +127,8 @@ protocol TimetableAppearanceDelegate {
     /// The background color of the event tiles if the event is favoured.
     func timetabelEventTileHighlightColor() -> UIColor
 }
+
+// MARK: Timetable Layout Delegate
 
 /**
 The `TimetableLayoutDelegate` protocol is adopted by an object that provide crucial information that are needed to layout the components for the `TimetableView` object.

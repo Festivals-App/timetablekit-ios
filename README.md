@@ -23,7 +23,7 @@ The structure of the timetable includes following components:
 
 ## Requirements
 
--  iOS 9.3+
+-  iOS 10.0+
 -  Xcode 10.1+
 
 ## Installation
