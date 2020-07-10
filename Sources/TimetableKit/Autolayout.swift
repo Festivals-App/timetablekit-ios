@@ -43,4 +43,18 @@ extension UIView {
         
         return true
     }
+    
+    func stickToBottom(of superview: UIView, heightRatio: CGFloat = 0.7142857143, sideMargin: CGFloat = 0.0) -> Bool {
+        
+        if !self.isDescendant(of: superview) { return false }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: sideMargin).isActive = true
+        self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -sideMargin).isActive = true
+        self.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
+        
+        NSLayoutConstraint.init(item: self, attribute: .height, relatedBy: .equal, toItem: superview, attribute: .height, multiplier: heightRatio, constant: 0.0).isActive = true
+        
+        return true
+    }
 }

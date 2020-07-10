@@ -134,7 +134,7 @@ class TimetableBaseView: UIView {
         horizontalControl = HorizontalControl.init(frame: .zero)
         horizontalControl.font = UIFont.systemFont(ofSize: 17.0, weight: .light)
         self.addSubview(horizontalControl)
-        horizontalControl.stickToTop(of: self, height: 44.0)
+        let _ = horizontalControl.stickToTop(of: self, height: 44.0)
         
     }
 }
