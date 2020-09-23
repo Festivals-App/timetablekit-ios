@@ -1,0 +1,13 @@
+# Ordered by output of `jazzy --help config`
+
+output: Documentation
+clean: true
+sdk: macosx
+author: Simon Gaus
+author_url: http://simonsapps.de
+module: EventusAPI
+github_url: https://github.com/Festivals-App/timetablekit-ios
+github_file_prefix: https://github.com/Festivals-App/timetablekit-ios/tree/master/
+skip_undocumented: false
+hide_documentation_coverage: false
+use_safe_filenames: true
