@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4A49B392251C0CBC00D79D72 /* TimetableKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */; };
+		4A49B394251C0CBC00D79D72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B393251C0CBC00D79D72 /* ContentView.swift */; };
+		4A49B396251C0CBF00D79D72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B395251C0CBF00D79D72 /* Assets.xcassets */; };
+		4A49B399251C0CBF00D79D72 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B398251C0CBF00D79D72 /* Preview Assets.xcassets */; };
+		4A49B3DE251C108D00D79D72 /* .jazzy.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B3DD251C108D00D79D72 /* .jazzy.yaml */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4A49B38E251C0CBC00D79D72 /* TimetableKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimetableKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableKitApp.swift; sourceTree = "<group>"; };
+		4A49B393251C0CBC00D79D72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4A49B395251C0CBF00D79D72 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4A49B398251C0CBF00D79D72 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4A49B39A251C0CBF00D79D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A49B3A3251C0FB100D79D72 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		4A49B3A6251C0FB700D79D72 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4A49B3A7251C0FB700D79D72 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		4A49B3B1251C0FCA00D79D72 /* Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Autolayout.swift; sourceTree = "<group>"; };
+		4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
+		4A49B3B3251C0FCA00D79D72 /* TimetableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
+		4A49B3B4251C0FCA00D79D72 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalControl.swift; sourceTree = "<group>"; };
+		4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeScaleView.swift; sourceTree = "<group>"; };
+		4A49B3B7251C0FCA00D79D72 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableProtocols.swift; sourceTree = "<group>"; };
+		4A49B3CE251C0FF200D79D72 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
+		4A49B3D0251C0FF200D79D72 /* TimetableKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableKitTests.swift; sourceTree = "<group>"; };
+		4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		4A49B3DD251C108D00D79D72 /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4A49B38B251C0CBC00D79D72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4A49B385251C0CBC00D79D72 = {
+			isa = PBXGroup;
+			children = (
+				4A49B3A7251C0FB700D79D72 /* Package.swift */,
+				4A49B3A6251C0FB700D79D72 /* README.md */,
+				4A49B390251C0CBC00D79D72 /* ExampleApp */,
+				4A49B3AF251C0FCA00D79D72 /* Sources */,
+				4A49B3CD251C0FF200D79D72 /* Tests */,
+				4A49B38F251C0CBC00D79D72 /* Products */,
+				4A49B3DD251C108D00D79D72 /* .jazzy.yaml */,
+				4A49B3A3251C0FB100D79D72 /* .gitignore */,
+			);
+			sourceTree = "<group>";
+		};
+		4A49B38F251C0CBC00D79D72 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B38E251C0CBC00D79D72 /* TimetableKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4A49B390251C0CBC00D79D72 /* ExampleApp */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */,
+				4A49B393251C0CBC00D79D72 /* ContentView.swift */,
+				4A49B395251C0CBF00D79D72 /* Assets.xcassets */,
+				4A49B39A251C0CBF00D79D72 /* Info.plist */,
+				4A49B397251C0CBF00D79D72 /* Preview Content */,
+			);
+			path = ExampleApp;
+			sourceTree = "<group>";
+		};
+		4A49B397251C0CBF00D79D72 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B398251C0CBF00D79D72 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4A49B3AF251C0FCA00D79D72 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B3B0251C0FCA00D79D72 /* TimetableKit */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		4A49B3B0251C0FCA00D79D72 /* TimetableKit */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B3B1251C0FCA00D79D72 /* Autolayout.swift */,
+				4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */,
+				4A49B3B3251C0FCA00D79D72 /* TimetableView.swift */,
+				4A49B3B4251C0FCA00D79D72 /* Event.swift */,
+				4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */,
+				4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */,
+				4A49B3B7251C0FCA00D79D72 /* File.swift */,
+				4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */,
+			);
+			path = TimetableKit;
+			sourceTree = "<group>";
+		};
+		4A49B3CD251C0FF200D79D72 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B3CE251C0FF200D79D72 /* LinuxMain.swift */,
+				4A49B3CF251C0FF200D79D72 /* TimetableKitTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		4A49B3CF251C0FF200D79D72 /* TimetableKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B3D0251C0FF200D79D72 /* TimetableKitTests.swift */,
+				4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */,
+			);
+			path = TimetableKitTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4A49B38D251C0CBC00D79D72 /* TimetableKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A49B39D251C0CBF00D79D72 /* Build configuration list for PBXNativeTarget "TimetableKit" */;
+			buildPhases = (
+				4A49B38A251C0CBC00D79D72 /* Sources */,
+				4A49B38B251C0CBC00D79D72 /* Frameworks */,
+				4A49B38C251C0CBC00D79D72 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimetableKit;
+			productName = TimetableKit;
+			productReference = 4A49B38E251C0CBC00D79D72 /* TimetableKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4A49B386251C0CBC00D79D72 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					4A49B38D251C0CBC00D79D72 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = 4A49B389251C0CBC00D79D72 /* Build configuration list for PBXProject "TimetableKit" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4A49B385251C0CBC00D79D72;
+			productRefGroup = 4A49B38F251C0CBC00D79D72 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4A49B38D251C0CBC00D79D72 /* TimetableKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4A49B38C251C0CBC00D79D72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A49B399251C0CBF00D79D72 /* Preview Assets.xcassets in Resources */,
+				4A49B396251C0CBF00D79D72 /* Assets.xcassets in Resources */,
+				4A49B3DE251C108D00D79D72 /* .jazzy.yaml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4A49B38A251C0CBC00D79D72 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A49B394251C0CBC00D79D72 /* ContentView.swift in Sources */,
+				4A49B392251C0CBC00D79D72 /* TimetableKitApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4A49B39B251C0CBF00D79D72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4A49B39C251C0CBF00D79D72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4A49B39E251C0CBF00D79D72 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"ExampleApp/Preview Content\"";
+				DEVELOPMENT_TEAM = N67G6688LK;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ExampleApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.simonsserver.TimetableKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4A49B39F251C0CBF00D79D72 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"ExampleApp/Preview Content\"";
+				DEVELOPMENT_TEAM = N67G6688LK;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ExampleApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = de.simonsserver.TimetableKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4A49B389251C0CBC00D79D72 /* Build configuration list for PBXProject "TimetableKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A49B39B251C0CBF00D79D72 /* Debug */,
+				4A49B39C251C0CBF00D79D72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A49B39D251C0CBF00D79D72 /* Build configuration list for PBXNativeTarget "TimetableKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A49B39E251C0CBF00D79D72 /* Debug */,
+				4A49B39F251C0CBF00D79D72 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4A49B386251C0CBC00D79D72 /* Project object */;
+}
