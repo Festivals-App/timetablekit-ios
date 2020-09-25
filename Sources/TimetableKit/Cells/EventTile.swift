@@ -15,25 +15,103 @@ enum EventTileState {
 class EventTile: UICollectionViewCell {
     
     static let cellIdentifier = "eventTileReuseIdentifier"
-    var event: TimetableEvent?
+    
+    var event: TimetableEvent? {
+        didSet {
+            textLabel.numberOfLines = event!.title.components(separatedBy: " ").count
+            textLabel.text = event!.title
+            textLabel.textColor = event!.isFavourite ? .white : backgroundColor?.contrastingColor()
+        }
+    }
+    
+    override var backgroundColor: UIColor? {
+        didSet {
+            textLabel.backgroundColor = backgroundColor
+            if event!.isFavourite { textLabel.textColor = backgroundColor?.contrastingColor() }
+        }
+    }
     
     private var textLabel: InsetLabel!
-    private var timeFormatter: TimeFormatter!
+    private var timeFormatter: TimeFormatter = TimeFormatter.init()
     private var tileState: EventTileState = .showTitle
     private var getsLongPressed = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        isUserInteractionEnabled = false#
+        isUserInteractionEnabled = false
         clipsToBounds = true
+        backgroundColor = .lightGray
         
+        textLabel = InsetLabel.init(frame: frame)
+        textLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
+        textLabel.textAlignment = .center
+        textLabel.backgroundColor = .lightGray
+        contentView.addSubview(textLabel)
+        let _ = textLabel.fit(to: contentView)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(EventTile.cellWasTapped(with:)), name: .tapWasRegistered, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EventTile.cellWasLongPressed(with:)), name: .longPressWasRegistered, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        event = nil
+        tileState = .showTitle
+        textLabel.text = nil
+        textLabel.backgroundColor = backgroundColor
+    }
+    
+    #warning("Check if this is still needed")
+    /// https://rbnsn.me/uicollectionviewcell-auto-layout-performance
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        return layoutAttributes
+    }
+    
+    @objc func cellWasTapped(with notification: NSNotification) {
+        
+        let recognizer = notification.object as! UIGestureRecognizer
+        let touchPoint = recognizer.location(in: self)
+        if self.bounds.contains(touchPoint) {
+            switch tileState {
+            case .showTitle:
+                tileState = .showTime
+                textLabel.numberOfLines = 3
+            case .showTime:
+                tileState = .showTimeTillShow
+                textLabel.numberOfLines = 3
+            case .showTimeTillShow:
+                tileState = .showTitle
+                textLabel.numberOfLines = event?.title.components(separatedBy: " ").count ?? 1
+                textLabel.text = event?.title
+            }
+        }
+    }
+    
+    @objc func cellWasLongPressed(with notification: NSNotification) {
+        
+        let recognizer = notification.object as! UILongPressGestureRecognizer
+        if recognizer.state == .began {
+            let touchPoint = recognizer.location(in: self)
+            if self.bounds.contains(touchPoint) {
+                textLabel.backgroundColor = textLabel.backgroundColor?.darker()
+                getsLongPressed = true
+            }
+        }
+        else {
+            if getsLongPressed {
+                textLabel.backgroundColor = textLabel.backgroundColor?.lighter()
+                getsLongPressed = false
+            }
+        }
+    }
 }
