@@ -44,6 +44,19 @@ extension UIView {
         return true
     }
     
+    func stickToTop(of superview: UIView, height: CGFloat, topMargin: CGFloat = 0.0) -> Bool {
+        
+        if !self.isDescendant(of: superview) { return false }
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
+        self.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
+        self.topAnchor.constraint(equalTo: superview.topAnchor, constant: topMargin).isActive = true
+        self.heightAnchor.constraint(equalToConstant: height).isActive = true
+        
+        return true
+    }
+    
     func stickToBottom(of superview: UIView, heightRatio: CGFloat = 0.7142857143, sideMargin: CGFloat = 0.0) -> Bool {
         
         if !self.isDescendant(of: superview) { return false }

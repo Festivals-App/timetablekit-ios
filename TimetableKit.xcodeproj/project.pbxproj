@@ -7,14 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A41C646251D7936006E763B /* TimetableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C645251D7936006E763B /* TimetableRowController.swift */; };
+		4A41C649251D7C41006E763B /* EventTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C648251D7C41006E763B /* EventTile.swift */; };
+		4A41C64D251D83F2006E763B /* TimetableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C64C251D83F2006E763B /* TimetableRow.swift */; };
+		4A41C651251D852A006E763B /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C650251D852A006E763B /* InsetLabel.swift */; };
 		4A49B392251C0CBC00D79D72 /* TimetableKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */; };
 		4A49B394251C0CBC00D79D72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B393251C0CBC00D79D72 /* ContentView.swift */; };
 		4A49B396251C0CBF00D79D72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B395251C0CBF00D79D72 /* Assets.xcassets */; };
 		4A49B399251C0CBF00D79D72 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B398251C0CBF00D79D72 /* Preview Assets.xcassets */; };
 		4A49B3DE251C108D00D79D72 /* .jazzy.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B3DD251C108D00D79D72 /* .jazzy.yaml */; };
+		4A49B3F3251C155900D79D72 /* TimetableView_wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3F2251C155900D79D72 /* TimetableView_wrapper.swift */; };
+		4A49B3F5251C162D00D79D72 /* TimeScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */; };
+		4A49B3F6251C162D00D79D72 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */; };
+		4A49B3F7251C162D00D79D72 /* Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B1251C0FCA00D79D72 /* Autolayout.swift */; };
+		4A49B3F9251C162D00D79D72 /* TimetableProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */; };
+		4A49B3FA251C162D00D79D72 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B3251C0FCA00D79D72 /* TimetableView.swift */; };
+		4A49B3FB251C162D00D79D72 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B4251C0FCA00D79D72 /* Event.swift */; };
+		4A49B3FC251C162D00D79D72 /* HorizontalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A41C645251D7936006E763B /* TimetableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRowController.swift; sourceTree = "<group>"; };
+		4A41C648251D7C41006E763B /* EventTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTile.swift; sourceTree = "<group>"; };
+		4A41C64C251D83F2006E763B /* TimetableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRow.swift; sourceTree = "<group>"; };
+		4A41C650251D852A006E763B /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		4A49B38E251C0CBC00D79D72 /* TimetableKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimetableKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableKitApp.swift; sourceTree = "<group>"; };
 		4A49B393251C0CBC00D79D72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,12 +46,12 @@
 		4A49B3B4251C0FCA00D79D72 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalControl.swift; sourceTree = "<group>"; };
 		4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeScaleView.swift; sourceTree = "<group>"; };
-		4A49B3B7251C0FCA00D79D72 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableProtocols.swift; sourceTree = "<group>"; };
 		4A49B3CE251C0FF200D79D72 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		4A49B3D0251C0FF200D79D72 /* TimetableKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableKitTests.swift; sourceTree = "<group>"; };
 		4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		4A49B3DD251C108D00D79D72 /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
+		4A49B3F2251C155900D79D72 /* TimetableView_wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView_wrapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +65,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A41C64B251D83DC006E763B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4A41C648251D7C41006E763B /* EventTile.swift */,
+				4A41C64C251D83F2006E763B /* TimetableRow.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4A41C653251D865B006E763B /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				4A41C650251D852A006E763B /* InsetLabel.swift */,
+			);
+			path = "Custom Controls";
+			sourceTree = "<group>";
+		};
+		4A41C654251D8687006E763B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B3B1251C0FCA00D79D72 /* Autolayout.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		4A49B385251C0CBC00D79D72 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */,
+				4A49B3F2251C155900D79D72 /* TimetableView_wrapper.swift */,
 				4A49B393251C0CBC00D79D72 /* ContentView.swift */,
 				4A49B395251C0CBF00D79D72 /* Assets.xcassets */,
 				4A49B39A251C0CBF00D79D72 /* Info.plist */,
@@ -102,14 +144,16 @@
 		4A49B3B0251C0FCA00D79D72 /* TimetableKit */ = {
 			isa = PBXGroup;
 			children = (
-				4A49B3B1251C0FCA00D79D72 /* Autolayout.swift */,
 				4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */,
 				4A49B3B3251C0FCA00D79D72 /* TimetableView.swift */,
 				4A49B3B4251C0FCA00D79D72 /* Event.swift */,
 				4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */,
 				4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */,
-				4A49B3B7251C0FCA00D79D72 /* File.swift */,
 				4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */,
+				4A41C645251D7936006E763B /* TimetableRowController.swift */,
+				4A41C654251D8687006E763B /* Extensions */,
+				4A41C64B251D83DC006E763B /* Cells */,
+				4A41C653251D865B006E763B /* Custom Controls */,
 			);
 			path = TimetableKit;
 			sourceTree = "<group>";
@@ -148,6 +192,8 @@
 			dependencies = (
 			);
 			name = TimetableKit;
+			packageProductDependencies = (
+			);
 			productName = TimetableKit;
 			productReference = 4A49B38E251C0CBC00D79D72 /* TimetableKit.app */;
 			productType = "com.apple.product-type.application";
@@ -175,6 +221,8 @@
 				Base,
 			);
 			mainGroup = 4A49B385251C0CBC00D79D72;
+			packageReferences = (
+			);
 			productRefGroup = 4A49B38F251C0CBC00D79D72 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -202,8 +250,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A49B3FC251C162D00D79D72 /* HorizontalControl.swift in Sources */,
+				4A49B3F5251C162D00D79D72 /* TimeScaleView.swift in Sources */,
+				4A49B3F3251C155900D79D72 /* TimetableView_wrapper.swift in Sources */,
+				4A49B3F7251C162D00D79D72 /* Autolayout.swift in Sources */,
+				4A49B3FB251C162D00D79D72 /* Event.swift in Sources */,
+				4A49B3FA251C162D00D79D72 /* TimetableView.swift in Sources */,
 				4A49B394251C0CBC00D79D72 /* ContentView.swift in Sources */,
+				4A49B3F6251C162D00D79D72 /* TimeFormatter.swift in Sources */,
 				4A49B392251C0CBC00D79D72 /* TimetableKitApp.swift in Sources */,
+				4A41C64D251D83F2006E763B /* TimetableRow.swift in Sources */,
+				4A41C649251D7C41006E763B /* EventTile.swift in Sources */,
+				4A41C646251D7936006E763B /* TimetableRowController.swift in Sources */,
+				4A41C651251D852A006E763B /* InsetLabel.swift in Sources */,
+				4A49B3F9251C162D00D79D72 /* TimetableProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

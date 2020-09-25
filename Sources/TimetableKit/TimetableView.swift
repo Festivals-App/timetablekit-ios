@@ -1,18 +1,20 @@
 //
 //  File.swift
-//  
 //
 //  Created by Simon Gaus on 20.05.20.
 //
 
 import UIKit
 
+#warning("Remove and make delegate default")
 /// The style of the timetable view.
 enum TimetableStyle {
     /// A dark timetable view style.
     case dark
     /// A light timetable view style.
     case light
+    /// Style is based on system settings.
+    case system
     /// The timetable view style is determined by the brightness of the screen.
     case automatic
     /// The timetable view style is determined the appearance delegate of the timetable.
@@ -40,14 +42,13 @@ enum TimetableStyle {
  ## Limitations
  
  * The timetable view is not able to display overlapping or simultan occuring events at the same location, you have to split these locations into sub-locations if this happens in your scenario.
- * The timetable view is meant for displaying events that have a duration of houres not days. If you need to display lengthy events please consider to use a calendar view.
+ * The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
  
  */
 class TimetableView: TimetableBaseView {
     
     var style: TimetableStyle = .automatic
-    
-    //initWithFrame to init view from code
+
     init(_ frame: CGRect, with style: TimetableStyle) {
         
         self.style = style
@@ -55,16 +56,13 @@ class TimetableView: TimetableBaseView {
         setupView()
     }
     
-    //initWithCode to init view from xib or storyboard
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
     
-    //common func to init our view
     private func setupView() {
-        backgroundColor = .red
-        
+        backgroundColor = .blue
         
         
     }
@@ -85,12 +83,11 @@ class TimetableView: TimetableBaseView {
     }
 }
 
+extension Notification.Name {
 
-class TimetableRow: UITableViewCell {
-    
-    static let cellIdentifier = "timetableRowReuseIdentifier"
+    static let tapWasRegistered = Notification.Name("SGTapWasRegisteredNotification")
+    static let longPressWasRegistered = Notification.Name("SGLongPressWasRegisteredNotification")
 }
-
 
 class TimetableBaseView: UIView {
     
@@ -99,29 +96,27 @@ class TimetableBaseView: UIView {
     var tableView: UITableView!
     var navigationScrollView: UIScrollView!
     
+    var tapGestureRecognizer: UITapGestureRecognizer!
+    var longPressGestureRecognizer: UILongPressGestureRecognizer!
+    
     var rowController = [UIViewController]()
     var unusedRowController = [UIViewController]()
     var rowControllerByIndexPath: [IndexPath: UIViewController]!
     
-    
-    //initWithFrame to init view from code
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         setupView()
     }
     
-    //initWithCode to init view from xib or storyboard
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
-    
-    //common func to init our view
+     
     private func setupView() {
         backgroundColor = .red
         
-        tableView = UITableView.init(frame: .zero)
+        tableView = SGTableView.init(frame: .infinite, style: .grouped)
         tableView.register(TimetableRow.self, forCellReuseIdentifier: TimetableRow.cellIdentifier)
         tableView.allowsSelection = false
         tableView.showsVerticalScrollIndicator = false
@@ -131,10 +126,106 @@ class TimetableBaseView: UIView {
         self.addSubview(tableView)
         let _ = tableView.fit(to: self, leading: 0.0, trailing: 0.0, top: 88.0, bottom: 0.0)
         
-        horizontalControl = HorizontalControl.init(frame: .zero)
+        horizontalControl = HorizontalControl.init(frame: .infinite)
         horizontalControl.font = UIFont.systemFont(ofSize: 17.0, weight: .light)
         self.addSubview(horizontalControl)
-        let _ = horizontalControl.stickToTop(of: self, height: 44.0)
+        let _ = horizontalControl.stickToTop(of: self, height: 44.0, topMargin: 0.0)
         
+        timescale = TimescaleView.init(frame: .infinite)
+        self.addSubview(timescale)
+        let _ = timescale.stickToTop(of: self, height: 44.0, topMargin: 44.0)
+        
+        navigationScrollView = UIScrollView.init(frame: .infinite)
+        navigationScrollView.backgroundColor = .clear
+        navigationScrollView.showsVerticalScrollIndicator = false
+        navigationScrollView.showsHorizontalScrollIndicator = false
+        navigationScrollView.isOpaque = false
+        navigationScrollView.decelerationRate = .fast
+        navigationScrollView.panGestureRecognizer.maximumNumberOfTouches = 1
+        self.addSubview(navigationScrollView)
+        let _ = navigationScrollView.fit(to: self, leading: 0, trailing: 0, top: 88.0, bottom: 0)
+        
+        tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(TimetableBaseView.tapped(recognizer:)))
+        longPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: #selector(TimetableBaseView.longPress(recognizer:)))
+        self.addGestureRecognizer(tapGestureRecognizer)
+        self.addGestureRecognizer(longPressGestureRecognizer)
+    }
+    
+    @objc func tapped(recognizer: UIPinchGestureRecognizer) {
+        
+        // views (or their controllers) that could be tapped should register
+        // as observers for the 'Notification.tapWasRegistered' notification and
+        // test if the touch event happend inside their bounds.
+        //
+        // let recognizer = notification.object as! UIPinchGestureRecognizer
+        // let touchPoint = recognizer.location(in: self.myTappableView)
+        // let wasTapped = self.myTappableView.bounds.contains(touchPoint)
+        //
+        NotificationCenter.default.post(name: .tapWasRegistered, object: recognizer)
+    }
+    
+    @objc func longPress(recognizer: UILongPressGestureRecognizer) {
+        
+        // views (or their controllers) that could be long pressed should register
+        // as observers for the 'SGLongPressWasRegisteredNotification' notification and
+        // test if the touch event happend inside their bounds.
+        //
+        // let recognizer = notification.object as! UILongPressGestureRecognizer
+        // let touchPoint = recognizer.location(in: self.myTappableView)
+        // let wasTapped = self.myTappableView.bounds.contains(touchPoint)
+        //
+        switch recognizer.state {
+        case .began:
+            NotificationCenter.default.post(name: .longPressWasRegistered, object: recognizer)
+        case .ended:
+            NotificationCenter.default.post(name: .longPressWasRegistered, object: recognizer)
+        default:
+            break
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // hide seperators
+        // doing it in setUpSubviews won't suffice...
+        tableView.separatorStyle = .none
+    }
+}
+
+/**
+ The 'SGTableView' class adds the ability to synchronously reload the tabel view to the 'UITableView' class.
+ 
+ There was the problem that when i tried to set the content offset of some collection views inside the table view cells directly after a call to -reloadData: the frame wont update and the collection views had still an offset of 0.
+ 
+ - seealso: https://stackoverflow.com/questions/16071503/how-to-tell-when-uitableview-has-completed-reloaddata
+ */
+class SGTableView: UITableView {
+    
+    private var completionBlock: (()->Void)?
+    
+    /// Reloads the rows and sections of the table view and executes the completionBlock when finished.
+    ///
+    /// Call this method to reload all the data that is used to construct the table, including cells, section headers and footers, index arrays, and so on. For efficiency, the table view redisplays only those rows that are visible. It adjusts offsets if the table shrinks as a result of the reload. The table view’s delegate or data source calls this method when it wants the table view to completely reload its data. It should not be called in the methods that insert or delete rows, especially within an animation block implemented with calls to beginUpdates and endUpdates.
+    ///
+    /// - Warning: If you call this method before a previous invocation finished, the old completion block won't be executed.
+    /// - seealso: https://stackoverflow.com/questions/16071503/how-to-tell-when-uitableview-has-completed-reloaddata
+    /// - Parameter completion: The block to execute after the reload finished.
+    func reloadData(calling completion:  @escaping () -> (Void)) {
+        
+        #if DEBUG
+        if self.completionBlock != nil {
+            print("Warning: Called before old completion block was executed! \(#file) Line \(#line) \(#function)")
+        }
+        #endif
+        
+        completionBlock = completion
+        super.reloadData()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let block = self.completionBlock else { return }
+        block()
     }
 }
