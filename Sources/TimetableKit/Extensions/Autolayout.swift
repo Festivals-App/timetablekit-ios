@@ -70,4 +70,17 @@ extension UIView {
         
         return true
     }
+    
+    func removeAllConstraints() {
+        
+        var superview = self.superview
+        while superview != nil {
+            for constraint: NSLayoutConstraint in superview!.constraints {
+                if constraint.firstItem as! NSObject == self || constraint.secondItem as! NSObject == self { superview!.removeConstraint(constraint) }
+                superview = superview!.superview
+            }
+        }
+        removeConstraints(constraints)
+        translatesAutoresizingMaskIntoConstraints = true
+    }
 }
