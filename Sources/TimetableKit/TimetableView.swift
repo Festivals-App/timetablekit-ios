@@ -21,6 +21,9 @@ enum TimetableStyle {
     case custom
 }
 
+/// The brightness value of the screen under which the screen is considered "dark".
+let BrightnessTreshold = 0.35
+
 /**
  
  An object that manages an ordered collection of event items and presents them in the planned order.
@@ -46,8 +49,11 @@ enum TimetableStyle {
  
  */
 class TimetableView: TimetableBaseView {
+
     
     var style: TimetableStyle = .automatic
+    
+    var appearanceDelegate: TimetableAppearanceDelegate?
 
     init(_ frame: CGRect, with style: TimetableStyle) {
         
