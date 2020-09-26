@@ -79,6 +79,8 @@
 		4A41C653251D865B006E763B /* Custom Controls */ = {
 			isa = PBXGroup;
 			children = (
+				4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */,
+				4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */,
 				4A41C650251D852A006E763B /* InsetLabel.swift */,
 			);
 			path = "Custom Controls";
@@ -147,15 +149,12 @@
 		4A49B3B0251C0FCA00D79D72 /* TimetableKit */ = {
 			isa = PBXGroup;
 			children = (
-				4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */,
 				4A49B3B3251C0FCA00D79D72 /* TimetableView.swift */,
-				4A49B3B4251C0FCA00D79D72 /* Event.swift */,
-				4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */,
-				4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */,
 				4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */,
-				4A41C645251D7936006E763B /* TimetableRowController.swift */,
+				4AC0AD2E251F6AD500D89289 /* Controller */,
 				4A41C654251D8687006E763B /* Extensions */,
 				4A41C64B251D83DC006E763B /* Cells */,
+				4AC0AD2F251F6AE400D89289 /* Misc */,
 				4A41C653251D865B006E763B /* Custom Controls */,
 			);
 			path = TimetableKit;
@@ -177,6 +176,23 @@
 				4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */,
 			);
 			path = TimetableKitTests;
+			sourceTree = "<group>";
+		};
+		4AC0AD2E251F6AD500D89289 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A41C645251D7936006E763B /* TimetableRowController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4AC0AD2F251F6AE400D89289 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				4A49B3B4251C0FCA00D79D72 /* Event.swift */,
+				4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
