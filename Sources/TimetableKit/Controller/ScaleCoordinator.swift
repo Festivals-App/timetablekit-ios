@@ -21,10 +21,12 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate {
     
     var isScaling: Bool = false
     
-    var timetable: TimetableView!
-    
     var pointsPerMinute: CGFloat = kDefaultPointsPerMinute
     var intervalOfTimetable: DateInterval
+    
+    var timetable: TimetableView!
+    
+    
     
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     
