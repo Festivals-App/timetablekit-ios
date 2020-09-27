@@ -50,10 +50,11 @@ let BrightnessTreshold = 0.35
  */
 class TimetableView: TimetableBaseView {
 
-    
-    var style: TimetableStyle = .automatic
-    
+    var dataSource: TimetableDataSource!
     var appearanceDelegate: TimetableAppearanceDelegate?
+    
+    private(set) var style: TimetableStyle = .automatic
+    private var proxyAppearanceDelegate: TimetableAppearanceDelegate!
 
     init(_ frame: CGRect, with style: TimetableStyle) {
         
@@ -98,16 +99,16 @@ extension Notification.Name {
 class TimetableBaseView: UIView {
     
     var horizontalControl: HorizontalControl!
-    var timescale: UIView!
+    var timescale: TimescaleView!
     var tableView: UITableView!
     var navigationScrollView: UIScrollView!
     
     var tapGestureRecognizer: UITapGestureRecognizer!
     var longPressGestureRecognizer: UILongPressGestureRecognizer!
     
-    var rowController = [UIViewController]()
-    var unusedRowController = [UIViewController]()
-    var rowControllerByIndexPath: [IndexPath: UIViewController]!
+    var rowController = [TimetableRowController]()
+    var unusedRowController = [TimetableRowController]()
+    var rowControllerByIndexPath: [IndexPath: TimetableRowController]!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
