@@ -55,7 +55,7 @@ class TimetableRowController: UICollectionViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let durationInMinutes = events[indexPath.section].interval.duration/60.0
-        return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute(), height: view.frame.size.height)
+        return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute, height: view.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -72,7 +72,7 @@ class TimetableRowController: UICollectionViewController {
         // for the first header we calculate the width of the header using
         // the start date of the timetable (which is not related to an event but given by the delegate)
         if section == 0 {
-            let start = layoutDelegate.intervalOfTimetable().start
+            let start = layoutDelegate.intervalOfTimetable.start
             let end = event.interval.start
             durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
         }
@@ -85,7 +85,7 @@ class TimetableRowController: UICollectionViewController {
             let end = event.interval.start
             durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
         }
-        return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute(), height: collectionView.frame.size.height)
+        return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -97,9 +97,9 @@ class TimetableRowController: UICollectionViewController {
         if section == self.numberOfSections(in: collectionView)-1 {
             let event = events[section]
             let start = event.interval.end
-            let end = layoutDelegate.intervalOfTimetable().end
+            let end = layoutDelegate.intervalOfTimetable.end
             let durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
-            return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute(), height: collectionView.frame.size.height)
+            return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
         }
         return .zero
     }

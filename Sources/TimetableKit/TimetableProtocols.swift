@@ -140,7 +140,7 @@ I decided to put all properties that influence these frame defining conversion i
 protocol TimetableLayoutDelegate {
     
     /// A float value that defines by how many points a minute is represented.
-    func pointsPerMinute() -> CGFloat
+    var pointsPerMinute: CGFloat { get set }
     /// The date interval the timetable is representing.
-    func intervalOfTimetable() -> DateInterval
+    var intervalOfTimetable: DateInterval { get set }
 }

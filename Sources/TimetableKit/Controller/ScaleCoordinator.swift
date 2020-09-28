@@ -17,7 +17,7 @@ let kDefaultTableViewCellHeigth: CGFloat = 100.0
 
  The scaling coordinator manages the resizing of the timetable elements. It will inform the `ScrollingCoordinator` about needed scrolling after scale updates.
  */
-class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate {
+class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDelegate {
     
     var isScaling: Bool = false
     
@@ -25,8 +25,6 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate {
     var intervalOfTimetable: DateInterval
     
     var timetable: TimetableView!
-    
-    
     
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     

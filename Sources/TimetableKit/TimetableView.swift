@@ -22,7 +22,7 @@ enum TimetableStyle {
 }
 
 /// The brightness value of the screen under which the screen is considered "dark".
-let BrightnessTreshold = 0.35
+let kBrightnessTreshold: CGFloat = 0.35
 
 /**
  
@@ -48,18 +48,24 @@ let BrightnessTreshold = 0.35
  * The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
  
  */
-class TimetableView: TimetableBaseView {
+class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSource, HorizontalControlDelegate {
 
     var dataSource: TimetableDataSource!
     var appearanceDelegate: TimetableAppearanceDelegate?
     
     private(set) var style: TimetableStyle = .automatic
+    private var automaticStyle: TimetableStyle = .automatic
     private var proxyAppearanceDelegate: TimetableAppearanceDelegate!
+    
+    private var scrollingCoordinator: ScrollingCoordinator!
+    private var scaleCoordinator: ScaleCoordinator!
+    
+    private var reloadCoverView: UIImageView!
 
     init(_ frame: CGRect, with style: TimetableStyle) {
         
-        self.style = style
         super.init(frame: frame)
+        self.style = style
         setupView()
     }
     
@@ -71,13 +77,100 @@ class TimetableView: TimetableBaseView {
     private func setupView() {
         backgroundColor = .blue
         
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
+        self.scrollingCoordinator = ScrollingCoordinator.init(with: self)
+        self.navigationScrollView.delegate = self.scrollingCoordinator
+        
+        self.automaticStyle = (UIScreen.main.brightness > kBrightnessTreshold) ? .light : .dark
+        
+        self.proxyAppearanceDelegate = AppearanceDelegateProxy.init(with: self)
+        self.scaleCoordinator = ScaleCoordinator.init(with: self, and: self.scrollingCoordinator)
+        self.scrollingCoordinator.scaleCoordinator = self.scaleCoordinator
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(brightnessChanged(_:)), name: UIScreen.brightnessDidChangeNotification, object: nil)
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        automaticStyle = (UIScreen.main.brightness > kBrightnessTreshold) ? .light : .dark
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let height = tableView.contentSize.height
+        let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
+        navigationScrollView.contentSize = CGSize.init(width: widht, height: height)
+        tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
     }
     
     /// Reloads the rows, tiles and sections of the timetable view.
     ///
     /// Call this method to reload all the data that is used to construct the timetable, including cells, section headers, index arrays, tiles and so on.
     func reloadData() {
+        reloadData(animated: false)
+    }
+    
+    func reloadData(animated: Bool = false) {
+        
+        var muteTitleArray = [String]()
+        for index in 0..<dataSource.numberOfDays(in: self) {
+            muteTitleArray.append(dataSource.timetableView(self, titleForDayAt: index))
+        }
+        
+        horizontalControl.configure(with: muteTitleArray)
+        horizontalControl.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+        horizontalControl.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
+        horizontalControl.highlightTextColor = proxyAppearanceDelegate.timetabelEventTileHighlightColor()
+        horizontalControl.font = UIFont.systemFont(ofSize: 16.0, weight: .light)
+        horizontalControl.numberOfSegmentsToDisplay = 2
+        horizontalControl.delegate = self
+        
+        rowController = [TimetableRowController]()
+        rowControllerByIndexPath = [IndexPath : TimetableRowController]()
+        unusedRowController = Set.init()
+        
+        if animated {
+            reloadCoverView = UIImageView.init(frame: bounds)
+            reloadCoverView.image = self.capture()
+            addSubview(reloadCoverView)
+            
+            tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
+            
+            timescale.interval = dataSource.interval(for: self)
+            timescale.timescaleColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+            timescale.timescaleStrokeColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
+            timescale.reloadData()
+            
+            tableView.reloadData {
+                self.scrollingCoordinator.set(self.navigationScrollView.contentOffset, animated: false)
+                UIView.animate(withDuration: 0.5) {
+                    self.reloadCoverView.alpha = 0.0
+                } completion: { success in
+                    self.reloadCoverView.removeFromSuperview()
+                    self.reloadCoverView = nil
+                }
+            }
+        }
+        else {
+            
+            tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
+            
+            timescale.interval = dataSource.interval(for: self)
+            timescale.timescaleColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+            timescale.timescaleStrokeColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
+            timescale.reloadData()
+            
+            tableView.reloadData {
+                self.scrollingCoordinator.set(self.navigationScrollView.contentOffset, animated: false)
+            }
+        }
         
     }
     
@@ -86,6 +179,78 @@ class TimetableView: TimetableBaseView {
     ///   - style: The new timtable view stlye.
     ///   - animated: If `true`, the style is changed using an animation. Defaults to `true`.
     func transition(to style: TimetableStyle, animated: Bool = true) {
+        
+        self.style = style
+        reloadData(animated: animated)
+    }
+    
+    @objc func brightnessChanged(_ notification: Notification) {
+        
+        #warning("TBI")
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell.init(frame: .infinite)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.timetableView(self, numberOfRowsIn: section)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return dataSource.numberOfSections(in: self)
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rowController = rowControllerByIndexPath[indexPath]
+        if rowController != nil {
+            rowController!.view = nil
+            rowControllerByIndexPath.removeValue(forKey: indexPath)
+            unusedRowController.insert(rowController!)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return kDefaultTableViewCellHeigth
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel.init()
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
+        label.text = dataSource.timetableView(self, titleForHeaderOf: section)
+        label.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+        label.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor().withAlphaComponent(0.5)
+        return label
+    }
+    
+    func recycledOrNewRowController() -> TimetableRowController {
+        if unusedRowController.count > 1 {
+            let reusedController = unusedRowController.randomElement()!
+            unusedRowController.remove(reusedController)
+            return reusedController
+        }
+        
+        let layout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 0.0
+        layout.minimumLineSpacing = 0.0
+        
+        let contentViewController = TimetableRowController.init(collectionViewLayout: layout)
+        contentViewController.layoutDelegate = scaleCoordinator
+        contentViewController.appearanceDelegate = proxyAppearanceDelegate
+        rowController.append(contentViewController)
+        return contentViewController
+    }
+    
+    func selectedSegment(at index: Int) {
         
     }
 }
@@ -100,14 +265,14 @@ class TimetableBaseView: UIView {
     
     var horizontalControl: HorizontalControl!
     var timescale: TimescaleView!
-    var tableView: UITableView!
+    var tableView: SGTableView!
     var navigationScrollView: UIScrollView!
     
     var tapGestureRecognizer: UITapGestureRecognizer!
     var longPressGestureRecognizer: UILongPressGestureRecognizer!
     
     var rowController = [TimetableRowController]()
-    var unusedRowController = [TimetableRowController]()
+    var unusedRowController: Set<TimetableRowController> = Set.init()
     var rowControllerByIndexPath: [IndexPath: TimetableRowController]!
     
     override init(frame: CGRect) {
@@ -234,5 +399,18 @@ class SGTableView: UITableView {
         super.layoutSubviews()
         guard let block = self.completionBlock else { return }
         block()
+    }
+}
+
+extension UIView {
+    
+    func capture() -> UIImage {
+
+        #warning("Force unwrapp or not?")
+        UIGraphicsBeginImageContext(bounds.size)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return img
     }
 }
