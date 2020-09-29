@@ -17,8 +17,7 @@
 		4A49B396251C0CBF00D79D72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B395251C0CBF00D79D72 /* Assets.xcassets */; };
 		4A49B399251C0CBF00D79D72 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B398251C0CBF00D79D72 /* Preview Assets.xcassets */; };
 		4A49B3DE251C108D00D79D72 /* .jazzy.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B3DD251C108D00D79D72 /* .jazzy.yaml */; };
-		4A49B3F3251C155900D79D72 /* TimetableView_wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3F2251C155900D79D72 /* TimetableView_wrapper.swift */; };
-		4A49B3F5251C162D00D79D72 /* TimeScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */; };
+		4A49B3F5251C162D00D79D72 /* TimescaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B6251C0FCA00D79D72 /* TimescaleView.swift */; };
 		4A49B3F6251C162D00D79D72 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */; };
 		4A49B3F7251C162D00D79D72 /* Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B1251C0FCA00D79D72 /* Autolayout.swift */; };
 		4A49B3F9251C162D00D79D72 /* TimetableProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */; };
@@ -51,13 +50,12 @@
 		4A49B3B3251C0FCA00D79D72 /* TimetableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
 		4A49B3B4251C0FCA00D79D72 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalControl.swift; sourceTree = "<group>"; };
-		4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeScaleView.swift; sourceTree = "<group>"; };
+		4A49B3B6251C0FCA00D79D72 /* TimescaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimescaleView.swift; sourceTree = "<group>"; };
 		4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableProtocols.swift; sourceTree = "<group>"; };
 		4A49B3CE251C0FF200D79D72 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		4A49B3D0251C0FF200D79D72 /* TimetableKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableKitTests.swift; sourceTree = "<group>"; };
 		4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		4A49B3DD251C108D00D79D72 /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
-		4A49B3F2251C155900D79D72 /* TimetableView_wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView_wrapper.swift; sourceTree = "<group>"; };
 		4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteTimetableDelegate.swift; sourceTree = "<group>"; };
 		4AAB33A9252003A200ED38F2 /* AppearanceDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceDelegateProxy.swift; sourceTree = "<group>"; };
 		4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleCoordinator.swift; sourceTree = "<group>"; };
@@ -88,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */,
-				4A49B3B6251C0FCA00D79D72 /* TimeScaleView.swift */,
+				4A49B3B6251C0FCA00D79D72 /* TimescaleView.swift */,
 				4A41C650251D852A006E763B /* InsetLabel.swift */,
 			);
 			path = "Custom Controls";
@@ -129,12 +127,11 @@
 			isa = PBXGroup;
 			children = (
 				4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */,
-				4A49B3F2251C155900D79D72 /* TimetableView_wrapper.swift */,
+				4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */,
 				4A49B393251C0CBC00D79D72 /* ContentView.swift */,
 				4A49B395251C0CBF00D79D72 /* Assets.xcassets */,
 				4A49B39A251C0CBF00D79D72 /* Info.plist */,
 				4A49B397251C0CBF00D79D72 /* Preview Content */,
-				4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */,
 			);
 			path = ExampleApp;
 			sourceTree = "<group>";
@@ -282,8 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A49B3FC251C162D00D79D72 /* HorizontalControl.swift in Sources */,
-				4A49B3F5251C162D00D79D72 /* TimeScaleView.swift in Sources */,
-				4A49B3F3251C155900D79D72 /* TimetableView_wrapper.swift in Sources */,
+				4A49B3F5251C162D00D79D72 /* TimescaleView.swift in Sources */,
 				4A49B3F7251C162D00D79D72 /* Autolayout.swift in Sources */,
 				4A49B3FB251C162D00D79D72 /* Event.swift in Sources */,
 				4AAB33AE25200C9200ED38F2 /* ScaleCoordinator.swift in Sources */,

@@ -23,3 +23,18 @@ struct TimetableKitApp_Previews: PreviewProvider {
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
     }
 }
+
+struct TimetableView_wrapper: UIViewRepresentable {
+
+    func makeUIView(context: Context) -> TimetableView {
+        
+        let timetable = TimetableView(.infinite, with: TimetableStyle.dark)
+        timetable.dataSource = ConcreteTimetableDelegate.init()
+        return timetable
+    
+    }
+
+    func updateUIView(_ uiView: TimetableView, context: Context) {
+
+    }
+}
