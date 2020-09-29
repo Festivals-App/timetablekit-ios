@@ -18,8 +18,8 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
     var timetable: TimetableView!
     var scaleCoordinator: ScaleCoordinator!
     
-    var breakIntervals: [DateInterval]!
-    var timetableDays: [DateInterval]!
+    lazy var breakIntervals: [DateInterval] = { return calculateBreakIntervals(for: timetableDays) }()
+    lazy var timetableDays: [DateInterval] = { return calculateTimetableDays() }()
     
     var skipDidEndScrollingMethodOnce = false
     
@@ -28,8 +28,6 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
         super.init()
         
         self.timetable = timetable
-        timetableDays = calculateTimetableDays()
-        breakIntervals = calculateBreakIntervals(for: timetableDays)
     }
     
     func set(_ contentOffset: CGPoint, animated: Bool) {

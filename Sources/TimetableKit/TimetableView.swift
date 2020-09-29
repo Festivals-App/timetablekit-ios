@@ -192,7 +192,19 @@ class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell.init(frame: .infinite)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: TimetableRow.cellIdentifier, for: indexPath) as! TimetableRow
+
+        let rowController = recycledOrNewRowController()
+        rowController.events = dataSource.timetableView(self, eventsForRowAt: indexPath)
+        rowControllerByIndexPath[indexPath] = rowController
+        
+        cell.contentView.backgroundColor = proxyAppearanceDelegate.timetabelRowHeaderColor()
+        cell.titleLabel.textColor = proxyAppearanceDelegate.timetabelRowHeaderColor().contrastingColor()
+        cell.hostedView = rowController.view
+        cell.titleLabel.text = dataSource.timetableView(self, titleForRowAt: indexPath)
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -273,7 +285,7 @@ class TimetableBaseView: UIView {
     
     var rowController = [TimetableRowController]()
     var unusedRowController: Set<TimetableRowController> = Set.init()
-    var rowControllerByIndexPath: [IndexPath: TimetableRowController]!
+    lazy var rowControllerByIndexPath: [IndexPath: TimetableRowController] = { return [IndexPath: TimetableRowController]() }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

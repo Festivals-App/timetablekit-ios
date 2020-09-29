@@ -11,7 +11,11 @@ import SwiftUI
 struct TimetableView_wrapper: UIViewRepresentable {
 
     func makeUIView(context: Context) -> TimetableView {
-        return TimetableView(.infinite, with: TimetableStyle.dark)
+        
+        let timetable = TimetableView(.infinite, with: TimetableStyle.dark)
+        timetable.dataSource = ConcreteTimetableDelegate.init()
+        return timetable
+    
     }
 
     func updateUIView(_ uiView: TimetableView, context: Context) {

@@ -25,6 +25,7 @@
 		4A49B3FA251C162D00D79D72 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B3251C0FCA00D79D72 /* TimetableView.swift */; };
 		4A49B3FB251C162D00D79D72 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B4251C0FCA00D79D72 /* Event.swift */; };
 		4A49B3FC251C162D00D79D72 /* HorizontalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */; };
+		4A4F66AF25237CB900D04FCF /* ConcreteTimetableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */; };
 		4AAB33AA252003A200ED38F2 /* AppearanceDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33A9252003A200ED38F2 /* AppearanceDelegateProxy.swift */; };
 		4AAB33AE25200C9200ED38F2 /* ScaleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */; };
 		4AAB33B125200D1E00ED38F2 /* ScrollingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */; };
@@ -57,6 +58,7 @@
 		4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		4A49B3DD251C108D00D79D72 /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
 		4A49B3F2251C155900D79D72 /* TimetableView_wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView_wrapper.swift; sourceTree = "<group>"; };
+		4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteTimetableDelegate.swift; sourceTree = "<group>"; };
 		4AAB33A9252003A200ED38F2 /* AppearanceDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceDelegateProxy.swift; sourceTree = "<group>"; };
 		4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleCoordinator.swift; sourceTree = "<group>"; };
 		4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingCoordinator.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				4A49B395251C0CBF00D79D72 /* Assets.xcassets */,
 				4A49B39A251C0CBF00D79D72 /* Info.plist */,
 				4A49B397251C0CBF00D79D72 /* Preview Content */,
+				4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */,
 			);
 			path = ExampleApp;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				4AAB33AA252003A200ED38F2 /* AppearanceDelegateProxy.swift in Sources */,
 				4A41C658251D8D8C006E763B /* CalulatedColors.swift in Sources */,
 				4A49B3FA251C162D00D79D72 /* TimetableView.swift in Sources */,
+				4A4F66AF25237CB900D04FCF /* ConcreteTimetableDelegate.swift in Sources */,
 				4A49B394251C0CBC00D79D72 /* ContentView.swift in Sources */,
 				4AAB33B125200D1E00ED38F2 /* ScrollingCoordinator.swift in Sources */,
 				4A49B3F6251C162D00D79D72 /* TimeFormatter.swift in Sources */,

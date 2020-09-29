@@ -22,7 +22,7 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
     var isScaling: Bool = false
     
     var pointsPerMinute: CGFloat = kDefaultPointsPerMinute
-    var intervalOfTimetable: DateInterval
+    lazy var intervalOfTimetable: DateInterval = { return timetable.dataSource.interval(for: timetable) }()
     
     var timetable: TimetableView!
     
@@ -33,8 +33,6 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
     var scrollingCoordinator: ScrollingCoordinator!
     
     init(with timetable: TimetableView, and scrollingCoordinator: ScrollingCoordinator) {
-        
-        self.intervalOfTimetable = timetable.dataSource.interval(for: timetable)
         
         super.init()
         
