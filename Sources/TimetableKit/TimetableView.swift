@@ -124,6 +124,8 @@ class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSour
             muteTitleArray.append(dataSource.timetableView(self, titleForDayAt: index))
         }
         
+        NSLog("reloadData(animated: Bool = false)")
+        
         horizontalControl.configure(with: muteTitleArray)
         horizontalControl.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
         horizontalControl.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
