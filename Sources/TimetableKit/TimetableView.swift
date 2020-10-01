@@ -124,8 +124,6 @@ class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSour
             muteTitleArray.append(dataSource.timetableView(self, titleForDayAt: index))
         }
         
-        NSLog("reloadData(animated: Bool = false)")
-        
         horizontalControl.configure(with: muteTitleArray)
         horizontalControl.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
         horizontalControl.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
@@ -312,12 +310,12 @@ class TimetableBaseView: UIView {
         self.addSubview(tableView)
         let _ = tableView.fit(to: self, leading: 0.0, trailing: 0.0, top: 88.0, bottom: 0.0)
         
-        horizontalControl = HorizontalControl.init(frame: .infinite)
+        horizontalControl = HorizontalControl.init(frame: .zero)
         horizontalControl.font = UIFont.systemFont(ofSize: 17.0, weight: .light)
         self.addSubview(horizontalControl)
         let _ = horizontalControl.stickToTop(of: self, height: 44.0, topMargin: 0.0)
         
-        timescale = TimescaleView.init(frame: .infinite)
+        timescale = TimescaleView.init(frame: .zero)
         self.addSubview(timescale)
         let _ = timescale.stickToTop(of: self, height: 44.0, topMargin: 44.0)
         

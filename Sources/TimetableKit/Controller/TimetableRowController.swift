@@ -17,7 +17,7 @@ import UIKit
  
  - warning: Determin the widht of the collection view and it's tiles is quite expensive, try to avoid unneeded recalculations.
  */
-class TimetableRowController: UICollectionViewController {
+class TimetableRowController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var layoutDelegate: TimetableLayoutDelegate!
     var appearanceDelegate: TimetableAppearanceDelegate!

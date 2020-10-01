@@ -18,16 +18,18 @@ class EventTile: UICollectionViewCell {
     
     var event: TimetableEvent? {
         didSet {
-            textLabel.numberOfLines = event!.title.components(separatedBy: " ").count
-            textLabel.text = event!.title
-            textLabel.textColor = event!.isFavourite ? .white : backgroundColor?.contrastingColor()
+            if event != nil {
+                textLabel.numberOfLines = event!.title.components(separatedBy: " ").count
+                textLabel.text = event!.title
+                textLabel.textColor = event!.isFavourite ? .white : backgroundColor?.contrastingColor()
+            }
         }
     }
     
     override var backgroundColor: UIColor? {
         didSet {
-            textLabel.backgroundColor = backgroundColor
-            if event!.isFavourite { textLabel.textColor = backgroundColor?.contrastingColor() }
+            if textLabel != nil { textLabel.backgroundColor = backgroundColor }
+            if event != nil { if event!.isFavourite { textLabel.textColor = backgroundColor?.contrastingColor() } }
         }
     }
     

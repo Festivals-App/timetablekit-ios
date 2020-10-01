@@ -17,8 +17,10 @@ class TimetableRow: UITableViewCell {
     
     var hostedView: UIView! {
         didSet {
-            contentView.addSubview(hostedView)
-            let _ = hostedView.fit(to: contentView, leading: 0, trailing: 0, top: 45, bottom: 0)
+            if hostedView != nil {
+                contentView.addSubview(hostedView)
+                let _ = hostedView.fit(to: contentView, leading: 0, trailing: 0, top: 45, bottom: 0)
+            }
         }
     }
     var titleLabel: UILabel!

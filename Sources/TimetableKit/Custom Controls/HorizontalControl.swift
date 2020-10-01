@@ -49,16 +49,14 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
     
     func configure(with items: [String]) {
         
-        print("configure(with items: \(items)")
-        
-        scrollView = UIScrollView.init(frame: .infinite)
+        scrollView = UIScrollView.init(frame: bounds)
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         addSubview(scrollView)
         let _ = scrollView.fit(to: self)
         
-        contentView = UIView.init(frame: .infinite)
+        contentView = UIView.init(frame: bounds)
         scrollView.addSubview(contentView)
         let _ = contentView.fit(to: scrollView)
         let heightsConstraint_container = contentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1.0)
@@ -66,15 +64,20 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
         containerViewWidthConstraint = contentView.widthAnchor.constraint(equalToConstant: 0.0)
         containerViewWidthConstraint.isActive = true
         
+        let numberOfItems = items.count
         let maxNumSegments = numberOfSegmentsToDisplay
-        let currentWidthPerElement =  (numberOfSegments > maxNumSegments) ? frame.size.width/CGFloat(maxNumSegments) : frame.size.width/CGFloat(numberOfSegments)
+        let currentWidthPerElement =  (numberOfItems > maxNumSegments) ? frame.size.width/CGFloat(maxNumSegments) : frame.size.width/CGFloat(numberOfItems)
         
         var leftAnchor_content = contentView.leadingAnchor
         
+        NSLog("configure(with items: %@), numberOfSegments: %lu, subviews: %@", items, numberOfItems, scrollView.subviews)
+        
         var newSegments: [HorizontalControlSegment] = [HorizontalControlSegment]()
-        for index in 0..<numberOfSegments {
+        for index in 0..<numberOfItems {
             
-            let cell = HorizontalControlSegment.init(frame: .infinite)
+            NSLog("NEW SEGMENT")
+            
+            let cell = HorizontalControlSegment.init(frame: bounds)
             cell.delegate = self
             contentView.addSubview(cell)
             let leadingConstraint_cell = cell.leadingAnchor.constraint(equalTo: leftAnchor_content)
@@ -109,6 +112,7 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
         
         let offsetInNumberOfSegments = scrollView.contentOffset.x/widthPerElement
         let oldWidth = widthPerElement
+        NSLog("tttt- - > numberOfSegments: %lu, subviews: %@", numberOfSegments, scrollView.subviews)
         if numberOfSegments > 0 {
             let maxNumSegments = numberOfSegmentsToDisplay
             var newWidthPerElement = frame.size.width/CGFloat(numberOfSegments)
@@ -124,18 +128,7 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
             }
         }
     }
-    
-    func updateTextColor() {
-        segments.forEach({
-            $0.textColor = textColor
-            $0.highlightTextColor = highlightTextColor
-        })
-    }
-    
-    func updateFont() {
-        segments.forEach({ $0.font = font })
-    }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         isScrolling = true
         NSObject.cancelPreviousPerformRequests(withTarget: self)
@@ -203,6 +196,18 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
         if fromDelegate { delegate.selectedSegment(at: index) }
     }
     
+    func updateTextColor() {
+        segments.forEach({
+            $0.textColor = textColor
+            $0.highlightTextColor = highlightTextColor
+        })
+    }
+    
+    func updateFont() {
+        segments.forEach({ $0.font = font })
+    }
+    
+    
     func offsetForSegment(at index: Int) -> CGFloat {
         return widthPerElement*CGFloat(index)
     }
@@ -224,8 +229,8 @@ class HorizontalControlSegment: UIView {
     var delegate: HorizontalControlSegmentDelegate!
     var index = Int(0)
     
-    var text = "" { didSet { label.text = text } }
-    var font = UIFont.systemFont(ofSize: 17.0) { didSet { label.font = font } }
+    var text = "" { didSet { if label != nil { label.text = text } } }
+    var font = UIFont.systemFont(ofSize: 17.0) { didSet { if label != nil { label.font = font } } }
     var textColor = UIColor.darkText { didSet { updateAppearance() } }
     var highlightTextColor = UIColor.red { didSet { updateAppearance() } }
     var selected = false { didSet { updateAppearance() } }
@@ -261,7 +266,7 @@ class HorizontalControlSegment: UIView {
     }
     
     private func updateAppearance() {
-        label.textColor = selected ? textColor : highlightTextColor
+        if label != nil { label.textColor = selected ? textColor : highlightTextColor }
     }
 
 }

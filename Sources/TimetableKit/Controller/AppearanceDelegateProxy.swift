@@ -21,16 +21,16 @@ class AppearanceDelegateProxy: TimetableAppearanceDelegate {
     }
     
     private var backgroundColor_light: UIColor = UIColor.with(248.0,248.0,248.0)
-    private var sectionHeaderColor_light: UIColor = UIColor.with(242.0,242.0,242.0)
+    private var sectionHeaderColor_light: UIColor = UIColor.with(248.0,248.0,248.0)
     private var rowHeaderColor_light: UIColor = UIColor.with(248.0,248.0,248.0)
-    private var rowColor_light: UIColor = UIColor.with(248.0,248.0,248.0)
+    private var rowColor_light: UIColor = UIColor.with(242.0,242.0,242.0)
     private var eventTileColor_light: UIColor = UIColor.with(227.0,227.0,227.0)
     private var eventTileHighlightColor_light: UIColor = UIColor.with(237.0,61.0,82.0)
     
     private var backgroundColor: UIColor = UIColor.with(34.0, 34.0, 34.0)
-    private var sectionHeaderColor: UIColor = UIColor.with(42.0, 42.0, 42.0)
+    private var sectionHeaderColor: UIColor = UIColor.with(34.0, 34.0, 34.0)
     private var rowHeaderColor: UIColor = UIColor.with(34.0, 34.0, 34.0)
-    private var rowColor: UIColor = UIColor.with(34.0, 34.0, 34.0)
+    private var rowColor: UIColor = UIColor.with(42.0, 42.0, 42.0)
     private var eventTileColor: UIColor = UIColor.with(68.0, 68.0, 68.0)
     private var eventTileHighlightColor: UIColor = UIColor.with(237.0, 61.0, 82.0)
 

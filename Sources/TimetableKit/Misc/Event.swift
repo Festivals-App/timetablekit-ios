@@ -16,9 +16,9 @@ It is designed in a way, that an user of the 'TimetableView' class can still use
 protocol TimetableEvent: AnyObject {
     
     /// The name of the Item to display in the timeline.
-    var title: String { get }
+    var title: String! { get }
     /// The interval of the item.
-    var interval: DateInterval { get }
+    var interval: DateInterval! { get }
     /// The favourite status of the item.
-    var isFavourite: Bool { get }
+    var isFavourite: Bool! { get }
 }
