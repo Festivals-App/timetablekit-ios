@@ -60,6 +60,7 @@
 		4AAB33A9252003A200ED38F2 /* AppearanceDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceDelegateProxy.swift; sourceTree = "<group>"; };
 		4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleCoordinator.swift; sourceTree = "<group>"; };
 		4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingCoordinator.swift; sourceTree = "<group>"; };
+		4ADA00742535C1860058810C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +112,7 @@
 				4A49B3CD251C0FF200D79D72 /* Tests */,
 				4A49B38F251C0CBC00D79D72 /* Products */,
 				4A49B3DD251C108D00D79D72 /* .jazzy.yaml */,
+				4ADA00742535C1860058810C /* LICENSE */,
 				4A49B3A3251C0FB100D79D72 /* .gitignore */,
 			);
 			sourceTree = "<group>";
