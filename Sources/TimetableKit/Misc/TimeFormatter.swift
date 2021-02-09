@@ -30,15 +30,15 @@ public class TimeFormatter {
         return formatter
     }()
     
-    func string(from date: Date) -> String {
+    public func string(from date: Date) -> String {
         return dateFormatter.string(from: date)
     }
     
-    func string(from interval: DateInterval) -> String {
+    public func string(from interval: DateInterval) -> String {
         return "\(dateFormatter.string(from: interval.start)) - \(dateFormatter.string(from: interval.end))"
     }
     
-    func descriptionOfRelativePosition(of interval: DateInterval, to date: Date) -> String {
+    public func descriptionOfRelativePosition(of interval: DateInterval, to date: Date) -> String {
         
         var value = ""
         let timeTillShowStart = interval.start.timeIntervalSince(date)
@@ -63,7 +63,7 @@ public class TimeFormatter {
         return value
     }
     
-    func descriptionOfRelativePositionToNow(and interval: DateInterval) -> String {
+    public func descriptionOfRelativePositionToNow(and interval: DateInterval) -> String {
         
         var value = ""
         let timeTillShowStart = interval.start.timeIntervalSince(currentDate())
