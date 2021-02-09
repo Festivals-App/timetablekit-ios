@@ -50,11 +50,11 @@ class TimeFormatter {
         else {
             let timeTillShowEnd = interval.end.timeIntervalSince(currentDate())
             if timeTillShowEnd >= 0 {
-                let format = NSLocalizedString("Läuft seit %@", comment: "UI String - TimeFormatter - String describing how much time is left before an event ends.")
+                let format = NSLocalizedString("Läuft seit %@", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time is left before an event ends.")
                 value = String.init(format: format, reasonableTimeString(from: timeTillShowEnd))
             }
             else {
-                let format = NSLocalizedString("Seit %@ vorbei", comment: "UI String - TimeFormatter - String describing how much time has passed since an event ended.")
+                let format = NSLocalizedString("Seit %@ vorbei", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time has passed since an event ended.")
                 value = String.init(format: format, reasonableTimeString(from: timeTillShowEnd))
             }
         }
@@ -68,13 +68,13 @@ class TimeFormatter {
         let minutes = Int(duration) % 3600 / 60
         
         if hours >= 24 {
-            value = NSLocalizedString("mehr als 24 Stunden", comment: "UI String - TimeFormatter - String describing that an event is (or was) more than 24 hours from now.")
+            value = NSLocalizedString("mehr als 24 Stunden", bundle: .module, comment: "UI String - TimeFormatter - String describing that an event is (or was) more than 24 hours from now.")
         }
         else if hours > 4 {
             var components = DateComponents.init()
             components.hour = hours
             let hoursString = componentsFormatter.string(from: components) ?? "<invalid>"
-            let format = NSLocalizedString("ca. %@", comment: "UI String - TimeFormatter - String describing an duration of approximately '%@' hours.")
+            let format = NSLocalizedString("ca. %@", bundle: .module, comment: "UI String - TimeFormatter - String describing an duration of approximately '%@' hours.")
             value = String.init(format: format, hoursString)
         }
         else {

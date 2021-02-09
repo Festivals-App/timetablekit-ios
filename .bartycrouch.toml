@@ -1,0 +1,27 @@
+[update]
+tasks = ["interfaces", "code", "transform", "normalize"]
+
+[update.interfaces]
+paths = ["."]
+defaultToBase = false
+ignoreEmptyStrings = false
+unstripped = false
+
+[update.code]
+codePaths = ["."]
+localizablePaths = ["."]
+defaultToKeys = false
+additive = true
+unstripped = false
+plistArguments = true
+
+[update.normalize]
+paths = ["."]
+sourceLocale = "en"
+harmonizeWithSource = true
+sortByKeys = true
+
+[lint]
+paths = ["."]
+duplicateKeys = true
+emptyValues = true
