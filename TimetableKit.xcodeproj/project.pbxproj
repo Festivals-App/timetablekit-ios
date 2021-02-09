@@ -25,6 +25,7 @@
 		4A49B3FB251C162D00D79D72 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B4251C0FCA00D79D72 /* Event.swift */; };
 		4A49B3FC251C162D00D79D72 /* HorizontalControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */; };
 		4A4F66AF25237CB900D04FCF /* ConcreteTimetableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */; };
+		4A54049F25D235BC00DBAD3C /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A5404A125D235BC00DBAD3C /* Localization.strings */; };
 		4AAB33AA252003A200ED38F2 /* AppearanceDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33A9252003A200ED38F2 /* AppearanceDelegateProxy.swift */; };
 		4AAB33AE25200C9200ED38F2 /* ScaleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */; };
 		4AAB33B125200D1E00ED38F2 /* ScrollingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */; };
@@ -43,7 +44,6 @@
 		4A49B398251C0CBF00D79D72 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4A49B39A251C0CBF00D79D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A49B3A3251C0FB100D79D72 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		4A49B3A6251C0FB700D79D72 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4A49B3A7251C0FB700D79D72 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		4A49B3B1251C0FCA00D79D72 /* Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Autolayout.swift; sourceTree = "<group>"; };
 		4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFormatter.swift; sourceTree = "<group>"; };
@@ -57,6 +57,7 @@
 		4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		4A49B3DD251C108D00D79D72 /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
 		4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteTimetableDelegate.swift; sourceTree = "<group>"; };
+		4A5404A025D235BC00DBAD3C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
 		4AAB33A9252003A200ED38F2 /* AppearanceDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceDelegateProxy.swift; sourceTree = "<group>"; };
 		4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleCoordinator.swift; sourceTree = "<group>"; };
 		4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingCoordinator.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				4A49B3A7251C0FB700D79D72 /* Package.swift */,
-				4A49B3A6251C0FB700D79D72 /* README.md */,
 				4A49B390251C0CBC00D79D72 /* ExampleApp */,
 				4A49B3AF251C0FCA00D79D72 /* Sources */,
 				4A49B3CD251C0FF200D79D72 /* Tests */,
@@ -164,6 +164,7 @@
 				4A41C64B251D83DC006E763B /* Cells */,
 				4AC0AD2F251F6AE400D89289 /* Misc */,
 				4A41C653251D865B006E763B /* Custom Controls */,
+				4A54049425D2338B00DBAD3C /* Resources */,
 			);
 			path = TimetableKit;
 			sourceTree = "<group>";
@@ -184,6 +185,14 @@
 				4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */,
 			);
 			path = TimetableKitTests;
+			sourceTree = "<group>";
+		};
+		4A54049425D2338B00DBAD3C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4A5404A125D235BC00DBAD3C /* Localization.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		4AC0AD2E251F6AD500D89289 /* Controller */ = {
@@ -268,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A49B399251C0CBF00D79D72 /* Preview Assets.xcassets in Resources */,
+				4A54049F25D235BC00DBAD3C /* Localization.strings in Resources */,
 				4A49B396251C0CBF00D79D72 /* Assets.xcassets in Resources */,
 				4A49B3DE251C108D00D79D72 /* .jazzy.yaml in Resources */,
 			);
@@ -302,6 +312,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4A5404A125D235BC00DBAD3C /* Localization.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A5404A025D235BC00DBAD3C /* en */,
+			);
+			name = Localization.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4A49B39B251C0CBF00D79D72 /* Debug */ = {
