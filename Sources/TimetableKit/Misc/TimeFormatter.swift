@@ -43,7 +43,7 @@ class TimeFormatter {
         
         // current time is before the start of the event
         if timeTillShowStart >= 0 {
-            let format = NSLocalizedString("Noch %@", bundle: Bundle.module, comment: "UI String - TimeFormatter - String describing how much time is left before an event starts.")
+            let format = NSLocalizedString("Noch %@", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time is left before an event starts.")
             value = String.init(format: format, reasonableTimeString(from: timeTillShowStart))
         }
         // current time is after the start of the event
