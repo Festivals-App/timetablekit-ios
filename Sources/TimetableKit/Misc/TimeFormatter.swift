@@ -50,32 +50,7 @@ public class TimeFormatter {
         }
         // current time is after the start of the event
         else {
-            let timeTillShowEnd = interval.end.timeIntervalSince(currentDate())
-            if timeTillShowEnd >= 0 {
-                let format = NSLocalizedString("Läuft seit %@", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time is left before an event ends.")
-                value = String.init(format: format, reasonableTimeString(from: timeTillShowEnd))
-            }
-            else {
-                let format = NSLocalizedString("Seit %@ vorbei", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time has passed since an event ended.")
-                value = String.init(format: format, reasonableTimeString(from: timeTillShowEnd))
-            }
-        }
-        return value
-    }
-    
-    public func descriptionOfRelativePositionToNow(and interval: DateInterval) -> String {
-        
-        var value = ""
-        let timeTillShowStart = interval.start.timeIntervalSince(currentDate())
-        
-        // current time is before the start of the event
-        if timeTillShowStart >= 0 {
-            let format = NSLocalizedString("Noch %@", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time is left before an event starts.")
-            value = String.init(format: format, reasonableTimeString(from: timeTillShowStart))
-        }
-        // current time is after the start of the event
-        else {
-            let timeTillShowEnd = interval.end.timeIntervalSince(currentDate())
+            let timeTillShowEnd = interval.end.timeIntervalSince(date)
             if timeTillShowEnd >= 0 {
                 let format = NSLocalizedString("Läuft seit %@", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time is left before an event ends.")
                 value = String.init(format: format, reasonableTimeString(from: timeTillShowEnd))
