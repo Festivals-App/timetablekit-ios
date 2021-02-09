@@ -9,6 +9,8 @@ import UIKit
 
 public class TimeFormatter {
     
+    public init() { }
+    
     lazy private var calendar: Calendar = {
         var cal = Calendar.current
         cal.timeZone = TimeZone.init(identifier: "Europe/Berlin")!
