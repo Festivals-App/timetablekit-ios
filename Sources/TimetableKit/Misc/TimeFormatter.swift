@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TimeFormatter {
+public class TimeFormatter {
     
     lazy private var calendar: Calendar = {
         var cal = Calendar.current

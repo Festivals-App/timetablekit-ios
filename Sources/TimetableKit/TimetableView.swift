@@ -8,7 +8,7 @@ import UIKit
 
 #warning("Remove and make delegate default")
 /// The style of the timetable view.
-enum TimetableStyle {
+public enum TimetableStyle {
     /// A dark timetable view style.
     case dark
     /// A light timetable view style.
@@ -48,7 +48,7 @@ let kBrightnessTreshold: CGFloat = 0.35
  * The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
  
  */
-class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSource, HorizontalControlDelegate {
+public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSource, HorizontalControlDelegate {
 
     var dataSource: TimetableDataSource!
     var appearanceDelegate: TimetableAppearanceDelegate?
@@ -92,7 +92,7 @@ class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSour
         NotificationCenter.default.addObserver(self, selector: #selector(brightnessChanged(_:)), name: UIScreen.brightnessDidChangeNotification, object: nil)
     }
     
-    override func awakeFromNib() {
+    public override func awakeFromNib() {
         super.awakeFromNib()
         automaticStyle = (UIScreen.main.brightness > kBrightnessTreshold) ? .light : .dark
     }
@@ -101,7 +101,7 @@ class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSour
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         let height = tableView.contentSize.height
@@ -191,7 +191,7 @@ class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: TimetableRow.cellIdentifier, for: indexPath) as! TimetableRow
 
@@ -207,15 +207,15 @@ class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.timetableView(self, numberOfRowsIn: section)
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
+    public func numberOfSections(in tableView: UITableView) -> Int {
         return dataSource.numberOfSections(in: self)
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let rowController = rowControllerByIndexPath[indexPath]
         if rowController != nil {
             rowController!.view = nil
@@ -224,15 +224,15 @@ class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSour
         }
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return kDefaultTableViewCellHeigth
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 60.0
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let label = UILabel.init()
         label.textAlignment = .center
@@ -273,7 +273,7 @@ extension Notification.Name {
     static let longPressWasRegistered = Notification.Name("SGLongPressWasRegisteredNotification")
 }
 
-class TimetableBaseView: UIView {
+public class TimetableBaseView: UIView {
     
     var horizontalControl: HorizontalControl!
     var timescale: TimescaleView!
@@ -368,7 +368,7 @@ class TimetableBaseView: UIView {
         }
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         // hide seperators
