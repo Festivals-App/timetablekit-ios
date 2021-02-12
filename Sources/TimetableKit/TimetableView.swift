@@ -62,7 +62,7 @@ public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewD
     
     private var reloadCoverView: UIImageView!
 
-    init(_ frame: CGRect, with style: TimetableStyle) {
+    public init(_ frame: CGRect, with style: TimetableStyle) {
         
         super.init(frame: frame)
         self.style = style
@@ -113,11 +113,11 @@ public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewD
     /// Reloads the rows, tiles and sections of the timetable view.
     ///
     /// Call this method to reload all the data that is used to construct the timetable, including cells, section headers, index arrays, tiles and so on.
-    func reloadData() {
+    public func reloadData() {
         reloadData(animated: false)
     }
     
-    func reloadData(animated: Bool = false) {
+    public func reloadData(animated: Bool = false) {
         
         var muteTitleArray = [String]()
         for index in 0..<dataSource.numberOfDays(in: self) {
@@ -178,7 +178,7 @@ public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewD
     /// - Parameters:
     ///   - style: The new timtable view stlye.
     ///   - animated: If `true`, the style is changed using an animation. Defaults to `true`.
-    func transition(to style: TimetableStyle, animated: Bool = true) {
+    public func transition(to style: TimetableStyle, animated: Bool = true) {
         
         self.style = style
         reloadData(animated: animated)
