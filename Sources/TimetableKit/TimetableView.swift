@@ -50,8 +50,8 @@ let kBrightnessTreshold: CGFloat = 0.35
  */
 public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSource, HorizontalControlDelegate {
 
-    var dataSource: TimetableDataSource!
-    var appearanceDelegate: TimetableAppearanceDelegate?
+    public var dataSource: TimetableDataSource!
+    public var appearanceDelegate: TimetableAppearanceDelegate?
     
     private(set) var style: TimetableStyle = .automatic
     private var automaticStyle: TimetableStyle = .automatic
