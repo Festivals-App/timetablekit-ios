@@ -13,12 +13,12 @@ The TimetableEvent protocol declares the methods that a class must implement, so
 A timetable displays events, so the elementary data to do that are events.
 It is designed in a way, that an user of the 'TimetableView' class can still use their own app specific representation of events. He only needs to make his event representing class conform to the 'TimetableEvent' protocol and he is ready to use the timetable view. This could be done by adding a categorie or subclassing.
 */
-protocol TimetableEvent: AnyObject {
+public protocol TimetableEvent: AnyObject {
     
     /// The name of the Item to display in the timeline.
-    var title: String! { get }
+    var title: String { get }
     /// The interval of the item.
-    var interval: DateInterval! { get }
+    var interval: DateInterval { get }
     /// The favourite status of the item.
-    var isFavourite: Bool! { get }
+    var isFavourite: Bool { get }
 }
