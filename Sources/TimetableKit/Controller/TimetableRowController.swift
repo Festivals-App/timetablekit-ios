@@ -74,7 +74,8 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
         if section == 0 {
             let start = layoutDelegate.intervalOfTimetable.start
             let end = event.interval.start
-            durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
+            print("start: \(start) end: \(end)")
+            durationInMinutes = DateInterval(start: start, end: end).duration / 60.0
         }
         // other headers
         // we calculate the width by determin the time interval between the
