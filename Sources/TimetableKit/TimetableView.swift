@@ -171,7 +171,6 @@ public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewD
                 self.scrollingCoordinator.set(self.navigationScrollView.contentOffset, animated: false)
             }
         }
-        
     }
     
     /// Transitions to the specified timetable view style.

@@ -74,8 +74,10 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
         if section == 0 {
             let start = layoutDelegate.intervalOfTimetable.start
             let end = event.interval.start
-            print("start: \(start) end: \(end)")
-            durationInMinutes = 3000
+            if start.compare(end) == .orderedDescending {
+                fatalError("Wrong value in collectionView:layout:referenceSizeForHeaderInSection: Precondition: end >= start not fulfilled. start: \(start) end \(end)")
+            }
+            durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
         }
         // other headers
         // we calculate the width by determin the time interval between the
@@ -84,6 +86,9 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
             let previousEvent = events[section-1]
             let start = previousEvent.interval.end
             let end = event.interval.start
+            if start.compare(end) == .orderedDescending {
+                fatalError("Wrong value in collectionView:layout:referenceSizeForHeaderInSection: Precondition: end >= start not fulfilled. start: \(start) end \(end)")
+            }
             durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
         }
         return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
