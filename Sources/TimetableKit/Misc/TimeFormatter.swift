@@ -7,6 +7,12 @@
 
 import UIKit
 
+extension Bundle {
+    static var module: Bundle {
+        return Bundle(for: Self.self)
+    }
+}
+
 public class TimeFormatter {
     
     public init() { }

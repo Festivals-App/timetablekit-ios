@@ -1,14 +1,14 @@
 /* UI String - TimeFormatter - String describing how much time is left before an event starts. */
-"Noch %@" = "Noch %@"
+"Noch %@" = "Noch %@";
 
 /* UI String - TimeFormatter - String describing how much time is left before an event ends. */
-"Läuft seit %@" = "Läuft seit %@"
+"Läuft seit %@" = "Läuft seit %@";
 
 /* UI String - TimeFormatter - String describing how much time has passed since an event ended. */
-"Seit %@ vorbei" = "Seit %@ vorbei"
+"Seit %@ vorbei" = "Seit %@ vorbei";
 
 /* UI String - TimeFormatter - String describing that an event is (or was) more than 24 hours from now. */
-"mehr als 24 Stunden" = "mehr als 24 Stunden"
+"mehr als 24 Stunden" = "mehr als 24 Stunden";
 
 /* UI String - TimeFormatter - String describing an duration of approximately '%@' hours. */
-"ca. %@" = "ca. %@"
+"ca. %@" = "ca. %@";

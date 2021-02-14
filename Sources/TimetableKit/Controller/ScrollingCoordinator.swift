@@ -220,7 +220,7 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
         var previousEndDate: Date?
         for interval in timetableDays {
             if let endDate = previousEndDate {
-                breaks.append(DateInterval.init(start: endDate, end: interval.start))
+                breaks.append(DateInterval(start: endDate, end: interval.start))
             }
             previousEndDate = interval.end
         }

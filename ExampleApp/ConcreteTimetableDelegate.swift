@@ -82,10 +82,15 @@ class ROW {
 }
 
 class EVENT: TimetableEvent {
-    var title: String!
-    var interval: DateInterval!
-    var isFavourite: Bool!
+    var title: String
+    var interval: DateInterval
+    var isFavourite: Bool
     
+    init(_ title: String = "", _ interval: DateInterval = DateInterval(), _ isFavourite: Bool = false) {
+        self.title = title
+        self.interval = interval
+        self.isFavourite = isFavourite
+    }
 }
 
 
