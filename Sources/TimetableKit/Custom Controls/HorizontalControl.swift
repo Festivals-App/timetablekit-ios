@@ -27,7 +27,7 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
     var scrollView: UIScrollView!
     var contentView: UIView!
     
-    var segments: [HorizontalControlSegment] = [HorizontalControlSegment]()
+    var segments = [HorizontalControlSegment]()
     var containerViewWidthConstraint: NSLayoutConstraint!
     
     var selectedIndex: Int = 0
@@ -48,38 +48,57 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
     }
     
     func configure(with items: [String]) {
-        
+
         scrollView = UIScrollView.init(frame: bounds)
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         addSubview(scrollView)
-        let _ = scrollView.fit(to: self)
+        scrollView.fit(to: self)
         
         contentView = UIView.init(frame: bounds)
         scrollView.addSubview(contentView)
-        let _ = contentView.fit(to: scrollView)
+        contentView.fit(to: scrollView)
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let leadingAnchor = contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
+        let trailingAnchor = contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+        let topAnchor = contentView.topAnchor.constraint(equalTo: scrollView.topAnchor)
+        let bottomAnchor = contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+        
         let heightsConstraint_container = contentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1.0)
+        let widhtConstraint_container = contentView.widthAnchor.constraint(equalToConstant: 0.0)
+        
+
+        leadingAnchor.isActive = true
+        trailingAnchor.isActive = true
+        topAnchor.isActive = true
+        bottomAnchor.isActive = true
+        
+        widhtConstraint_container.isActive = true
         heightsConstraint_container.isActive = true
-        containerViewWidthConstraint = contentView.widthAnchor.constraint(equalToConstant: 0.0)
-        containerViewWidthConstraint.isActive = true
+        
+        containerViewWidthConstraint = widhtConstraint_container
         
         let numberOfItems = items.count
         let maxNumSegments = numberOfSegmentsToDisplay
-        let currentWidthPerElement =  (numberOfItems > maxNumSegments) ? frame.size.width/CGFloat(maxNumSegments) : frame.size.width/CGFloat(numberOfItems)
+        let currentWidthPerElement = (numberOfItems > maxNumSegments) ? frame.size.width/CGFloat(maxNumSegments) : frame.size.width/CGFloat(numberOfItems)
         
         var leftAnchor_content = contentView.leadingAnchor
         
-        NSLog("configure(with items: %@), numberOfSegments: %lu, subviews: %@", items, numberOfItems, scrollView.subviews)
+        //NSLog("configure(with items: %@), numberOfSegments: %lu, subviews: %@", items, numberOfItems, scrollView.subviews)
         
-        var newSegments: [HorizontalControlSegment] = [HorizontalControlSegment]()
+        var newSegments = [HorizontalControlSegment]()
         for index in 0..<numberOfItems {
-            
-            NSLog("NEW SEGMENT")
             
             let cell = HorizontalControlSegment.init(frame: bounds)
             cell.delegate = self
             contentView.addSubview(cell)
+            
+            //print("contentView: \(contentView), subviews: \(contentView.subviews)")
+            
+            cell.translatesAutoresizingMaskIntoConstraints = false
             let leadingConstraint_cell = cell.leadingAnchor.constraint(equalTo: leftAnchor_content)
             let topConstraint_cell = cell.topAnchor.constraint(equalTo: contentView.topAnchor)
             let bottomConstraint_cell = cell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
@@ -98,6 +117,7 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
             cell.text = items[index]
             cell.selected = (index == selectedIndex)
             cell.index = index
+            
             newSegments.append(cell)
         }
         
@@ -107,17 +127,21 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+   
         guard let scrollView = scrollView else { return }
         
         let offsetInNumberOfSegments = scrollView.contentOffset.x/widthPerElement
         let oldWidth = widthPerElement
-        NSLog("tttt- - > numberOfSegments: %lu, subviews: %@", numberOfSegments, scrollView.subviews)
+        
         if numberOfSegments > 0 {
+            
             let maxNumSegments = numberOfSegmentsToDisplay
             var newWidthPerElement = frame.size.width/CGFloat(numberOfSegments)
             if numberOfSegments > maxNumSegments { newWidthPerElement = frame.size.width/CGFloat(maxNumSegments) }
+            
             if oldWidth != newWidthPerElement {
+                
+                
                 containerViewWidthConstraint.constant = CGFloat(numberOfSegments)*newWidthPerElement
                 scrollView.contentSize = CGSize.init(width: CGFloat(numberOfSegments)*newWidthPerElement, height: frame.size.height)
                 segments.forEach({ $0.widthConstraint!.constant = newWidthPerElement })
@@ -207,7 +231,6 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
         segments.forEach({ $0.font = font })
     }
     
-    
     func offsetForSegment(at index: Int) -> CGFloat {
         return widthPerElement*CGFloat(index)
     }
@@ -242,10 +265,16 @@ class HorizontalControlSegment: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        setupSubviews()
+        setupGestureRecognizer()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        setupSubviews()
+        setupGestureRecognizer()
     }
     
     private func setupSubviews() {

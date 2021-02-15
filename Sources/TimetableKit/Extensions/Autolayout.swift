@@ -18,6 +18,7 @@ extension UIView {
     ///   - top: The top margin.
     ///   - bottom: The bottom margin.
     /// - Returns: true if the constraints are installed successfully, otherwise false.
+    @discardableResult
     func fit(to superview: UIView, leading: CGFloat = 0.0, trailing: CGFloat = 0.0, top: CGFloat = 0.0, bottom: CGFloat = 0.0) -> Bool {
         
         if !self.isDescendant(of: superview) { return false }
@@ -31,6 +32,7 @@ extension UIView {
         return true
     }
     
+    @discardableResult
     func stickToTop(of superview: UIView, height: CGFloat, sideMargin: CGFloat = 0.0) -> Bool {
         
         if !self.isDescendant(of: superview) { return false }
@@ -44,6 +46,7 @@ extension UIView {
         return true
     }
     
+    @discardableResult
     func stickToTop(of superview: UIView, height: CGFloat, topMargin: CGFloat = 0.0) -> Bool {
         
         if !self.isDescendant(of: superview) { return false }
@@ -57,6 +60,7 @@ extension UIView {
         return true
     }
     
+    @discardableResult
     func stickToBottom(of superview: UIView, heightRatio: CGFloat = 0.7142857143, sideMargin: CGFloat = 0.0) -> Bool {
         
         if !self.isDescendant(of: superview) { return false }
