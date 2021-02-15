@@ -39,7 +39,7 @@ class ConcreteTimetableDelegate: TimetableDataSource {
     }
     
     func interval(for timetableView: TimetableView) -> DateInterval {
-        return DateInterval.init(start: Date.date(m: kMONTH, d: kDAY, H: 13, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 23, M: 30))
+        return DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 13, M: 0), end: Date.date(m: kMONTH, d: kDAY+2, H: 7, M: 0))
     }
     
     func numberOfDays(in timetableView: TimetableView) -> Int {
@@ -58,15 +58,15 @@ class ConcreteTimetableDelegate: TimetableDataSource {
     }
     
     func timetableView(_ timetableView: TimetableView, intervalForDayAt index: Int) -> DateInterval {
-        if index == 0 { return DateInterval.init(start: Date.date(m: kMONTH, d: kDAY, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 3, M: 30)) }
-        else { return DateInterval.init(start: Date.date(m: kMONTH, d: kDAY+1, H: 13, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 23, M: 0)) }
+        if index == 0 { return DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 4, M: 15)) }
+        else { return DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY+2, H: 5, M: 30)) }
     }
 }
 
 class SECTION {
     
     var title: String!
-    var rows: [ROW]!
+    var rows: [TimetableRowData]!
     
     static func testData() -> [SECTION] {
         
@@ -74,11 +74,6 @@ class SECTION {
         let food = foodSection()
         return [music, food]
     }
-}
-
-class ROW {
-    var title: String!
-    var events: [TimetableEvent]!
 }
 
 class EVENT: TimetableEvent {
@@ -99,28 +94,59 @@ func musicSection() -> SECTION {
     let music = SECTION.init()
     music.title = "Music"
     
-    let schoko = ROW.init()
+    let schoko = TimetableRowData()
     schoko.title = "Schokoladen"
     
-    let event1 = EVENT.init()
-    event1.title = "Tosin Abasi"
-    event1.interval = DateInterval.init(start: Date.date(m: kMONTH, d: kDAY, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY, H: 15, M: 30))
+    let event1 = EVENT("Tosin Abasi", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY, H: 15, M: 30)))
     event1.isFavourite = true
+    let event2 = EVENT("Rückkopplung", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 16, M: 0), end: Date.date(m: kMONTH, d: kDAY, H: 17, M: 15)))
+    let event3 = EVENT("Ursina", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 17, M: 45), end: Date.date(m: kMONTH, d: kDAY, H: 18, M: 45)))
+    let event4 = EVENT("Bleu Roi", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 19, M: 15), end: Date.date(m: kMONTH, d: kDAY, H: 20, M: 30)))
+    let event5 = EVENT("Yes I'm Very Tired Now", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 20, M: 45), end: Date.date(m: kMONTH, d: kDAY, H: 22, M: 0)))
     
-    let event2 = EVENT.init()
-    event2.title = "Rückkopplung"
-    event2.interval = DateInterval.init(start: Date.date(m: kMONTH, d: kDAY, H: 16, M: 0), end: Date.date(m: kMONTH, d: kDAY, H: 17, M: 15))
-    event2.isFavourite = false
+    let event6 = EVENT("Parrot to the Moon", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 16, M: 0)))
+    let event7 = EVENT("Soybomb", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 16, M: 30), end: Date.date(m: kMONTH, d: kDAY+1, H: 17, M: 45)))
+    let event8 = EVENT("Frank Powers", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 18, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 19, M: 30)))
+    let event9 = EVENT("Panda Lux", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 20, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 21, M: 0)))
+    let event10 = EVENT("GeilerAsDu", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 21, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 22, M: 45)))
     
-    schoko.events = [event1, event2]
+    schoko.events = [event1, event2, event3, event4, event5, event6, event7, event8, event9, event10]
     
-    let wald = ROW.init()
+    let wald = TimetableRowData()
     wald.title = "Waldbühne"
-    wald.events = [TimetableEvent]()
+
+    let event11 = EVENT("Nemo", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 20, M: 00), end: Date.date(m: kMONTH, d: kDAY, H: 21, M: 15)))
+    let event22 = EVENT("Roosevelt", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 21, M: 30), end: Date.date(m: kMONTH, d: kDAY, H: 22, M: 30)))
+    let event33 = EVENT("Young Fathers", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 23, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 0, M: 0)))
+    let event44 = EVENT("The Shins", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 0, M: 30), end: Date.date(m: kMONTH, d: kDAY+1, H: 2, M: 30)))
     
-    let future = ROW.init()
+    let event55 = EVENT("Baba Shrimps", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 20, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 21, M: 15)))
+    let event66 = EVENT("Frank Turner", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 21, M: 30), end: Date.date(m: kMONTH, d: kDAY+1, H: 22, M: 30)))
+    let event77 = EVENT("The Slow Show", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 23, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 23, M: 55)))
+    let event87 = EVENT("SBTRKT (DJ-Set)", DateInterval(start: Date.date(m: kMONTH, d: kDAY+2, H: 0, M: 30), end: Date.date(m: kMONTH, d: kDAY+2, H: 2, M: 30)))
+    
+    wald.events = [event11, event22, event33, event44, event55, event66, event77, event87]
+    
+    let future = TimetableRowData()
     future.title = "Zukunft am Ostkreuz"
-    future.events = [TimetableEvent]()
+
+    let event111 = EVENT("Odd Beholder", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 20, M: 0), end: Date.date(m: kMONTH, d: kDAY, H: 21, M: 0)))
+    let event222 = EVENT("S.O.S. (Dawill & Nativ)", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 21, M: 15), end: Date.date(m: kMONTH, d: kDAY, H: 22, M: 15)))
+    let event333 = EVENT("Hyperculte", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 22, M: 30), end: Date.date(m: kMONTH, d: kDAY, H: 23, M: 20)))
+    let event444 = EVENT("Crimer", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 23, M: 45), end: Date.date(m: kMONTH, d: kDAY+1, H: 0, M: 30)))
+    let event555 = EVENT("Cakes Da Killa Milano", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 1, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 2, M: 0)))
+    let event666 = EVENT("Audio Dope", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 2, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 3, M: 0)))
+    let event777 = EVENT("Afterparty (Hodini DJ-Set)", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 3, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 4, M: 15)))
+    
+    let event888 = EVENT("MoreEats", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 20, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 21, M: 0)))
+    let event999 = EVENT("JPTR", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 21, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 22, M: 15)))
+    let event100 = EVENT("Parcels", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 22, M: 30), end: Date.date(m: kMONTH, d: kDAY+1, H: 23, M: 30)))
+    let event101 = EVENT("Klangstof", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 23, M: 45), end: Date.date(m: kMONTH, d: kDAY+2, H: 0, M: 45)))
+    let event102 = EVENT("SWK (Pink Flamingo, Makala, Di-Meh, SlimKa)", DateInterval(start: Date.date(m: kMONTH, d: kDAY+2, H: 1, M: 0), end: Date.date(m: kMONTH, d: kDAY+2, H: 2, M: 0)))
+    let event103 = EVENT("Crack Ignaz", DateInterval(start: Date.date(m: kMONTH, d: kDAY+2, H: 2, M: 30), end: Date.date(m: kMONTH, d: kDAY+2, H: 3, M: 0)))
+    let event104 = EVENT("Afterparty mit Manuel Fischer (Drumpoet Community)", DateInterval(start: Date.date(m: kMONTH, d: kDAY+2, H: 3, M: 15), end: Date.date(m: kMONTH, d: kDAY+2, H: 5, M: 30)))
+    
+    future.events = [event111, event222, event333, event444, event555, event666, event777, event888, event999, event100, event101, event102, event103, event104]
 
     music.rows = [schoko, wald, future]
     
@@ -132,12 +158,16 @@ func foodSection() -> SECTION {
     let food = SECTION.init()
     food.title = "Food"
     
-    let brot = ROW.init()
+    let brot = TimetableRowData()
     brot.title = "HandBrotZeit"
-    brot.events = [TimetableEvent]()
-    let döna = ROW.init()
+    let event21 = EVENT("Öffnungszeiten ", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 14, M: 30), end: Date.date(m: kMONTH, d: kDAY, H: 22, M: 30)))
+    let event221 = EVENT("Öffnungszeiten", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 14, M: 30), end: Date.date(m: kMONTH, d: kDAY+1, H: 22, M: 30)))
+    brot.events = [event21, event221]
+    let döna = TimetableRowData()
     döna.title = "Kaplan Döner"
-    döna.events = [TimetableEvent]()
+    let event211 = EVENT("Öffnungszeiten ", DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 14, M: 0), end: Date.date(m: kMONTH, d: kDAY, H: 23, M: 0)))
+    let event2211 = EVENT("Öffnungszeiten", DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 14, M: 0), end: Date.date(m: kMONTH, d: kDAY+1, H: 23, M: 0)))
+    döna.events = [event211, event2211]
 
     food.rows = [brot, döna]
     

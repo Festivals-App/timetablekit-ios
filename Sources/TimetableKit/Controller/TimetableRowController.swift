@@ -47,15 +47,16 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let tile = collectionView.dequeueReusableCell(withReuseIdentifier: EventTile.cellIdentifier, for: indexPath) as! EventTile
-        tile.event = events[indexPath.section]
-        tile.backgroundColor = tile.event!.isFavourite ? appearanceDelegate.timetabelEventTileHighlightColor() : appearanceDelegate.timetabelEventTileColor()
+        let event = events[indexPath.section]
+        tile.event = event
+        tile.backgroundColor = event.isFavourite ? appearanceDelegate.timetabelEventTileHighlightColor() : appearanceDelegate.timetabelEventTileColor()
         return tile
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let durationInMinutes = events[indexPath.section].interval.duration/60.0
-        return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute, height: view.frame.size.height)
+        let duration = events[indexPath.section].interval.duration.minutes.floaty
+        return CGSize.init(width: duration*layoutDelegate.pointsPerMinute, height: view.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -66,7 +67,7 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
         // pause items and event items.
         // By doing it this way the pauses will remain some kind of non-data as it should be.
         let event = events[section]
-        var durationInMinutes = 0.0
+        var duration: CGFloat = 0.0
         
         // first header
         // for the first header we calculate the width of the header using
@@ -74,10 +75,7 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
         if section == 0 {
             let start = layoutDelegate.intervalOfTimetable.start
             let end = event.interval.start
-            if start.compare(end) == .orderedDescending {
-                fatalError("Wrong value in collectionView:layout:referenceSizeForHeaderInSection: Precondition: end >= start not fulfilled. start: \(start) end \(end)")
-            }
-            durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
+            duration = DateInterval(start: start, end: end).duration.minutes.floaty
         }
         // other headers
         // we calculate the width by determin the time interval between the
@@ -86,12 +84,9 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
             let previousEvent = events[section-1]
             let start = previousEvent.interval.end
             let end = event.interval.start
-            if start.compare(end) == .orderedDescending {
-                fatalError("Wrong value in collectionView:layout:referenceSizeForHeaderInSection: Precondition: end >= start not fulfilled. start: \(start) end \(end)")
-            }
-            durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
+            duration = DateInterval(start: start, end: end).duration.minutes.floaty
         }
-        return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
+        return CGSize(width: duration*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -100,12 +95,12 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
         // and the end of the interval displayed by the timetable.
         // For more information on the handling of pauses see the comments in the
         // - collectionView:layout:referenceSizeForHeaderInSection: method
-        if section == self.numberOfSections(in: collectionView)-1 {
+        if section == numberOfSections(in: collectionView)-1 {
             let event = events[section]
             let start = event.interval.end
             let end = layoutDelegate.intervalOfTimetable.end
-            let durationInMinutes = DateInterval.init(start: start, end: end).duration/60.0
-            return CGSize.init(width: CGFloat(durationInMinutes)*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
+            let duration = DateInterval(start: start, end: end).duration.minutes.floaty
+            return CGSize(width: duration*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
         }
         return .zero
     }

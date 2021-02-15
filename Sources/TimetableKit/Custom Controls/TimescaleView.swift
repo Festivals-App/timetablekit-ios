@@ -21,7 +21,7 @@ enum TimeIntervalFactor: CGFloat {
 
 class TimescaleView: UICollectionView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    var interval = DateInterval.init(start: Date.init(), duration: 3600) { didSet { reloadData() } }
+    var interval = DateInterval(start: Date(), duration: 3600) { didSet { reloadData() } }
     var pointsPerMinute: CGFloat = 2.1 { didSet { reloadData() } }
     var timescaleColor = UIColor.black { didSet { backgroundColor = timescaleColor } }
     var timescaleStrokeColor = UIColor.white { didSet { reloadData() } }

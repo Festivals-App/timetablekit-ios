@@ -9,13 +9,13 @@ import UIKit
 
 
 /**
- The `ScrollingCoordinator` class is responsible for coordinating the scrolling of the collection views and the tablew view.
+ The `ScrollingCoordinator` class is responsible for coordinating the scrolling of the collection views and the table view.
  
  The scrolling coordinator manages all scrolling related calculations. It will send a notification if the scroll views should change their content offset and is the starting point if we need to intervene in the scrolling behaviour.
  */
 class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
     
-    var timetable: TimetableView!
+    var timetable: TimetableView
     var scaleCoordinator: ScaleCoordinator!
     
     lazy var breakIntervals: [DateInterval] = { return calculateBreakIntervals(for: timetableDays) }()
@@ -25,9 +25,8 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
     
     required init(with timetable: TimetableView) {
         
-        super.init()
-        
         self.timetable = timetable
+        super.init()
     }
     
     func set(_ contentOffset: CGPoint, animated: Bool) {
@@ -216,8 +215,12 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
     }
     
     func calculateBreakIntervals(for timetableDays: [DateInterval]) -> [DateInterval] {
+        
+        if timetableDays.count < 2 { return [] }
+        
         var breaks = [DateInterval]()
         var previousEndDate: Date?
+        
         for interval in timetableDays {
             if let endDate = previousEndDate {
                 breaks.append(DateInterval(start: endDate, end: interval.start))
