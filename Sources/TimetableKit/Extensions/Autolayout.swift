@@ -81,12 +81,12 @@ extension UIView {
         while superview != nil {
             for constraint: NSLayoutConstraint in superview!.constraints {
                 if constraint.firstItem as? NSObject == self {
-                    superview!.removeConstraint(constraint)
+                    superview?.removeConstraint(constraint)
                 }
                 if constraint.secondItem as? NSObject == self {
-                    superview!.removeConstraint(constraint)
+                    superview?.removeConstraint(constraint)
                 }
-                superview = superview!.superview
+                superview = superview?.superview
             }
         }
         removeConstraints(constraints)
