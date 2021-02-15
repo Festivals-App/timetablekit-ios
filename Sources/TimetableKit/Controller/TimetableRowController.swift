@@ -75,7 +75,7 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
         if section == 0 {
             let start = layoutDelegate.intervalOfTimetable.start
             let end = event.interval.start
-            duration = DateInterval(start: start, end: end).duration.minutes.floaty
+            duration = DateInterval.safely(start: start, end: end).duration.minutes.floaty
         }
         // other headers
         // we calculate the width by determin the time interval between the
@@ -84,7 +84,7 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
             let previousEvent = events[section-1]
             let start = previousEvent.interval.end
             let end = event.interval.start
-            duration = DateInterval(start: start, end: end).duration.minutes.floaty
+            duration = DateInterval.safely(start: start, end: end).duration.minutes.floaty
         }
         return CGSize(width: duration*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
     }
@@ -99,7 +99,7 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
             let event = events[section]
             let start = event.interval.end
             let end = layoutDelegate.intervalOfTimetable.end
-            let duration = DateInterval(start: start, end: end).duration.minutes.floaty
+            let duration = DateInterval.safely(start: start, end: end).duration.minutes.floaty
             return CGSize(width: duration*layoutDelegate.pointsPerMinute, height: collectionView.frame.size.height)
         }
         return .zero
