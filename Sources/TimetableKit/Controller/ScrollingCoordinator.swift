@@ -13,7 +13,7 @@ import UIKit
  
  The scrolling coordinator manages all scrolling related calculations. It will send a notification if the scroll views should change their content offset and is the starting point if we need to intervene in the scrolling behaviour.
  */
-class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
+class ScrollingCoordinator: NSObject {
     
     var timetable: TimetableView
     var scaleCoordinator: ScaleCoordinator!
@@ -61,18 +61,47 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
             timetable.navigationScrollView.contentOffset = contentOffset
         }
     }
+
+    func willScroll(to XAxisOffset: CGFloat) {
+        
+        let currentOffsetX = XAxisOffset+(timetable.tableView.frame.size.width/2.0)
+        let timetableStartDate = timetable.dataSource.interval(for: timetable).start
+        let pointsPerMinute = scaleCoordinator.pointsPerMinute
+        
+        let secondsTillStart = (currentOffsetX/pointsPerMinute)*60.0
+        let offsetAsDate = timetableStartDate.addingTimeInterval(TimeInterval(secondsTillStart))
+        
+        timetableDays.enumerated().forEach { (index, dateInterval) in
+            if dateInterval.contains(offsetAsDate) {
+                timetable.horizontalControl.selectSegment(at: index)
+                return
+            }
+        }
+    }
+    
+}
+
+// MARK: Scrollview Delegate
+
+extension ScrollingCoordinator: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         set(scrollView.contentOffset, animated: false)
     }
     
+    /*
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        
+        print("scrollViewDidEndScrollingAnimation")
+        
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         if !skipDidEndScrollingMethodOnce { scrollingDidEnd() }
         else { skipDidEndScrollingMethodOnce = false }
     }
+    */
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
         if !scaleCoordinator.isScaling {
             
             // this method is fired when the user lifts his/her finger from the screen (or the finger left the touch area of the screen)
@@ -90,8 +119,8 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
   
             for pause in breakIntervals {
                 
-                let startOffset = CGFloat(pause.start.timeIntervalSince(timetableStartDate)/60.0) * pointsPerMinute
-                let endOffset = CGFloat(pause.end.timeIntervalSince(timetableStartDate)) * pointsPerMinute
+                let startOffset = pause.start.timeIntervalSince(timetableStartDate).minutes.floaty * pointsPerMinute
+                let endOffset = pause.end.timeIntervalSince(timetableStartDate).minutes.floaty * pointsPerMinute
                 
                 // adjust left and right offsets, the left offset needs to be less,
                 // so there is a little gap beween the last event tile and the timetables right border
@@ -158,7 +187,10 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
         }
     }
     
+    /*
     func scrollingDidEnd() {
+        
+        print("scrollingDidEnd()")
         
         if !scaleCoordinator.isScaling {
             
@@ -174,10 +206,15 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
             let pointsPerMinute = scaleCoordinator.pointsPerMinute
             let timetableStartDate = timetable.dataSource.interval(for: timetable).start
             
+            // now we check for every pause
+            // we can stop itteration if we successfully handled a case
             for pause in breakIntervals {
                 
-                let startOffset = CGFloat(pause.start.timeIntervalSince(timetableStartDate)/60.0) * pointsPerMinute
-                let endOffset = CGFloat(pause.end.timeIntervalSince(timetableStartDate)) * pointsPerMinute
+                print("check pause")
+                
+                // the offset of the pause start and end
+                let startOffset = pause.start.timeIntervalSince(timetableStartDate).minutes.floaty * pointsPerMinute
+                let endOffset = pause.end.timeIntervalSince(timetableStartDate).floaty * pointsPerMinute
                 
                 // adjust left and right offsets, the left offset needs to be less,
                 // so there is a little gap beween the last event tile and the timetables right border
@@ -189,30 +226,26 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
                 // we check if the target offset is inside the bounce trashholds
                 // if it's not, we dont need to do anything here (yeay)
                 if (adjustedStartOffset < currentOffset && currentOffset < adjustedEndOffset) {
-                
+                    
                     let currentOffset_YAxis = timetable.navigationScrollView.contentOffset.y
                     let isLeft = currentOffset.isNearer(to: adjustedStartOffset, than: adjustedEndOffset)
-                    let offsetToScrollTo = CGPoint.init(x: (isLeft) ? adjustedStartOffset : adjustedEndOffset, y: currentOffset_YAxis)
+                    let xCoord = isLeft ? adjustedStartOffset : adjustedEndOffset
+                    let offsetToScrollTo = CGPoint(x: xCoord, y: currentOffset_YAxis)
                     set(offsetToScrollTo, 0.3)
                     skipDidEndScrollingMethodOnce = true
+                    
+                    print("We hit a pause: \(offsetToScrollTo)")
+                    return
                 }
             }
         }
     }
-    
-    func willScroll(to XAxisOffset: CGFloat) {
-        
-        let currentOffsetX = XAxisOffset+timetable.tableView.frame.size.width/2.0
-        let timetableStartDate = timetable.dataSource.interval(for: timetable).start
-        let pointsPerMinute = scaleCoordinator.pointsPerMinute
-        let secondsTillStart = (currentOffsetX/pointsPerMinute)*60.0
-        let offsetAsDate = timetableStartDate.addingTimeInterval(TimeInterval(secondsTillStart))
-        timetableDays.enumerated().forEach({ if $0.1.contains(offsetAsDate) { timetable.horizontalControl.selectSegment(at: $0.0) } })
-    }
-    
-    func offsetIsNearer(to leftBound: CGFloat, _ offset: CGFloat, or rightBound: CGFloat) -> Bool {
-        return ((offset - leftBound) <= (rightBound - offset))
-    }
+     */
+}
+
+// MARK: Interval Calculations
+
+extension ScrollingCoordinator {
     
     func calculateBreakIntervals(for timetableDays: [DateInterval]) -> [DateInterval] {
         
@@ -227,6 +260,7 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
             }
             previousEndDate = interval.end
         }
+        print("calculateBreakIntervals: \(breaks)")
         return breaks
     }
     
@@ -237,6 +271,7 @@ class ScrollingCoordinator: NSObject, UIScrollViewDelegate {
         for index in 0..<numberOfDays {
             days.append(timetable.dataSource.timetableView(timetable, intervalForDayAt: index))
         }
+        print("calculateTimetableDays: \(days)")
         return days
     }
 }
