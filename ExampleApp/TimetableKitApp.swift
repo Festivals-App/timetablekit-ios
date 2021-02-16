@@ -28,7 +28,7 @@ struct TimetableView_wrapper: UIViewRepresentable {
 
     func makeUIView(context: Context) -> TimetableView {
         
-        let timetable = TimetableView(.infinite, with: TimetableStyle.dark)
+        let timetable = TimetableView(.infinite, with: TimetableStyle.light)
         timetable.dataSource = ConcreteTimetableDelegate.init()
         timetable.reloadData()
         return timetable
