@@ -13,3 +13,10 @@ extension Double {
         CGFloat(self)
     }
 }
+
+extension CGFloat {
+    
+    func isNearlyEqual(to offset: CGFloat) -> Bool {
+        return (self < offset) ? ((offset-self) < 2.0) : ((self-offset) < 2.0);
+    }
+}

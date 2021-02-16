@@ -12,7 +12,7 @@ import UIKit
     func selectedSegment(at index: Int)
 }
 
-class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentDelegate {
+class HorizontalControl: UIView {
     
     @IBOutlet var delegate: HorizontalControlDelegate!
     var numberOfSegments: Int { return segments.count }
@@ -48,7 +48,7 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
     }
     
     func configure(with items: [String]) {
-
+        
         scrollView = UIScrollView.init(frame: bounds)
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
@@ -87,16 +87,14 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
         
         var leftAnchor_content = contentView.leadingAnchor
         
-        //NSLog("configure(with items: %@), numberOfSegments: %lu, subviews: %@", items, numberOfItems, scrollView.subviews)
-        
+        contentView.subviews.forEach({ $0.removeFromSuperview() })
+       
         var newSegments = [HorizontalControlSegment]()
         for index in 0..<numberOfItems {
             
             let cell = HorizontalControlSegment.init(frame: bounds)
             cell.delegate = self
             contentView.addSubview(cell)
-            
-            //print("contentView: \(contentView), subviews: \(contentView.subviews)")
             
             cell.translatesAutoresizingMaskIntoConstraints = false
             let leadingConstraint_cell = cell.leadingAnchor.constraint(equalTo: leftAnchor_content)
@@ -117,7 +115,7 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
             cell.text = items[index]
             cell.selected = (index == selectedIndex)
             cell.index = index
-            
+        
             newSegments.append(cell)
         }
         
@@ -151,29 +149,6 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
                 widthPerElement = newWidthPerElement
             }
         }
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        isScrolling = true
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
-        perform(#selector(scrollViewDidEndScrollingAnimation(_:)), with: scrollView, afterDelay: 0.3)
-    }
-    
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
-        let fRemainder = CGFloat(fmodf(Float(scrollView.contentOffset.x), Float(widthPerElement)))
-        if fRemainder < widthPerElement/2.0 {
-            scrollView.setContentOffset(CGPoint.init(x: scrollView.contentOffset.x-fRemainder, y: 0.0), animated: true)
-        }
-        else {
-            scrollView.setContentOffset(CGPoint.init(x: scrollView.contentOffset.x+(widthPerElement-fRemainder), y: 0.0), animated: true)
-        }
-        isScrolling = false
-    }
-    
-    func clicked(at index: Int) {
-        if !isScrolling { clicked(at: index, fromDelegate: true) }
     }
     
     func selectSegment(at index: Int) {
@@ -236,9 +211,32 @@ class HorizontalControl: UIView, UIScrollViewDelegate, HorizontalControlSegmentD
     }
 }
 
-extension CGFloat {
-    func isNearlyEqual(to offset: CGFloat) -> Bool {
-        return (self < offset) ? ((offset-self) < 2.0) : ((self-offset) < 2.0);
+extension HorizontalControl: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        isScrolling = true
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        perform(#selector(scrollViewDidEndScrollingAnimation(_:)), with: scrollView, afterDelay: 0.3)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        let fRemainder = CGFloat(fmodf(Float(scrollView.contentOffset.x), Float(widthPerElement)))
+        if fRemainder < widthPerElement/2.0 {
+            scrollView.setContentOffset(CGPoint.init(x: scrollView.contentOffset.x-fRemainder, y: 0.0), animated: true)
+        }
+        else {
+            scrollView.setContentOffset(CGPoint.init(x: scrollView.contentOffset.x+(widthPerElement-fRemainder), y: 0.0), animated: true)
+        }
+        isScrolling = false
+    }
+}
+
+extension HorizontalControl: HorizontalControlSegmentDelegate  {
+    
+    func clicked(at index: Int) {
+        if !isScrolling { clicked(at: index, fromDelegate: true) }
     }
 }
 
@@ -252,50 +250,58 @@ class HorizontalControlSegment: UIView {
     var delegate: HorizontalControlSegmentDelegate!
     var index = Int(0)
     
-    var text = "" { didSet { if label != nil { label.text = text } } }
-    var font = UIFont.systemFont(ofSize: 17.0) { didSet { if label != nil { label.font = font } } }
+    var text = "Segment<>" { didSet { label.text = text } }
+    var font = UIFont.systemFont(ofSize: 17.0) { didSet { label.font = font } }
     var textColor = UIColor.darkText { didSet { updateAppearance() } }
     var highlightTextColor = UIColor.red { didSet { updateAppearance() } }
     var selected = false { didSet { updateAppearance() } }
     
     var widthConstraint: NSLayoutConstraint?
     
-    private var label: UILabel!
+    private var label: UILabel
     private var tapGestureRecognizer: UITapGestureRecognizer!
     
     override init(frame: CGRect) {
-        super.init(frame: frame)
         
-        setupSubviews()
-        setupGestureRecognizer()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        setupSubviews()
-        setupGestureRecognizer()
-    }
-    
-    private func setupSubviews() {
         label = UILabel.init(frame: .zero)
         label.font = UIFont.systemFont(ofSize: 17.0, weight: .light)
         label.numberOfLines = 0
         label.textAlignment = .center
+        
+        super.init(frame: frame)
+        
         self.addSubview(label)
-        let _ = label.fit(to: self)
-    }
-    
-    private func setupGestureRecognizer() {
+        label.fit(to: self)
+        
         tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(handle(tap:)))
+        addGestureRecognizer(tapGestureRecognizer)
     }
     
+    required init?(coder: NSCoder) {
+        
+        label = UILabel.init(frame: .zero)
+        label.font = UIFont.systemFont(ofSize: 17.0, weight: .light)
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
+        super.init(coder: coder)
+        
+        self.addSubview(label)
+        label.fit(to: self)
+        
+        tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(handle(tap:)))
+        addGestureRecognizer(tapGestureRecognizer)
+    }
+
     @objc func handle(tap: UITapGestureRecognizer) {
+        
+        print("@objc func handle(tap: UITapGestureRecognizer)")
         delegate.clicked(at: index)
     }
     
     private func updateAppearance() {
-        if label != nil { label.textColor = selected ? textColor : highlightTextColor }
+        
+        label.textColor = selected ? highlightTextColor : textColor
     }
-
 }
+

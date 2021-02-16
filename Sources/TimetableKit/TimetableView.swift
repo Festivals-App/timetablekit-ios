@@ -48,7 +48,7 @@ let kBrightnessTreshold: CGFloat = 0.35
  * The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
  
  */
-public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewDataSource, HorizontalControlDelegate {
+public class TimetableView: TimetableBaseView {
 
     public var dataSource: TimetableDataSource!
     public var appearanceDelegate: TimetableAppearanceDelegate?
@@ -75,7 +75,6 @@ public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewD
     }
     
     private func setupView() {
-        backgroundColor = .blue
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -184,11 +183,58 @@ public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewD
     }
     
     @objc func brightnessChanged(_ notification: Notification) {
-        
-        #warning("TBI")
-        
+
     }
     
+    func recycledOrNewRowController() -> TimetableRowController {
+        if unusedRowController.count > 1 {
+            let reusedController = unusedRowController.randomElement()!
+            unusedRowController.remove(reusedController)
+            return reusedController
+        }
+        
+        let layout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = .horizontal
+        layout.minimumInteritemSpacing = 0.0
+        layout.minimumLineSpacing = 0.0
+        
+        let contentViewController = TimetableRowController.init(collectionViewLayout: layout)
+        contentViewController.layoutDelegate = scaleCoordinator
+        contentViewController.appearanceDelegate = proxyAppearanceDelegate
+        rowController.append(contentViewController)
+        return contentViewController
+    }
+}
+
+extension TimetableView: HorizontalControlDelegate {
+    
+    func selectedSegment(at index: Int) {
+        
+        let timetableInterval = dataSource.interval(for: self)
+        let intervalForSelectedDay = dataSource.timetableView(self, intervalForDayAt: index)
+        
+        let currentOffset_x = navigationScrollView.contentOffset.x
+        var startOffset_x = DateInterval.safely(start: timetableInterval.start, end: intervalForSelectedDay.start).duration.minutes.floaty*scaleCoordinator.pointsPerMinute
+        var endOffset_x = DateInterval.safely(start: timetableInterval.start, end: intervalForSelectedDay.end).duration.minutes.floaty*scaleCoordinator.pointsPerMinute
+    
+        let halfTimetabelWidth = frame.size.width/2.0
+        endOffset_x = endOffset_x - halfTimetabelWidth
+        startOffset_x = startOffset_x - halfTimetabelWidth
+        
+        if (!(currentOffset_x >= startOffset_x && currentOffset_x <= endOffset_x+halfTimetabelWidth)) {
+            
+            if (currentOffset_x < startOffset_x) {
+                
+                scrollingCoordinator.set(CGPoint(x: startOffset_x, y: tableView.contentOffset.y), animated: true)
+            }
+            else {
+                scrollingCoordinator.set(CGPoint(x: endOffset_x, y: tableView.contentOffset.y), animated: true)
+            }
+        }
+    }
+}
+
+extension TimetableView: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -240,29 +286,6 @@ public class TimetableView: TimetableBaseView, UITableViewDelegate, UITableViewD
         label.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
         label.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor().withAlphaComponent(0.5)
         return label
-    }
-    
-    func recycledOrNewRowController() -> TimetableRowController {
-        if unusedRowController.count > 1 {
-            let reusedController = unusedRowController.randomElement()!
-            unusedRowController.remove(reusedController)
-            return reusedController
-        }
-        
-        let layout = UICollectionViewFlowLayout.init()
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 0.0
-        layout.minimumLineSpacing = 0.0
-        
-        let contentViewController = TimetableRowController.init(collectionViewLayout: layout)
-        contentViewController.layoutDelegate = scaleCoordinator
-        contentViewController.appearanceDelegate = proxyAppearanceDelegate
-        rowController.append(contentViewController)
-        return contentViewController
-    }
-    
-    func selectedSegment(at index: Int) {
-        
     }
 }
 
