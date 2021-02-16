@@ -221,6 +221,7 @@ extension TimetableView: HorizontalControlDelegate {
         endOffset_x = endOffset_x - halfTimetabelWidth
         startOffset_x = startOffset_x - halfTimetabelWidth
         
+        #warning("Add code comments for explanation (offset logic)")
         if (!(currentOffset_x >= startOffset_x && currentOffset_x <= endOffset_x+halfTimetabelWidth)) {
             
             if (currentOffset_x < startOffset_x) {
