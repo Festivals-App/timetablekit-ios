@@ -301,6 +301,7 @@ public class TimetableBaseView: UIView {
     var horizontalControl: HorizontalControl!
     var timescale: TimescaleView!
     var tableView: SGTableView!
+    var currentTimeScrollView: UIScrollView!
     var navigationScrollView: UIScrollView!
     
     var tapGestureRecognizer: UITapGestureRecognizer!
@@ -341,6 +342,16 @@ public class TimetableBaseView: UIView {
         timescale = TimescaleView.init(frame: .zero)
         self.addSubview(timescale)
         let _ = timescale.stickToTop(of: self, height: 44.0, topMargin: 44.0)
+        
+        currentTimeScrollView = UIScrollView.init(frame: .infinite)
+        currentTimeScrollView.backgroundColor = .clear
+        currentTimeScrollView.showsVerticalScrollIndicator = false
+        currentTimeScrollView.showsHorizontalScrollIndicator = false
+        currentTimeScrollView.isOpaque = false
+        currentTimeScrollView.decelerationRate = .fast
+        currentTimeScrollView.panGestureRecognizer.maximumNumberOfTouches = 1
+        self.addSubview(currentTimeScrollView)
+        let _ = currentTimeScrollView.fit(to: self, leading: 0, trailing: 0, top: 88.0, bottom: 0)
         
         navigationScrollView = UIScrollView.init(frame: .infinite)
         navigationScrollView.backgroundColor = .clear
