@@ -98,7 +98,7 @@ class TimescaleView: UICollectionView, UICollectionViewDelegate, UICollectionVie
     
     var lengthOfCellInMinutes: CGFloat {
     
-        #warning("TimeIntervalFactor and this whole lengthOfCellInMinutes naming is suboptimal, REFACTOR!")
+        //#warning("TimeIntervalFactor and this whole lengthOfCellInMinutes naming is suboptimal, REFACTOR!")
         let resultingWidth = TimeIntervalFactor.standard.rawValue * pointsPerMinute;
         if resultingWidth > CellWidth.max.rawValue {
             return TimeIntervalFactor.min.rawValue
