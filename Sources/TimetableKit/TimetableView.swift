@@ -285,7 +285,7 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource {
         label.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
         label.text = dataSource.timetableView(self, titleForHeaderOf: section)
         label.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
-        label.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor().withAlphaComponent(0.5)
+        label.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()//.withAlphaComponent(0.5)
         return label
     }
 }
