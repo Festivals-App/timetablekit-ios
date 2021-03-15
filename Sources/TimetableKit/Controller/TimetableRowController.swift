@@ -56,7 +56,7 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let duration = events[indexPath.section].interval.duration.minutes.floaty
-        return CGSize.init(width: duration*layoutDelegate.pointsPerMinute, height: view.frame.size.height)
+        return CGSize(width: duration*layoutDelegate.pointsPerMinute, height: view.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

@@ -105,7 +105,7 @@ public class TimetableView: TimetableBaseView {
         
         let height = tableView.contentSize.height
         let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
-        navigationScrollView.contentSize = CGSize.init(width: widht, height: height)
+        navigationScrollView.contentSize = CGSize(width: widht, height: height)
         tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
     }
     
@@ -322,7 +322,6 @@ public class TimetableBaseView: UIView {
     }
      
     private func setupView() {
-        backgroundColor = .red
         
         tableView = SGTableView.init(frame: .infinite, style: .grouped)
         tableView.register(TimetableRow.self, forCellReuseIdentifier: TimetableRow.cellIdentifier)
@@ -331,6 +330,7 @@ public class TimetableBaseView: UIView {
         tableView.showsHorizontalScrollIndicator = false
         tableView.sectionFooterHeight = 0.0
         tableView.backgroundView = nil
+        tableView.insetsContentViewsToSafeArea = false
         self.addSubview(tableView)
         let _ = tableView.fit(to: self, leading: 0.0, trailing: 0.0, top: 88.0, bottom: 0.0)
         
