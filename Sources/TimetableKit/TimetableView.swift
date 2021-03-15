@@ -332,16 +332,16 @@ public class TimetableBaseView: UIView {
         tableView.backgroundView = nil
         tableView.insetsContentViewsToSafeArea = false
         self.addSubview(tableView)
-        let _ = tableView.fit(to: self, leading: 0.0, trailing: 0.0, top: 88.0, bottom: 0.0)
+        tableView.fit(to: self, leading: 0.0, trailing: 0.0, top: 88.0, bottom: 0.0)
         
         horizontalControl = HorizontalControl.init(frame: .zero)
         horizontalControl.font = UIFont.systemFont(ofSize: 17.0, weight: .light)
         self.addSubview(horizontalControl)
-        let _ = horizontalControl.stickToTop(of: self, height: 44.0, topMargin: 0.0)
+        horizontalControl.stickToTop(of: self, height: 44.0, topMargin: 0.0)
         
         timescale = TimescaleView.init(frame: .zero)
         self.addSubview(timescale)
-        let _ = timescale.stickToTop(of: self, height: 44.0, topMargin: 44.0)
+        timescale.stickToTop(of: self, height: 44.0, topMargin: 44.0)
         
         currentTimeScrollView = UIScrollView.init(frame: .infinite)
         currentTimeScrollView.backgroundColor = .clear
@@ -351,7 +351,7 @@ public class TimetableBaseView: UIView {
         currentTimeScrollView.decelerationRate = .fast
         currentTimeScrollView.panGestureRecognizer.maximumNumberOfTouches = 1
         self.addSubview(currentTimeScrollView)
-        let _ = currentTimeScrollView.fit(to: self, leading: 0, trailing: 0, top: 88.0, bottom: 0)
+        currentTimeScrollView.fit(to: self, leading: 0, trailing: 0, top: 88.0, bottom: 0)
         
         navigationScrollView = UIScrollView.init(frame: .infinite)
         navigationScrollView.backgroundColor = .clear
@@ -361,7 +361,7 @@ public class TimetableBaseView: UIView {
         navigationScrollView.decelerationRate = .fast
         navigationScrollView.panGestureRecognizer.maximumNumberOfTouches = 1
         self.addSubview(navigationScrollView)
-        let _ = navigationScrollView.fit(to: self, leading: 0, trailing: 0, top: 88.0, bottom: 0)
+        navigationScrollView.fit(to: self, leading: 0, trailing: 0, top: 88.0, bottom: 0)
         
         tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(TimetableBaseView.tapped(recognizer:)))
         longPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: #selector(TimetableBaseView.longPress(recognizer:)))
