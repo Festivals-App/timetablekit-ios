@@ -25,9 +25,11 @@ class EventTile: UICollectionViewCell {
             }
         }
     }
-    
+
+    /*
     override var backgroundColor: UIColor? {
         didSet {
+        
             if let textLabel = textLabel {
                 textLabel.backgroundColor = backgroundColor
             }
@@ -38,8 +40,9 @@ class EventTile: UICollectionViewCell {
             }
         }
     }
-    
-    private var textLabel: InsetLabel!
+ */
+ 
+    var textLabel: InsetLabel!
     private var timeFormatter: TimeFormatter = TimeFormatter.init()
     private var tileState: EventTileState = .showTitle
     private var getsLongPressed = false
@@ -54,9 +57,8 @@ class EventTile: UICollectionViewCell {
         textLabel = InsetLabel.init(frame: frame)
         textLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         textLabel.textAlignment = .center
-        textLabel.backgroundColor = .lightGray
         contentView.addSubview(textLabel)
-        let _ = textLabel.fit(to: contentView)
+        textLabel.fit(to: contentView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(EventTile.cellWasTapped(with:)), name: .tapWasRegistered, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(EventTile.cellWasLongPressed(with:)), name: .longPressWasRegistered, object: nil)

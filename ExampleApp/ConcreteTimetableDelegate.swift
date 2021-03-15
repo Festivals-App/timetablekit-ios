@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 let kMONTH = 9
 let kDAY = 29
 
-class ConcreteTimetableDelegate: TimetableDataSource {
+class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegate {
     
     var sections: [SECTION] = SECTION.testData()
     
@@ -60,6 +61,31 @@ class ConcreteTimetableDelegate: TimetableDataSource {
     func timetableView(_ timetableView: TimetableView, intervalForDayAt index: Int) -> DateInterval {
         if index == 0 { return DateInterval(start: Date.date(m: kMONTH, d: kDAY, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY+1, H: 4, M: 15)) }
         else { return DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY+2, H: 5, M: 30)) }
+    }
+    
+    
+    func timetabelBackgroundColor() -> UIColor {
+        return UIColor.white
+    }
+    
+    func timetabelSectionHeaderColor() -> UIColor {
+        return UIColor.white
+    }
+    
+    func timetabelRowHeaderColor() -> UIColor {
+        return UIColor.white
+    }
+    
+    func timetabelRowColor() -> UIColor {
+        return UIColor.lightGray
+    }
+    
+    func timetabelEventTileColor() -> UIColor {
+        return UIColor.black
+    }
+    
+    func timetabelEventTileHighlightColor() -> UIColor {
+        return UIColor.red
     }
 }
 

@@ -30,6 +30,7 @@ struct TimetableView_wrapper: UIViewRepresentable {
         
         let timetable = TimetableView(.infinite, with: TimetableStyle.light)
         timetable.dataSource = ConcreteTimetableDelegate.init()
+        timetable.appearanceDelegate = ConcreteTimetableDelegate.init()
         timetable.reloadData()
         return timetable
     
