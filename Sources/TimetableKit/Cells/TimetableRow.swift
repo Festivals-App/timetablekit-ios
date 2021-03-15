@@ -19,7 +19,7 @@ class TimetableRow: UITableViewCell {
         didSet {
             if hostedView != nil {
                 contentView.addSubview(hostedView)
-                let _ = hostedView.fit(to: contentView, leading: 0, trailing: 0, top: 45, bottom: 0)
+                hostedView.fit(to: contentView, leading: 0, trailing: 0, top: 45, bottom: 0)
             }
         }
     }
@@ -30,9 +30,9 @@ class TimetableRow: UITableViewCell {
         
         titleLabel = UILabel.init(frame: .infinite)
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 15.0, weight: .thin)
+        titleLabel.font = UIFont.systemFont(ofSize: 15.0, weight: .light)
         contentView.addSubview(titleLabel)
-        let _ = titleLabel.stickToTop(of: contentView, height: 45.0, sideMargin: 15.0)
+        titleLabel.stickToTop(of: contentView, height: 45.0, sideMargin: 15.0)
     }
     
     required init?(coder: NSCoder) {
