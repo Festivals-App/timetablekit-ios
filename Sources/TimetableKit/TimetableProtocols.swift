@@ -126,6 +126,8 @@ public protocol TimetableAppearanceDelegate {
     func timetabelEventTileColor() -> UIColor
     /// The background color of the event tiles if the event is favoured.
     func timetabelEventTileHighlightColor() -> UIColor
+    /// The color of the label of the event tile.
+    func timetabelEventTileTextColor() -> UIColor
 }
 
 // MARK: Timetable Layout Delegate

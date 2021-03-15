@@ -26,6 +26,7 @@ class AppearanceDelegateProxy: TimetableAppearanceDelegate {
     private var rowColor_light: UIColor = UIColor.with(242.0,242.0,242.0)
     private var eventTileColor_light: UIColor = UIColor.with(227.0,227.0,227.0)
     private var eventTileHighlightColor_light: UIColor = UIColor.with(237.0,61.0,82.0)
+    private var eventTileTextColor_light: UIColor = UIColor.black
     
     private var backgroundColor: UIColor = UIColor.with(34.0, 34.0, 34.0)
     private var sectionHeaderColor: UIColor = UIColor.with(34.0, 34.0, 34.0)
@@ -33,6 +34,7 @@ class AppearanceDelegateProxy: TimetableAppearanceDelegate {
     private var rowColor: UIColor = UIColor.with(42.0, 42.0, 42.0)
     private var eventTileColor: UIColor = UIColor.with(68.0, 68.0, 68.0)
     private var eventTileHighlightColor: UIColor = UIColor.with(237.0, 61.0, 82.0)
+    private var eventTileTextColor: UIColor = UIColor.white
 
     func timetabelBackgroundColor() -> UIColor {
         
@@ -65,10 +67,13 @@ class AppearanceDelegateProxy: TimetableAppearanceDelegate {
         return (timetable.style == .light) ? eventTileHighlightColor_light : eventTileHighlightColor
     }
     
+    func timetabelEventTileTextColor() -> UIColor {
+        if self.appearanceDelegate != nil { return self.appearanceDelegate!.timetabelEventTileTextColor() }
+        return (timetable.style == .light) ? eventTileTextColor_light : eventTileTextColor
+    }
+    
     private var appearanceDelegate: TimetableAppearanceDelegate? { return timetable.appearanceDelegate }
-    
-    //(red: (r/255.0), green: (r/255.0), blue: (r/255.0), alpha: 1.0)
-    
+
 }
 
 
