@@ -50,7 +50,7 @@ class TimetableRowController: UICollectionViewController, UICollectionViewDelega
         let event = events[indexPath.section]
         tile.event = event
         tile.backgroundColor = event.isFavourite ? appearanceDelegate.timetabelEventTileHighlightColor() : appearanceDelegate.timetabelEventTileColor()
-        tile.textLabel.textColor = appearanceDelegate.timetabelBackgroundColor()
+        tile.textLabel.textColor = appearanceDelegate.timetabelEventTileTextColor()
         return tile
     }
     

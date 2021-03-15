@@ -21,27 +21,10 @@ class EventTile: UICollectionViewCell {
             if let event = event {
                 textLabel.numberOfLines = event.title.components(separatedBy: " ").count
                 textLabel.text = event.title
-                textLabel.textColor = event.isFavourite ? .white : backgroundColor?.contrastingColor()
             }
         }
     }
 
-    /*
-    override var backgroundColor: UIColor? {
-        didSet {
-        
-            if let textLabel = textLabel {
-                textLabel.backgroundColor = backgroundColor
-            }
-            if let event = event {
-                if event.isFavourite {
-                    textLabel.textColor = backgroundColor?.contrastingColor()
-                }
-            }
-        }
-    }
- */
- 
     var textLabel: InsetLabel!
     private var timeFormatter: TimeFormatter = TimeFormatter.init()
     private var tileState: EventTileState = .showTitle
@@ -52,11 +35,11 @@ class EventTile: UICollectionViewCell {
         
         isUserInteractionEnabled = false
         clipsToBounds = true
-        backgroundColor = .lightGray
         
         textLabel = InsetLabel.init(frame: frame)
         textLabel.font = UIFont.boldSystemFont(ofSize: 15.0)
         textLabel.textAlignment = .center
+        textLabel.numberOfLines = 3
         contentView.addSubview(textLabel)
         textLabel.fit(to: contentView)
         
@@ -78,7 +61,6 @@ class EventTile: UICollectionViewCell {
         event = nil
         tileState = .showTitle
         textLabel.text = nil
-        textLabel.backgroundColor = backgroundColor
     }
     
     #warning("Check if this is still needed")
