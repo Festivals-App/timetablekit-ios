@@ -260,7 +260,7 @@ extension ScrollingCoordinator {
             }
             previousEndDate = interval.end
         }
-        print("calculateBreakIntervals: \(breaks)")
+        //print("calculateBreakIntervals: \(breaks)")
         return breaks
     }
     
@@ -271,7 +271,7 @@ extension ScrollingCoordinator {
         for index in 0..<numberOfDays {
             days.append(timetable.dataSource.timetableView(timetable, intervalForDayAt: index))
         }
-        print("calculateTimetableDays: \(days)")
+        //print("calculateTimetableDays: \(days)")
         return days
     }
 }

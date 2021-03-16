@@ -103,6 +103,8 @@ public class TimetableView: TimetableBaseView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
+        print("tableView.contentSize.height: \(tableView.contentSize.height)")
+        
         let height = tableView.contentSize.height
         let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
         navigationScrollView.contentSize = CGSize(width: widht, height: height)
@@ -275,7 +277,7 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60.0
+        return 40.0
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -331,6 +333,10 @@ public class TimetableBaseView: UIView {
         tableView.sectionFooterHeight = 0.0
         tableView.backgroundView = nil
         tableView.insetsContentViewsToSafeArea = false
+        tableView.estimatedRowHeight = 0
+        tableView.estimatedSectionHeaderHeight = 0
+        tableView.estimatedSectionFooterHeight = 0
+        
         self.addSubview(tableView)
         tableView.fit(to: self, leading: 0.0, trailing: 0.0, top: 88.0, bottom: 0.0)
         

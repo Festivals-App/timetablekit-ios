@@ -69,11 +69,11 @@ class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegat
     }
     
     func timetabelSectionHeaderColor() -> UIColor {
-        return .white
+        return .yellow
     }
     
     func timetabelRowHeaderColor() -> UIColor {
-        return .white
+        return .green
     }
     
     func timetabelRowColor() -> UIColor {
@@ -89,7 +89,7 @@ class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegat
     }
     
     func timetabelEventTileTextColor() -> UIColor {
-        return .white
+        return .blue
     }
 }
 
