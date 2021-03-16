@@ -107,6 +107,8 @@ public class TimetableView: TimetableBaseView {
         let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
         navigationScrollView.contentSize = CGSize(width: widht, height: height)
         tableView.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
+        navigationScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
     }
     
     /// Reloads the rows, tiles and sections of the timetable view.

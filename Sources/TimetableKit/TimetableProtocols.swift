@@ -77,6 +77,11 @@ public protocol TimetableDataSource {
     ///   - index: The index of the day.
     /// - Returns: The date interval of the day.
     func timetableView(_ timetableView: TimetableView, intervalForDayAt index: Int) -> DateInterval
+    
+    /// Asks the data source for the bottom padding for the timetable view.
+    /// - Parameter timetableView: The timetable view requesting the data.
+    /// - Returns: The bottom padding of the timetable view.
+    func bottomPadding(for timetableView: TimetableView) -> CGFloat
 }
 
 // MARK: Timetable Delegate

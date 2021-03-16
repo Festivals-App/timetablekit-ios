@@ -63,6 +63,10 @@ class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegat
         else { return DateInterval(start: Date.date(m: kMONTH, d: kDAY+1, H: 14, M: 15), end: Date.date(m: kMONTH, d: kDAY+2, H: 5, M: 30)) }
     }
     
+    func bottomPadding(for timetableView: TimetableView) -> CGFloat {
+        return 200
+    }
+    
     
     func timetabelBackgroundColor() -> UIColor {
         return .cyan
