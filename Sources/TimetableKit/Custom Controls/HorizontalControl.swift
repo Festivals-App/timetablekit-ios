@@ -48,13 +48,14 @@ class HorizontalControl: UIView {
     }
     
     func configure(with items: [String]) {
+        
+        subviews.forEach { $0.removeFromSuperview() }
                 
         scrollView = UIScrollView.init(frame: bounds)
         scrollView.delegate = self
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         addSubview(scrollView)
-        print("HorizontalControl subviews: \(subviews)")
         scrollView.fit(to: self)
         
         contentView = UIView.init(frame: bounds)
