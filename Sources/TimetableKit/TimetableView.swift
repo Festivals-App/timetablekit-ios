@@ -106,7 +106,7 @@ public class TimetableView: TimetableBaseView {
         let height = tableView.contentSize.height
         let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
         navigationScrollView.contentSize = CGSize(width: widht, height: height)
-        tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
+        tableView.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
     }
     
     /// Reloads the rows, tiles and sections of the timetable view.
@@ -235,6 +235,8 @@ extension TimetableView: HorizontalControlDelegate {
     }
 }
 
+let kTimetableSectionHeaderHeight: CGFloat = 40
+
 extension TimetableView: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -275,7 +277,7 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40.0
+        return kTimetableSectionHeaderHeight
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -284,7 +286,7 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource {
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
         label.text = dataSource.timetableView(self, titleForHeaderOf: section)
-        label.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+        label.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
         label.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()//.withAlphaComponent(0.5)
         return label
     }
@@ -331,10 +333,11 @@ public class TimetableBaseView: UIView {
         tableView.sectionFooterHeight = 0.0
         tableView.backgroundView = nil
         tableView.insetsContentViewsToSafeArea = false
+        tableView.automaticallyAdjustsScrollIndicatorInsets = false
         tableView.estimatedRowHeight = 0
         tableView.estimatedSectionHeaderHeight = 0
         tableView.estimatedSectionFooterHeight = 0
-        
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
         self.addSubview(tableView)
         tableView.fit(to: self, leading: 0.0, trailing: 0.0, top: 88.0, bottom: 0.0)
         
@@ -351,6 +354,7 @@ public class TimetableBaseView: UIView {
         currentTimeScrollView.backgroundColor = .clear
         currentTimeScrollView.showsVerticalScrollIndicator = false
         currentTimeScrollView.showsHorizontalScrollIndicator = false
+        currentTimeScrollView.automaticallyAdjustsScrollIndicatorInsets = false
         currentTimeScrollView.isOpaque = false
         currentTimeScrollView.decelerationRate = .fast
         currentTimeScrollView.panGestureRecognizer.maximumNumberOfTouches = 1
@@ -361,6 +365,7 @@ public class TimetableBaseView: UIView {
         navigationScrollView.backgroundColor = .clear
         navigationScrollView.showsVerticalScrollIndicator = false
         navigationScrollView.showsHorizontalScrollIndicator = false
+        navigationScrollView.automaticallyAdjustsScrollIndicatorInsets = false
         navigationScrollView.isOpaque = false
         navigationScrollView.decelerationRate = .fast
         navigationScrollView.panGestureRecognizer.maximumNumberOfTouches = 1
@@ -424,7 +429,7 @@ public class TimetableBaseView: UIView {
  */
 class SGTableView: UITableView {
     
-    private var completionBlock: (()->Void)?
+    private var completionBlock: ( () -> Void )?
     
     /// Reloads the rows and sections of the table view and executes the completionBlock when finished.
     ///
@@ -433,7 +438,7 @@ class SGTableView: UITableView {
     /// - Warning: If you call this method before a previous invocation finished, the old completion block won't be executed.
     /// - seealso: https://stackoverflow.com/questions/16071503/how-to-tell-when-uitableview-has-completed-reloaddata
     /// - Parameter completion: The block to execute after the reload finished.
-    func reloadData(calling completion:  @escaping () -> (Void)) {
+    func reloadData(calling completion:  @escaping () -> Void) {
         
         #if DEBUG
         if self.completionBlock != nil {

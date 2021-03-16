@@ -65,7 +65,7 @@ class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegat
     
     
     func timetabelBackgroundColor() -> UIColor {
-        return .white
+        return .cyan
     }
     
     func timetabelSectionHeaderColor() -> UIColor {

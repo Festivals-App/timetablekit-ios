@@ -10,7 +10,7 @@ import UIKit
 let kMaxPointsPerMinute: CGFloat = 5.0
 let kDefaultPointsPerMinute: CGFloat = 2.1
 let kMinPointsPerMinute: CGFloat = 1.0
-let kDefaultTableViewCellHeigth: CGFloat = 100.0
+let kDefaultTableViewCellHeigth: CGFloat = 55+kTimetableRowLabelHeight
 
 /**
  The `ScaleCoordinator` class is responsible for coordinating the scale of the collection views and the tablew view.
