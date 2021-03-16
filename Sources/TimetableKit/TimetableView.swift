@@ -102,9 +102,7 @@ public class TimetableView: TimetableBaseView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        
-        print("tableView.contentSize.height: \(tableView.contentSize.height)")
-        
+
         let height = tableView.contentSize.height
         let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
         navigationScrollView.contentSize = CGSize(width: widht, height: height)
