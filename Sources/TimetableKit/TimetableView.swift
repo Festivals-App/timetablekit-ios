@@ -258,6 +258,7 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource {
         rowController.events = dataSource.timetableView(self, eventsForRowAt: indexPath)
         rowControllerByIndexPath[indexPath] = rowController
         
+        cell.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
         cell.contentView.backgroundColor = proxyAppearanceDelegate.timetabelRowHeaderColor()
         cell.titleLabel.textColor = proxyAppearanceDelegate.timetabelRowHeaderColor().contrastingColor()
         cell.hostedView = rowController.view
