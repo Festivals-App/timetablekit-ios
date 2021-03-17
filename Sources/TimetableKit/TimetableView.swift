@@ -121,8 +121,8 @@ public class TimetableView: TimetableBaseView {
     
     public func reloadData(animated: Bool = false) {
         
-        if self.window != nil {
-        
+        DispatchQueue.main.async { [self] in
+            
             var muteTitleArray = [String]()
             for index in 0..<dataSource.numberOfDays(in: self) {
                 muteTitleArray.append(dataSource.timetableView(self, titleForDayAt: index))
