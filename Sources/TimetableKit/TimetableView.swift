@@ -103,12 +103,15 @@ public class TimetableView: TimetableBaseView {
     public override func layoutSubviews() {
         super.layoutSubviews()
 
-        let height = tableView.contentSize.height
-        let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
-        navigationScrollView.contentSize = CGSize(width: widht, height: height)
-        tableView.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
-        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
-        navigationScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
+        DispatchQueue.main.async { [self] in
+            
+            let height = tableView.contentSize.height
+            let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
+            navigationScrollView.contentSize = CGSize(width: widht, height: height)
+            tableView.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+            tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
+            navigationScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
+        }
     }
     
     /// Reloads the rows, tiles and sections of the timetable view.
