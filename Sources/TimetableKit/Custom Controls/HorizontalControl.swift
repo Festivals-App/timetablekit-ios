@@ -49,80 +49,83 @@ class HorizontalControl: UIView {
     
     func configure(with items: [String]) {
         
-        subviews.forEach { $0.removeFromSuperview() }
-                
-        scrollView = UIScrollView.init(frame: bounds)
-        scrollView.delegate = self
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        addSubview(scrollView)
-        scrollView.fit(to: self)
-        
-        contentView = UIView.init(frame: bounds)
-        scrollView.addSubview(contentView)
-        contentView.fit(to: scrollView)
-        
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let leadingAnchor = contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
-        let trailingAnchor = contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
-        let topAnchor = contentView.topAnchor.constraint(equalTo: scrollView.topAnchor)
-        let bottomAnchor = contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-        
-        let heightsConstraint_container = contentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1.0)
-        let widhtConstraint_container = contentView.widthAnchor.constraint(equalToConstant: 0.0)
-        
+        if frame.size != .zero {
+            
+            subviews.forEach { $0.removeFromSuperview() }
+                    
+            scrollView = UIScrollView.init(frame: bounds)
+            scrollView.delegate = self
+            scrollView.showsHorizontalScrollIndicator = false
+            scrollView.showsVerticalScrollIndicator = false
+            addSubview(scrollView)
+            scrollView.fit(to: self)
+            
+            contentView = UIView.init(frame: bounds)
+            scrollView.addSubview(contentView)
+            contentView.fit(to: scrollView)
+            
+            contentView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let leadingAnchor = contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor)
+            let trailingAnchor = contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor)
+            let topAnchor = contentView.topAnchor.constraint(equalTo: scrollView.topAnchor)
+            let bottomAnchor = contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            
+            let heightsConstraint_container = contentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1.0)
+            let widhtConstraint_container = contentView.widthAnchor.constraint(equalToConstant: 0.0)
+            
 
-        leadingAnchor.isActive = true
-        trailingAnchor.isActive = true
-        topAnchor.isActive = true
-        bottomAnchor.isActive = true
-        
-        widhtConstraint_container.isActive = true
-        heightsConstraint_container.isActive = true
-        
-        containerViewWidthConstraint = widhtConstraint_container
-        
-        let numberOfItems = items.count
-        let maxNumSegments = numberOfSegmentsToDisplay
-        let currentWidthPerElement = (numberOfItems > maxNumSegments) ? frame.size.width/CGFloat(maxNumSegments) : frame.size.width/CGFloat(numberOfItems)
-        
-        var leftAnchor_content = contentView.leadingAnchor
-        
-        contentView.subviews.forEach({ $0.removeFromSuperview() })
-       
-        var newSegments = [HorizontalControlSegment]()
-        for index in 0..<numberOfItems {
+            leadingAnchor.isActive = true
+            trailingAnchor.isActive = true
+            topAnchor.isActive = true
+            bottomAnchor.isActive = true
             
-            let cell = HorizontalControlSegment.init(frame: bounds)
-            cell.delegate = self
-            contentView.addSubview(cell)
+            widhtConstraint_container.isActive = true
+            heightsConstraint_container.isActive = true
             
-            cell.translatesAutoresizingMaskIntoConstraints = false
-            let leadingConstraint_cell = cell.leadingAnchor.constraint(equalTo: leftAnchor_content)
-            let topConstraint_cell = cell.topAnchor.constraint(equalTo: contentView.topAnchor)
-            let bottomConstraint_cell = cell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-            let widthConstraint_cell = cell.widthAnchor.constraint(equalToConstant: currentWidthPerElement)
-            leadingConstraint_cell.isActive = true
-            topConstraint_cell.isActive = true
-            bottomConstraint_cell.isActive = true
-            widthConstraint_cell.isActive = true
+            containerViewWidthConstraint = widhtConstraint_container
             
-            cell.widthConstraint = widthConstraint_cell
-            leftAnchor_content = cell.trailingAnchor
+            let numberOfItems = items.count
+            let maxNumSegments = numberOfSegmentsToDisplay
+            let currentWidthPerElement = (numberOfItems > maxNumSegments) ? frame.size.width/CGFloat(maxNumSegments) : frame.size.width/CGFloat(numberOfItems)
             
-            cell.font = font
-            cell.textColor = textColor
-            cell.highlightTextColor = highlightTextColor
-            cell.text = items[index]
-            cell.selected = (index == selectedIndex)
-            cell.index = index
-        
-            newSegments.append(cell)
+            var leftAnchor_content = contentView.leadingAnchor
+            
+            contentView.subviews.forEach({ $0.removeFromSuperview() })
+           
+            var newSegments = [HorizontalControlSegment]()
+            for index in 0..<numberOfItems {
+                
+                let cell = HorizontalControlSegment.init(frame: bounds)
+                cell.delegate = self
+                contentView.addSubview(cell)
+                
+                cell.translatesAutoresizingMaskIntoConstraints = false
+                let leadingConstraint_cell = cell.leadingAnchor.constraint(equalTo: leftAnchor_content)
+                let topConstraint_cell = cell.topAnchor.constraint(equalTo: contentView.topAnchor)
+                let bottomConstraint_cell = cell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+                let widthConstraint_cell = cell.widthAnchor.constraint(equalToConstant: currentWidthPerElement)
+                leadingConstraint_cell.isActive = true
+                topConstraint_cell.isActive = true
+                bottomConstraint_cell.isActive = true
+                widthConstraint_cell.isActive = true
+                
+                cell.widthConstraint = widthConstraint_cell
+                leftAnchor_content = cell.trailingAnchor
+                
+                cell.font = font
+                cell.textColor = textColor
+                cell.highlightTextColor = highlightTextColor
+                cell.text = items[index]
+                cell.selected = (index == selectedIndex)
+                cell.index = index
+            
+                newSegments.append(cell)
+            }
+            
+            segments = newSegments
+            widthPerElement = 1.0
         }
-        
-        segments = newSegments
-        widthPerElement = 1.0
     }
     
     override func layoutSubviews() {
