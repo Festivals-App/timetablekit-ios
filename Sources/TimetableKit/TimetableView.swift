@@ -130,7 +130,8 @@ public class TimetableView: TimetableBaseView {
         horizontalControl.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
         horizontalControl.highlightTextColor = proxyAppearanceDelegate.timetabelEventTileHighlightColor()
         horizontalControl.font = UIFont.systemFont(ofSize: 16.0, weight: .light)
-        horizontalControl.numberOfSegmentsToDisplay = 2
+        let days = dataSource.numberOfDays(in: self)
+        horizontalControl.numberOfSegmentsToDisplay = (days > 3 ) ? 3 : days
         horizontalControl.delegate = self
         
         rowController = [TimetableRowController]()
