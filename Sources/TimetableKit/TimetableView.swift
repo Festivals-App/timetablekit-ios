@@ -467,6 +467,7 @@ class SGTableView: UITableView {
         super.layoutSubviews()
         guard let block = self.completionBlock else { return }
         block()
+        self.completionBlock = nil
     }
 }
 
