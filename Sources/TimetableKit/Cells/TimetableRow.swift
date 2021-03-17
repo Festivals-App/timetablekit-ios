@@ -18,11 +18,11 @@ class TimetableRow: UITableViewCell {
     
     static let cellIdentifier = "timetableRowReuseIdentifier"
     
-    var hostedView: UIView! {
+    var hostedView: UIView? {
         didSet {
-            if hostedView != nil {
-                contentView.addSubview(hostedView)
-                hostedView.fit(to: contentView, leading: 0, trailing: 0, top: kTimetableRowLabelHeight, bottom: 0)
+            if let view = hostedView {
+                contentView.addSubview(view)
+                view.fit(to: contentView, leading: 0, trailing: 0, top: kTimetableRowLabelHeight, bottom: 0)
             }
         }
     }
@@ -46,9 +46,11 @@ class TimetableRow: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        hostedView.removeAllConstraints()
-        hostedView.removeFromSuperview()
-        hostedView = nil
+        if let view = hostedView {
+            view.removeAllConstraints()
+            view.removeFromSuperview()
+            hostedView = nil
+        }
     }
     
 }
