@@ -49,7 +49,7 @@ class HorizontalControl: UIView {
     
     func configure(with items: [String]) {
         
-        if frame.size != .zero {
+        if items.count > 0 {
             
             subviews.forEach { $0.removeFromSuperview() }
                     
