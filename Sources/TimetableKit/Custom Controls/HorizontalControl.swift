@@ -188,8 +188,13 @@ class HorizontalControl: UIView {
                 }
             }
             
-            segments[selectedIndex].selected = false
-            segments[index].selected = true
+            if segments.count > selectedIndex {
+                segments[selectedIndex].selected = false
+            }
+            
+            if segments.count > index {
+                segments[index].selected = true
+            }
             
             selectedIndex = index
         }
