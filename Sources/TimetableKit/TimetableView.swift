@@ -55,7 +55,13 @@ public class TimetableView: TimetableBaseView {
     
     private(set) var style: TimetableStyle = .automatic
     private var automaticStyle: TimetableStyle = .automatic
-    private var proxyAppearanceDelegate: TimetableAppearanceDelegate!
+    private var proxyAppearanceDelegate: TimetableAppearanceDelegate! {
+        didSet {
+            tableView.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+            timescale.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+            horizontalControl.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+        }
+    }
     
     private var scrollingCoordinator: ScrollingCoordinator!
     private var scaleCoordinator: ScaleCoordinator!
@@ -103,16 +109,11 @@ public class TimetableView: TimetableBaseView {
     public override func layoutSubviews() {
         super.layoutSubviews()
 
-        tableView.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
-        
-        DispatchQueue.main.async { [self] in
-            
-            let height = tableView.contentSize.height
-            let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
-            navigationScrollView.contentSize = CGSize(width: widht, height: height)
-            tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
-            navigationScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
-        }
+        let height = tableView.contentSize.height
+        let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
+        navigationScrollView.contentSize = CGSize(width: widht, height: height)
+        tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
+        navigationScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
     }
     
     /// Reloads the rows, tiles and sections of the timetable view.
@@ -125,61 +126,58 @@ public class TimetableView: TimetableBaseView {
     
     public func reloadData(animated: Bool = false) {
         
-        DispatchQueue.main.async { [self] in
+        var muteTitleArray = [String]()
+        for index in 0..<dataSource.numberOfDays(in: self) {
+            muteTitleArray.append(dataSource.timetableView(self, titleForDayAt: index))
+        }
+        
+        horizontalControl.configure(with: muteTitleArray)
+        horizontalControl.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+        horizontalControl.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
+        horizontalControl.highlightTextColor = proxyAppearanceDelegate.timetabelEventTileHighlightColor()
+        horizontalControl.font = UIFont.systemFont(ofSize: 16.0, weight: .light)
+        let days = dataSource.numberOfDays(in: self)
+        horizontalControl.numberOfSegmentsToDisplay = (days > 3 ) ? 3 : days
+        horizontalControl.delegate = self
+        
+        rowController = [TimetableRowController]()
+        rowControllerByIndexPath = [IndexPath : TimetableRowController]()
+        unusedRowController = Set.init()
+        
+        if animated {
             
-            var muteTitleArray = [String]()
-            for index in 0..<dataSource.numberOfDays(in: self) {
-                muteTitleArray.append(dataSource.timetableView(self, titleForDayAt: index))
-            }
+            reloadCoverView = UIImageView.init(frame: bounds)
+            reloadCoverView.image = self.capture()
+            addSubview(reloadCoverView)
             
-            horizontalControl.configure(with: muteTitleArray)
-            horizontalControl.backgroundColor = proxyAppearanceDelegate.timetabelBackgroundColor()
-            horizontalControl.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
-            horizontalControl.highlightTextColor = proxyAppearanceDelegate.timetabelEventTileHighlightColor()
-            horizontalControl.font = UIFont.systemFont(ofSize: 16.0, weight: .light)
-            let days = dataSource.numberOfDays(in: self)
-            horizontalControl.numberOfSegmentsToDisplay = (days > 3 ) ? 3 : days
-            horizontalControl.delegate = self
+            tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
             
-            rowController = [TimetableRowController]()
-            rowControllerByIndexPath = [IndexPath : TimetableRowController]()
-            unusedRowController = Set.init()
+            timescale.interval = dataSource.interval(for: self)
+            timescale.timescaleColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+            timescale.timescaleStrokeColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
+            timescale.reloadData()
             
-            if animated {
-                
-                reloadCoverView = UIImageView.init(frame: bounds)
-                reloadCoverView.image = self.capture()
-                addSubview(reloadCoverView)
-                
-                tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
-                
-                timescale.interval = dataSource.interval(for: self)
-                timescale.timescaleColor = proxyAppearanceDelegate.timetabelBackgroundColor()
-                timescale.timescaleStrokeColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
-                timescale.reloadData()
-                
-                tableView.reloadData {
-                    self.scrollingCoordinator.set(self.navigationScrollView.contentOffset, animated: false)
-                    UIView.animate(withDuration: 0.5) {
-                        self.reloadCoverView.alpha = 0.0
-                    } completion: { success in
-                        self.reloadCoverView.removeFromSuperview()
-                        self.reloadCoverView = nil
-                    }
+            tableView.reloadData {
+                self.scrollingCoordinator.set(self.navigationScrollView.contentOffset, animated: false)
+                UIView.animate(withDuration: 0.5) {
+                    self.reloadCoverView.alpha = 0.0
+                } completion: { success in
+                    self.reloadCoverView.removeFromSuperview()
+                    self.reloadCoverView = nil
                 }
             }
-            else {
-                
-                tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
-                
-                timescale.interval = dataSource.interval(for: self)
-                timescale.timescaleColor = proxyAppearanceDelegate.timetabelBackgroundColor()
-                timescale.timescaleStrokeColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
-                timescale.reloadData()
-                
-                tableView.reloadData {
-                    self.scrollingCoordinator.set(self.navigationScrollView.contentOffset, animated: false)
-                }
+        }
+        else {
+            
+            tableView.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
+            
+            timescale.interval = dataSource.interval(for: self)
+            timescale.timescaleColor = proxyAppearanceDelegate.timetabelBackgroundColor()
+            timescale.timescaleStrokeColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()
+            timescale.reloadData()
+            
+            tableView.reloadData {
+                self.scrollingCoordinator.set(self.navigationScrollView.contentOffset, animated: false)
             }
         }
     }
