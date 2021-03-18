@@ -87,7 +87,9 @@ class HorizontalControl: UIView {
             
             let numberOfItems = items.count
             let maxNumSegments = numberOfSegmentsToDisplay
-            let currentWidthPerElement = (numberOfItems > maxNumSegments) ? frame.size.width/CGFloat(maxNumSegments) : frame.size.width/CGFloat(numberOfItems)
+            var dontZero = (numberOfItems > maxNumSegments) ? maxNumSegments : numberOfItems
+            if dontZero == 0 { dontZero = 1 }
+            let currentWidthPerElement = frame.size.width/CGFloat(dontZero)
             
             var leftAnchor_content = contentView.leadingAnchor
             
