@@ -52,6 +52,7 @@ public class TimetableView: TimetableBaseView {
 
     public var dataSource: TimetableDataSource!
     public var appearanceDelegate: TimetableAppearanceDelegate?
+    public var delegate: TimetableDelegate?
     
     private(set) var style: TimetableStyle = .automatic
     private var automaticStyle: TimetableStyle = .automatic

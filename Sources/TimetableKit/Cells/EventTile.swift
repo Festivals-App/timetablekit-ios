@@ -26,7 +26,7 @@ class EventTile: UICollectionViewCell {
     }
 
     var textLabel: InsetLabel!
-    private var timeFormatter: TimeFormatter = TimeFormatter.init()
+    private var timeFormatter: TimeFormatter = TimeFormatter()
     private var tileState: EventTileState = .showTitle
     private var getsLongPressed = false
     
@@ -74,17 +74,23 @@ class EventTile: UICollectionViewCell {
         let recognizer = notification.object as! UIGestureRecognizer
         let touchPoint = recognizer.location(in: self)
         if self.bounds.contains(touchPoint) {
+            
+            if let event = event {
+            
             switch tileState {
             case .showTitle:
                 tileState = .showTime
                 textLabel.numberOfLines = 3
+                textLabel.text = timeFormatter.string(from: event.interval)
             case .showTime:
                 tileState = .showTimeTillShow
                 textLabel.numberOfLines = 3
+                textLabel.text = timeFormatter.description(of: Date(), relativeTo: event.interval)
             case .showTimeTillShow:
                 tileState = .showTitle
-                textLabel.numberOfLines = event?.title.components(separatedBy: " ").count ?? 1
-                textLabel.text = event?.title
+                textLabel.numberOfLines = event.title.components(separatedBy: " ").count
+                textLabel.text = event.title
+            }
             }
         }
     }

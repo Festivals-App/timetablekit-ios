@@ -17,10 +17,16 @@ public class TimeFormatter {
         return cal
     }()
     
-    lazy private var dateFormatter: DateFormatter = {
-        var dateFormatter = DateFormatter.init()
-        dateFormatter.dateFormat = "HH:mm"
-        return dateFormatter
+    lazy private var houreFormatter: DateFormatter = {
+        var houreFormatter = DateFormatter.init()
+        houreFormatter.dateFormat = "HH:mm"
+        return houreFormatter
+    }()
+    
+    lazy private var dayFormatter: DateFormatter = {
+        var dayFormatter = DateFormatter.init()
+        dayFormatter.dateFormat = "EEEE, d MMM"
+        return dayFormatter
     }()
     
     lazy private var componentsFormatter: DateComponentsFormatter = {
@@ -31,53 +37,59 @@ public class TimeFormatter {
     }()
     
     public func string(from date: Date) -> String {
-        return dateFormatter.string(from: date)
+        return houreFormatter.string(from: date)
     }
     
     public func string(from interval: DateInterval) -> String {
-        return "\(dateFormatter.string(from: interval.start)) - \(dateFormatter.string(from: interval.end))"
+        return "\(houreFormatter.string(from: interval.start)) - \(houreFormatter.string(from: interval.end))"
     }
     
-    public func descriptionOfRelativePosition(of interval: DateInterval, to date: Date) -> String {
+    public func dayString(from date: Date) -> String {
+        return dayFormatter.string(from: date)
+    }
+    
+    public func description(of date: Date, relativeTo interval: DateInterval) -> String {
         
         var value = ""
         let timeTillShowStart = interval.start.timeIntervalSince(date)
-        
-        // current time is before the start of the event
-        if timeTillShowStart >= 0 {
-            let format = NSLocalizedString("Noch %@", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time is left before an event starts.")
-            value = String.init(format: format, reasonableTimeString(from: timeTillShowStart))
+        if abs(timeTillShowStart) < 2 {
+            value = "Jetzt!"
+        }
+        else if timeTillShowStart >= 2 {
+            value = String.init(format: "Noch %@", reasonableTimeString(from: timeTillShowStart))
         }
         // current time is after the start of the event
         else {
+            
             let timeTillShowEnd = interval.end.timeIntervalSince(date)
             if timeTillShowEnd >= 0 {
-                let format = NSLocalizedString("Läuft seit %@", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time is left before an event ends.")
-                value = String.init(format: format, reasonableTimeString(from: timeTillShowEnd))
+                value = String.init(format: "Läuft seit %@", reasonableTimeString(from: timeTillShowEnd))
             }
             else {
-                let format = NSLocalizedString("Seit %@ vorbei", bundle: .module, comment: "UI String - TimeFormatter - String describing how much time has passed since an event ended.")
-                value = String.init(format: format, reasonableTimeString(from: timeTillShowEnd))
+                value = String.init(format: "Seit %@ vorbei", reasonableTimeString(from: timeTillShowEnd))
             }
         }
         return value
     }
 
     private func reasonableTimeString(from duration: TimeInterval) -> String {
-        
+
+        let absoluteDuration = abs(duration)
+                
         var value = ""
-        let hours = Int(duration)/3600
-        let minutes = Int(duration) % 3600 / 60
+        let hours = Int(absoluteDuration) / 3600
+        let minutes = Int(absoluteDuration) % 3600 / 60
+        
+        //print("hours: \(hours) minutes: \(minutes)")
         
         if hours >= 24 {
-            value = NSLocalizedString("mehr als 24 Stunden", bundle: .module, comment: "UI String - TimeFormatter - String describing that an event is (or was) more than 24 hours from now.")
+            value = "mehr als 24 Stunden"
         }
         else if hours > 4 {
             var components = DateComponents.init()
             components.hour = hours
             let hoursString = componentsFormatter.string(from: components) ?? "<invalid>"
-            let format = NSLocalizedString("ca. %@", bundle: .module, comment: "UI String - TimeFormatter - String describing an duration of approximately '%@' hours.")
-            value = String.init(format: format, hoursString)
+            value = String.init(format: "ca. %@", hoursString)
         }
         else {
             var components = DateComponents.init()
