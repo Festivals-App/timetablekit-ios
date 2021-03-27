@@ -88,7 +88,7 @@ class HorizontalControl: UIView {
             let numberOfItems = items.count
             let maxNumSegments = numberOfSegmentsToDisplay
             var dontZero = (numberOfItems > maxNumSegments) ? maxNumSegments : numberOfItems
-            if dontZero == 0 { dontZero = 1 }
+            if dontZero == 0 { dontZero = 1 }
             let currentWidthPerElement = frame.size.width/CGFloat(dontZero)
             
             var leftAnchor_content = contentView.leadingAnchor
@@ -307,7 +307,6 @@ class HorizontalControlSegment: UIView {
 
     @objc func handle(tap: UITapGestureRecognizer) {
         
-        print("@objc func handle(tap: UITapGestureRecognizer)")
         delegate.clicked(at: index)
     }
     
