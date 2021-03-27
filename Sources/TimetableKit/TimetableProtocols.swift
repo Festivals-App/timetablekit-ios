@@ -101,6 +101,12 @@ public protocol TimetableDelegate {
     ///   - timetableView: The timetable view informing the delegate about the selected event.
     ///   - indexPath: The index path identifying the selected event in the timetable view.
     func timetableView(_ timetableView: TimetableView, didSelectEventAt indexPath: IndexPath) -> Void
+    
+    /// Tells the delegate that the event with the specified identifier was selected by the user.
+    /// - Parameters:
+    ///   - timetableView: The timetable view informing the delegate about the selected event.
+    ///   - identifier: The identifier of the selected event in the timetable view.
+    func timetableView(_ timetableView: TimetableView, didSelectEventWith identifier: Int) -> Void
 }
 
 // MARK: Timetable Appearance Delegate

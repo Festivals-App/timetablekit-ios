@@ -96,6 +96,7 @@ public class TimetableView: TimetableBaseView {
         self.scrollingCoordinator.scaleCoordinator = self.scaleCoordinator
         
         NotificationCenter.default.addObserver(self, selector: #selector(brightnessChanged(_:)), name: UIScreen.brightnessDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TimetableView.eventTileWasLongPressed(with:)), name: .eventTileWasLongPressed, object: nil)
     }
     
     public override func awakeFromNib() {
@@ -194,7 +195,7 @@ public class TimetableView: TimetableBaseView {
     }
     
     @objc func brightnessChanged(_ notification: Notification) {
-
+        print("brightnessChanged: \(String(describing: notification.object))")
     }
     
     func recycledOrNewRowController() -> TimetableRowController {
@@ -216,6 +217,20 @@ public class TimetableView: TimetableBaseView {
         return contentViewController
     }
 }
+
+// MARK: Selection Handling
+
+extension TimetableView {
+    
+    @objc func eventTileWasLongPressed(with notification: NSNotification) {
+
+        guard let delegate = delegate else { return }
+        guard let event = (notification.object as? EventTile)?.event else { return }
+        delegate.timetableView(self, didSelectEventWith: event.uniqueIdentifier)
+    }
+}
+
+// MARK: Horizontal Control Delegate
 
 extension TimetableView: HorizontalControlDelegate {
     
@@ -245,6 +260,8 @@ extension TimetableView: HorizontalControlDelegate {
         }
     }
 }
+
+// MARK: Tableview Delegate
 
 let kTimetableSectionHeaderHeight: CGFloat = 40
 
@@ -303,6 +320,8 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource {
         return label
     }
 }
+
+// MARK: Base View
 
 extension Notification.Name {
 
@@ -388,6 +407,8 @@ public class TimetableBaseView: UIView {
         longPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: #selector(TimetableBaseView.longPress(recognizer:)))
         self.addGestureRecognizer(tapGestureRecognizer)
         self.addGestureRecognizer(longPressGestureRecognizer)
+        
+        
     }
     
     @objc func tapped(recognizer: UIPinchGestureRecognizer) {
@@ -431,7 +452,7 @@ public class TimetableBaseView: UIView {
 }
 
 /**
- The 'SGTableView' class adds the ability to synchronously reload the tabel view to the 'UITableView' class.
+ The `SGTableView` class adds the ability to synchronously reload the tabel view to the 'UITableView' class.
  
  There was the problem that when i tried to set the content offset of some collection views inside the table view cells directly after a call to -reloadData: the frame wont update and the collection views had still an offset of 0.
  
