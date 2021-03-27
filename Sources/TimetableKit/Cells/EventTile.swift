@@ -7,11 +7,17 @@
 
 import UIKit
 
+extension Notification.Name {
+
+    static let eventTileWasLongPressed = Notification.Name("SGEventTileWasLongPressedNotification")
+}
+
 /// The state describing what informtion is displayed by the tile.
 enum EventTileState {
     case showTitle, showTime, showTimeTillShow
 }
 
+/// A tile view representing an event in the timetable.
 class EventTile: UICollectionViewCell {
     
     static let cellIdentifier = "eventTileReuseIdentifier"
@@ -45,9 +51,6 @@ class EventTile: UICollectionViewCell {
         
         NotificationCenter.default.addObserver(self, selector: #selector(EventTile.cellWasTapped(with:)), name: .tapWasRegistered, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(EventTile.longPressBeganOnCell(with:)), name: .longPressBegan, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(EventTile.longPressEndedOnCell(with:)), name: .longPressEnded, object: nil)
-        
-        //longPressEnded
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -109,16 +112,8 @@ class EventTile: UICollectionViewCell {
         //print("self.bounds:\(self.bounds)")
         
         if touchPoint != .zero && self.bounds.contains(touchPoint) {
-            textLabel.backgroundColor = textLabel.backgroundColor?.darker()
-            getsLongPressed = true
-        }
-    }
-    
-    @objc func longPressEndedOnCell(with notification: NSNotification) {
-        
-        if getsLongPressed {
-            textLabel.backgroundColor = textLabel.backgroundColor?.lighter()
-            getsLongPressed = false
+            textLabel.backgroundColor = textLabel.backgroundColor?.darker(0.2)
+            NotificationCenter.default.post(name: .eventTileWasLongPressed, object: recognizer)
         }
     }
 }

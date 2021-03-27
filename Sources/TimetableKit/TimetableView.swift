@@ -308,7 +308,6 @@ extension Notification.Name {
 
     static let tapWasRegistered = Notification.Name("SGTapWasRegisteredNotification")
     static let longPressBegan = Notification.Name("SGLongPressBeganNotification")
-    static let longPressEnded = Notification.Name("SGLongPressEndedNotification")
 }
 
 public class TimetableBaseView: UIView {
@@ -417,8 +416,6 @@ public class TimetableBaseView: UIView {
         switch recognizer.state {
         case .began:
             NotificationCenter.default.post(name: .longPressBegan, object: recognizer)
-        case .ended:
-            NotificationCenter.default.post(name: .longPressEnded, object: recognizer)
         default:
             break
         }
