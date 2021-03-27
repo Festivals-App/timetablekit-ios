@@ -107,13 +107,9 @@ class EventTile: UICollectionViewCell {
         let recognizer = notification.object as! UILongPressGestureRecognizer
         let touchPoint = recognizer.location(in: self)
         
-        //print("touchPoint x:\(touchPoint.x) y:\(touchPoint.y)")
-        //print("self.frame:\(self.frame)")
-        //print("self.bounds:\(self.bounds)")
-        
         if touchPoint != .zero && self.bounds.contains(touchPoint) {
             textLabel.backgroundColor = textLabel.backgroundColor?.darker(0.2)
-            NotificationCenter.default.post(name: .eventTileWasLongPressed, object: recognizer)
+            NotificationCenter.default.post(name: .eventTileWasLongPressed, object: self)
         }
     }
 }
