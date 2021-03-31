@@ -208,6 +208,8 @@ public class TimetableView: TimetableBaseView {
                 self.scrollingCoordinator.set(self.navigationScrollView.contentOffset, animated: false)
             }
         }
+        
+        self.setNeedsLayout()
     }
     
     /// Transitions to the specified timetable view style.
