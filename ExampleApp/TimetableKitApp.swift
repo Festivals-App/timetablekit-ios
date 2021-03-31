@@ -11,8 +11,13 @@ import SwiftUI
 struct TimetableKitApp: App {
     var body: some Scene {
         WindowGroup {
-            TimetableView_wrapper()
-                        .ignoresSafeArea(.all, edges: .horizontal)
+            ZStack {
+                
+                Color.init(UIColor.with(34.0, 34.0, 34.0)).ignoresSafeArea()
+                
+                TimetableView_wrapper()
+                            .ignoresSafeArea(.all, edges: .horizontal)
+            }
         }
     }
 }
@@ -28,9 +33,12 @@ struct TimetableView_wrapper: UIViewRepresentable {
 
     func makeUIView(context: Context) -> TimetableView {
         
-        let timetable = TimetableView(.infinite, with: TimetableStyle.light)
-        timetable.dataSource = ConcreteTimetableDelegate.init()
+        let timetable = TimetableView(.infinite, with: TimetableStyle.dark)
+        let delegate = ConcreteTimetableDelegate.init()
+        timetable.dataSource = delegate
+        timetable.clock = delegate
         //timetable.appearanceDelegate = ConcreteTimetableDelegate.init()
+        
         timetable.reloadData()
         return timetable
     

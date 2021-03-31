@@ -108,7 +108,7 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
             let newPointsPerMinute = oldPointsPermMinute*dampedScale
             if (newPointsPerMinute >= kMinPointsPerMinute && newPointsPerMinute <= kMaxPointsPerMinute) {
                 
-                let width =  CGFloat(intervalOfTimetable.duration/60.0)*pointsPerMinute
+                let width = intervalOfTimetable.duration.minutes.floaty*pointsPerMinute
                 let canShrinkHorizontal = (width >= timetable.tableView.frame.size.width)
                 if canShrinkHorizontal {
                     pointsPerMinute = newPointsPerMinute
@@ -130,7 +130,7 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
         // some bound checking.
         // we dont want to exceed the bounds of the scrollable ontentn when we scale at the
         // edges of the timetable view.
-        let widhtOfTimetable = pointsPerMinute * CGFloat(intervalOfTimetable.duration/60.0)
+        let widhtOfTimetable = pointsPerMinute * intervalOfTimetable.duration.minutes.floaty
         #warning("Normalize if we use timetable.frame or timetable.tableView.frame")
         let maxOffset = widhtOfTimetable - timetable.frame.size.width
         if newContentOffsetXAxis < 0.0 { newContentOffsetXAxis = 0.0 }
@@ -141,6 +141,7 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
             self.timetable.navigationScrollView.contentSize = CGSize.init(width: width, height: height)
             self.timetable.timescale.pointsPerMinute = self.pointsPerMinute
             self.timetable.rowController.forEach({ $0.collectionView.reloadData() })
+            self.timetable.setNeedsLayout()
             self.scrollingCoordinator.set(navigationContentOffset, animated: false)
         }
     }

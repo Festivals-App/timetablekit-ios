@@ -53,6 +53,7 @@ class ScrollingCoordinator: NSObject {
         timetable.timescale.contentOffset = collectionViewOffset
         timetable.rowController.forEach({ $0.collectionView.contentOffset = collectionViewOffset })
         timetable.tableView.contentOffset = tableViewOffset
+        timetable.currentTimeScrollView.contentOffset = CGPoint(x: contentOffset.x, y: 0)
         
         // if the content offset changed based on the dragging of the navigation scrollview
         // we dont want to set the content offset here, if it was set programmatically we want to

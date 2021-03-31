@@ -11,7 +11,7 @@ import UIKit
 let kMONTH = 9
 let kDAY = 29
 
-class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegate {
+class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegate, TimetableClock {
     
     var sections: [SECTION] = SECTION.testData()
     
@@ -50,7 +50,7 @@ class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegat
     func timetableView(_ timetableView: TimetableView, titleForDayAt index: Int) -> String {
         
         if index == 0 {
-            return "Fr., 31. März"
+            return "Heute"
         }
         if index == 1 {
             return "Sa., 1. April"
@@ -66,7 +66,6 @@ class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegat
     func bottomPadding(for timetableView: TimetableView) -> CGFloat {
         return 200
     }
-    
     
     func timetabelBackgroundColor() -> UIColor {
         return .cyan
@@ -94,6 +93,10 @@ class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegat
     
     func timetabelEventTileTextColor() -> UIColor {
         return .blue
+    }
+    
+    func currentDate(_ timetableView: TimetableView) -> Date {
+        return Date.date(m: kMONTH, d: kDAY, H: 15, M: 7)
     }
 }
 

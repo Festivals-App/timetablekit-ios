@@ -53,6 +53,7 @@ public class TimetableView: TimetableBaseView {
     public var dataSource: TimetableDataSource!
     public var appearanceDelegate: TimetableAppearanceDelegate?
     public var delegate: TimetableDelegate?
+    public var clock: TimetableClock?
     
     private(set) var style: TimetableStyle = .automatic
     private var automaticStyle: TimetableStyle = .automatic
@@ -64,6 +65,7 @@ public class TimetableView: TimetableBaseView {
         }
     }
     
+    private var clockProxy: TimetableClock = TimeFormatter()
     private var scrollingCoordinator: ScrollingCoordinator!
     private var scaleCoordinator: ScaleCoordinator!
     
@@ -94,8 +96,7 @@ public class TimetableView: TimetableBaseView {
         self.proxyAppearanceDelegate = AppearanceDelegateProxy.init(with: self)
         self.scaleCoordinator = ScaleCoordinator.init(with: self, and: self.scrollingCoordinator)
         self.scrollingCoordinator.scaleCoordinator = self.scaleCoordinator
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(brightnessChanged(_:)), name: UIScreen.brightnessDidChangeNotification, object: nil)
+
         NotificationCenter.default.addObserver(self, selector: #selector(TimetableView.eventTileWasLongPressed(with:)), name: .eventTileWasLongPressed, object: nil)
     }
     
@@ -111,11 +112,31 @@ public class TimetableView: TimetableBaseView {
     public override func layoutSubviews() {
         super.layoutSubviews()
 
+        let timetableInterval = scaleCoordinator.intervalOfTimetable
         let height = tableView.contentSize.height
-        let widht = CGFloat(scaleCoordinator.intervalOfTimetable.duration/60.0) * scaleCoordinator.pointsPerMinute
+        let widht = timetableInterval.duration.minutes.floaty * scaleCoordinator.pointsPerMinute
+        
         navigationScrollView.contentSize = CGSize(width: widht, height: height)
+        currentTimeScrollView.contentSize = CGSize(width: widht, height: height)
+        
         tableView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
         navigationScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
+        currentTimeScrollView.contentInset = UIEdgeInsets.init(top: 0, left: 0, bottom: dataSource.bottomPadding(for: self), right: 0)
+        
+        let offset = (clockProxy.currentDate(self).timeIntervalSince1970 - timetableInterval.start.timeIntervalSince1970)
+        if offset > 0 {
+            if offset <= timetableInterval.duration {
+                let currentTimeOffset = scaleCoordinator.pointsPerMinute * offset.minutes.floaty
+                timeIndicator.frame = CGRect(x: currentTimeOffset, y: 0, width: 1, height: currentTimeScrollView.frame.height)
+                timeIndicator.isHidden = false
+            }
+            else {
+                timeIndicator.isHidden = true
+            }
+        }
+        else {
+            timeIndicator.isHidden = true
+        }
     }
     
     /// Reloads the rows, tiles and sections of the timetable view.
@@ -148,7 +169,7 @@ public class TimetableView: TimetableBaseView {
         
         if animated {
             
-            reloadCoverView = UIImageView.init(frame: bounds)
+            reloadCoverView = UIImageView(frame: bounds)
             reloadCoverView.image = self.capture()
             addSubview(reloadCoverView)
             
@@ -192,10 +213,6 @@ public class TimetableView: TimetableBaseView {
         
         self.style = style
         reloadData(animated: animated)
-    }
-    
-    @objc func brightnessChanged(_ notification: Notification) {
-        print("brightnessChanged: \(String(describing: notification.object))")
     }
     
     func recycledOrNewRowController() -> TimetableRowController {
@@ -335,6 +352,8 @@ public class TimetableBaseView: UIView {
     var timescale: TimescaleView!
     var tableView: SGTableView!
     var currentTimeScrollView: UIScrollView!
+    var timeIndicator: UIView!
+    var leadingTimeIndicatorConstraint: NSLayoutConstraint!
     var navigationScrollView: UIScrollView!
     
     var tapGestureRecognizer: UITapGestureRecognizer!
@@ -387,10 +406,18 @@ public class TimetableBaseView: UIView {
         currentTimeScrollView.showsHorizontalScrollIndicator = false
         currentTimeScrollView.automaticallyAdjustsScrollIndicatorInsets = false
         currentTimeScrollView.isOpaque = false
-        currentTimeScrollView.decelerationRate = .fast
-        currentTimeScrollView.panGestureRecognizer.maximumNumberOfTouches = 1
+        currentTimeScrollView.isUserInteractionEnabled = false
+        currentTimeScrollView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(currentTimeScrollView)
-        currentTimeScrollView.fit(to: self, leading: 0, trailing: 0, top: 88.0, bottom: 0)
+        currentTimeScrollView.fit(to: self, leading: 0, trailing: 0, top: 44.0, bottom: 0)
+    
+        
+        timeIndicator = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 500))
+        timeIndicator.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+        timeIndicator.isHidden = false
+        currentTimeScrollView.addSubview(timeIndicator)
+        //leadingTimeIndicatorConstraint = timeIndicator.stickToLeft(of: currentTimeContentView, leftMargin: 50.0, width: 1)
+        //timeIndicator.stickToTop(of: currentTimeScrollView, height: 100, topMargin: 40)
         
         navigationScrollView = UIScrollView.init(frame: .infinite)
         navigationScrollView.backgroundColor = .clear

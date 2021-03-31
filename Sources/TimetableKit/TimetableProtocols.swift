@@ -157,3 +157,16 @@ public protocol TimetableLayoutDelegate {
     /// The date interval the timetable is representing.
     var intervalOfTimetable: DateInterval { get set }
 }
+
+// MARK: Timetable Clock
+
+/// The clock of a `TimetableView` object must adopt the `TimetableClock` protocol.
+/// The methods of the protocol allow the delegate to determin the current date and time displayed by the timetable.
+public protocol TimetableClock {
+
+    /// Asks the clock for the current date and time.
+    /// - Parameters:
+    ///   - timetableView: The timetable view asking for the current date.
+    func currentDate(_ timetableView: TimetableView) -> Date
+    
+}

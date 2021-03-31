@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class TimeFormatter {
+public class TimeFormatter: TimetableClock {
     
     public init() { }
     
@@ -101,8 +101,7 @@ public class TimeFormatter {
         return value
     }
     
-    #warning("make this a delegate function")
-    private func currentDate() -> Date {
-        return Date.init()
+    public func currentDate(_ timetableView: TimetableView) -> Date {
+        return timetableView.clock?.currentDate(timetableView) ?? Date()
     }
 }

@@ -74,7 +74,7 @@ extension UIView {
         
         return true
     }
-    
+
     func removeAllConstraints() {
         
         var superview = self.superview
