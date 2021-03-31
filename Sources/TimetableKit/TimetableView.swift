@@ -256,25 +256,43 @@ extension TimetableView: HorizontalControlDelegate {
         
         let timetableInterval = dataSource.interval(for: self)
         let intervalForSelectedDay = dataSource.timetableView(self, intervalForDayAt: index)
-        
-        let currentOffset_x = navigationScrollView.contentOffset.x
-        var startOffset_x = DateInterval.safely(start: timetableInterval.start, end: intervalForSelectedDay.start).duration.minutes.floaty*scaleCoordinator.pointsPerMinute
-        var endOffset_x = DateInterval.safely(start: timetableInterval.start, end: intervalForSelectedDay.end).duration.minutes.floaty*scaleCoordinator.pointsPerMinute
-    
+        let pointsPerMinute = scaleCoordinator.pointsPerMinute
+        let currentOffset = navigationScrollView.contentOffset.x
         let halfTimetabelWidth = frame.size.width/2.0
-        endOffset_x = endOffset_x - halfTimetabelWidth
-        startOffset_x = startOffset_x - halfTimetabelWidth
+        let currentDate = clockProxy.currentDate(self)
         
-        #warning("Add code comments for explanation (offset logic)")
-        if (!(currentOffset_x >= startOffset_x && currentOffset_x <= endOffset_x+halfTimetabelWidth)) {
-            
-            if (currentOffset_x < startOffset_x) {
-                
-                scrollingCoordinator.set(CGPoint(x: startOffset_x, y: tableView.contentOffset.y), animated: true)
+        // scroll to current date if possible
+        let nowIsInsideTimtable = timetableInterval.contains(currentDate)
+        if nowIsInsideTimtable {
+            let nowIsInsideSelectedDay = intervalForSelectedDay.contains(currentDate)
+            if nowIsInsideSelectedDay {
+                var currentTimeOffset = DateInterval.safely(start: timetableInterval.start, end: currentDate).duration.minutes.floaty*pointsPerMinute
+                currentTimeOffset = currentTimeOffset - halfTimetabelWidth
+                if currentTimeOffset < 0 { currentTimeOffset = 0 }
+                scrollingCoordinator.set(CGPoint(x: currentTimeOffset, y: tableView.contentOffset.y), animated: true)
+                return
             }
-            else {
-                scrollingCoordinator.set(CGPoint(x: endOffset_x, y: tableView.contentOffset.y), animated: true)
-            }
+        }
+        
+        // get offsets of the selected day
+        var dayStartOffset = DateInterval.safely(start: timetableInterval.start, end: intervalForSelectedDay.start).duration.minutes.floaty*pointsPerMinute
+        var dayEndOffset = DateInterval.safely(start: timetableInterval.start, end: intervalForSelectedDay.end).duration.minutes.floaty*pointsPerMinute
+        
+        // if we set the dayOffset now the timetable would scroll so that the offset is at the screen edge.
+        // but we want the offset to be in the middle of the screen.
+        dayStartOffset = dayStartOffset - halfTimetabelWidth
+        dayEndOffset = dayEndOffset - halfTimetabelWidth
+
+        let rightFromDayStart = currentOffset >= dayStartOffset
+        let leftFromDayEnd = currentOffset <= dayEndOffset+halfTimetabelWidth
+        let isInsideSelectedDay = rightFromDayStart && leftFromDayEnd
+        
+        if (!isInsideSelectedDay) {
+        
+            // scroll to left bound of the day or to the end
+            var offsetToScrollTo = (currentOffset <= dayStartOffset) ? dayStartOffset : dayEndOffset
+            if offsetToScrollTo < 0 { offsetToScrollTo = 0 }
+            scrollingCoordinator.set(CGPoint(x: offsetToScrollTo, y: tableView.contentOffset.y), animated: true)
         }
     }
 }
