@@ -87,6 +87,7 @@ public class TimetableView: TimetableBaseView {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        //self.tableView.prefetchDataSource = self
         
         self.scrollingCoordinator = ScrollingCoordinator.init(with: self)
         self.navigationScrollView.delegate = self.scrollingCoordinator
@@ -282,7 +283,7 @@ extension TimetableView: HorizontalControlDelegate {
 
 let kTimetableSectionHeaderHeight: CGFloat = 40
 
-extension TimetableView: UITableViewDelegate, UITableViewDataSource {
+extension TimetableView: UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -335,6 +336,15 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource {
         label.backgroundColor = proxyAppearanceDelegate.timetabelSectionHeaderColor()
         label.textColor = proxyAppearanceDelegate.timetabelBackgroundColor().contrastingColor()//.withAlphaComponent(0.5)
         return label
+    }
+    
+    public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
+        for indexPath in indexPaths {
+            let rowController = recycledOrNewRowController()
+            rowController.events = dataSource.timetableView(self, eventsForRowAt: indexPath)
+            rowControllerByIndexPath[indexPath] = rowController
+        }
     }
 }
 
