@@ -65,8 +65,10 @@ class ScrollingCoordinator: NSObject {
 
     func willScroll(to XAxisOffset: CGFloat) {
         
+        guard let dataSource = timetable.dataSource else { return }
+        
         let currentOffsetX = XAxisOffset+(timetable.tableView.frame.size.width/2.0)
-        let timetableStartDate = timetable.dataSource.interval(for: timetable).start
+        let timetableStartDate = dataSource.interval(for: timetable).start
         let pointsPerMinute = scaleCoordinator.pointsPerMinute
         
         let secondsTillStart = (currentOffsetX/pointsPerMinute)*60.0
@@ -105,6 +107,8 @@ extension ScrollingCoordinator: UIScrollViewDelegate {
         
         if !scaleCoordinator.isScaling {
             
+            guard let dataSource = timetable.dataSource else { return }
+            
             // this method is fired when the user lifts his/her finger from the screen (or the finger left the touch area of the screen)
             // we want to check the content offset the subsequent scrolling will lead to (target offset)
             // if the target offset will be above (or below) a trashhold we wannt to scroll (segue) to the opposit end of the pause
@@ -116,7 +120,7 @@ extension ScrollingCoordinator: UIScrollViewDelegate {
             let currentOffset = timetable.navigationScrollView.contentOffset.x
             let targetOffset = targetContentOffset.pointee.x
             let pointsPerMinute = scaleCoordinator.pointsPerMinute
-            let timetableStartDate = timetable.dataSource.interval(for: timetable).start
+            let timetableStartDate = dataSource.interval(for: timetable).start
   
             for pause in breakIntervals {
                 
@@ -266,11 +270,13 @@ extension ScrollingCoordinator {
     }
     
     func calculateTimetableDays() -> [DateInterval] {
+        
+        guard let dataSource = timetable.dataSource else { return [] }
     
-        let numberOfDays = timetable.dataSource.numberOfDays(in: timetable)
+        let numberOfDays = dataSource.numberOfDays(in: timetable)
         var days = [DateInterval]()
         for index in 0..<numberOfDays {
-            days.append(timetable.dataSource.timetableView(timetable, intervalForDayAt: index))
+            days.append(dataSource.timetableView(timetable, intervalForDayAt: index))
         }
         //print("calculateTimetableDays: \(days)")
         return days

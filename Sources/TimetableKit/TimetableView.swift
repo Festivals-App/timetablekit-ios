@@ -50,7 +50,7 @@ let kBrightnessTreshold: CGFloat = 0.35
  */
 public class TimetableView: TimetableBaseView {
 
-    public var dataSource: TimetableDataSource!
+    public var dataSource: TimetableDataSource?
     public var appearanceDelegate: TimetableAppearanceDelegate?
     public var delegate: TimetableDelegate?
     public var clock: TimetableClock?
@@ -112,6 +112,8 @@ public class TimetableView: TimetableBaseView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
+        
+        guard let dataSource = dataSource else { return }
 
         let timetableInterval = scaleCoordinator.intervalOfTimetable
         let height = tableView.contentSize.height
@@ -149,6 +151,8 @@ public class TimetableView: TimetableBaseView {
     }
     
     public func reloadData(animated: Bool = false) {
+        
+        guard let dataSource = dataSource else { return }
         
         var muteTitleArray = [String]()
         for index in 0..<dataSource.numberOfDays(in: self) {
@@ -254,6 +258,8 @@ extension TimetableView: HorizontalControlDelegate {
     
     func selectedSegment(at index: Int) {
         
+        guard let dataSource = dataSource else { return }
+        
         let timetableInterval = dataSource.interval(for: self)
         let intervalForSelectedDay = dataSource.timetableView(self, intervalForDayAt: index)
         let pointsPerMinute = scaleCoordinator.pointsPerMinute
@@ -305,6 +311,8 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource, UITableView
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        guard let dataSource = dataSource else { return UITableViewCell() }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: TimetableRow.cellIdentifier, for: indexPath) as! TimetableRow
 
         let rowController = recycledOrNewRowController()
@@ -321,10 +329,12 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource, UITableView
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let dataSource = dataSource else { return 0 }
         return dataSource.timetableView(self, numberOfRowsIn: section)
     }
     
     public func numberOfSections(in tableView: UITableView) -> Int {
+        guard let dataSource = dataSource else { return 0 }
         return dataSource.numberOfSections(in: self)
     }
     
@@ -347,6 +357,8 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource, UITableView
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
+        guard let dataSource = dataSource else { return nil }
+        
         let label = UILabel.init()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 20.0, weight: .semibold)
@@ -357,6 +369,8 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource, UITableView
     }
     
     public func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        
+        guard let dataSource = dataSource else { return }
         
         for indexPath in indexPaths {
             let rowController = recycledOrNewRowController()
