@@ -1,11 +1,5 @@
 [update]
-tasks = ["interfaces", "code", "transform", "normalize"]
-
-[update.interfaces]
-paths = ["."]
-defaultToBase = false
-ignoreEmptyStrings = false
-unstripped = false
+tasks = ["code", "normalize"]
 
 [update.code]
 codePaths = ["."]

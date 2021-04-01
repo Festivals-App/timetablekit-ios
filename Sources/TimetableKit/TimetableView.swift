@@ -65,7 +65,7 @@ public class TimetableView: TimetableBaseView {
         }
     }
     
-    private var clockProxy: TimetableClock = TimeFormatter()
+    private var clockProxy: TimetableClock = TimetableClockProxy()
     private var scrollingCoordinator: ScrollingCoordinator!
     private var scaleCoordinator: ScaleCoordinator!
     
@@ -531,11 +531,15 @@ public class TimetableBaseView: UIView {
  */
 class SGTableView: UITableView {
     
+    /// The completion block to execute after reload.
     private var completionBlock: ( () -> Void )?
     
     /// Reloads the rows and sections of the table view and executes the completionBlock when finished.
     ///
-    /// Call this method to reload all the data that is used to construct the table, including cells, section headers and footers, index arrays, and so on. For efficiency, the table view redisplays only those rows that are visible. It adjusts offsets if the table shrinks as a result of the reload. The table view’s delegate or data source calls this method when it wants the table view to completely reload its data. It should not be called in the methods that insert or delete rows, especially within an animation block implemented with calls to beginUpdates and endUpdates.
+    /// Call this method to reload all the data that is used to construct the table, including cells, section headers and footers, index arrays, and so on.
+    /// For efficiency, the table view redisplays only those rows that are visible. It adjusts offsets if the table shrinks as a result of the reload.
+    /// The table view’s delegate or data source calls this method when it wants the table view to completely reload its data.
+    /// It should not be called in the methods that insert or delete rows, especially within an animation block implemented with calls to beginUpdates and endUpdates.
     ///
     /// - Warning: If you call this method before a previous invocation finished, the old completion block won't be executed.
     /// - seealso: https://stackoverflow.com/questions/16071503/how-to-tell-when-uitableview-has-completed-reloaddata
@@ -552,6 +556,7 @@ class SGTableView: UITableView {
         super.reloadData()
     }
     
+    /// Layouts the subviews and then calls the completionBlock one time.
     override func layoutSubviews() {
         super.layoutSubviews()
         guard let block = self.completionBlock else { return }
@@ -560,15 +565,26 @@ class SGTableView: UITableView {
     }
 }
 
+/// A default `TimetableClock` implementation returning default values if the timetableView has no `clock` set.
+struct TimetableClockProxy: TimetableClock {
+    
+    /// Returns the default value or asks the clock for the current date.
+    /// - Parameter timetableView: The timetable asaking for the date.
+    /// - Returns: The current date.
+    func currentDate(_ timetableView: TimetableView) -> Date {
+        return (timetableView.clock != nil) ? timetableView.clock!.currentDate(timetableView) : Date()
+    }
+}
+
+/// Adding the capability to create screenshots of a view.
 extension UIView {
     
+    /// Creates a UIImage of the receiver.
+    /// - Returns: The image
     func capture() -> UIImage {
-
-        #warning("Force unwrapp or not?")
-        UIGraphicsBeginImageContext(bounds.size)
-        layer.render(in: UIGraphicsGetCurrentContext()!)
-        let img = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return img
+        let renderer = UIGraphicsImageRenderer(size: bounds.size)
+        return renderer.image { ctx in
+            drawHierarchy(in: bounds, afterScreenUpdates: false)
+        }
     }
 }
