@@ -51,24 +51,46 @@ public class TimeFormatter: TimetableClock {
     public func description(of date: Date, relativeTo interval: DateInterval) -> String {
         
         var value = ""
-        let timeTillShowStart = interval.start.timeIntervalSince(date)
-        if abs(timeTillShowStart) < 2 {
-            value = "Jetzt!"
-        }
-        else if timeTillShowStart >= 2 {
-            value = String.init(format: "Noch %@", reasonableTimeString(from: timeTillShowStart))
-        }
-        // current time is after the start of the event
-        else {
+        var timeTillShowStart = interval.start.timeIntervalSince(date)
+        // interval.start is earlier than date
+        if timeTillShowStart < 0 {
             
             let timeTillShowEnd = interval.end.timeIntervalSince(date)
-            if timeTillShowEnd >= 0 {
-                value = String.init(format: "Läuft seit %@", reasonableTimeString(from: timeTillShowEnd))
-            }
-            else {
+            // interval.end is earlier than date the show is over!
+            if timeTillShowEnd < 0 {
                 value = String.init(format: "Seit %@ vorbei", reasonableTimeString(from: timeTillShowEnd))
             }
+            // the show is still running ...
+            else {
+                let lengthOfShow = interval.duration
+                let timePlayed = lengthOfShow-timeTillShowEnd
+                // there is more than half of the event left
+                if timePlayed < lengthOfShow/1.8 {
+                    value = String.init(format: "Läuft seit %@", reasonableTimeString(from: timePlayed))
+                }
+                // There is less than half of the event left
+                else {
+                    value = String.init(format: "Läuft noch %@", reasonableTimeString(from: timeTillShowEnd))
+                }
+            }
         }
+        // date is earlier than interval.start
+        else {
+            // we need time without indicator of relativ time
+            timeTillShowStart = abs(timeTillShowStart)
+            
+            if timeTillShowStart.minutes < 1.0 {
+                value = "Jetzt!"
+            }
+            else {
+                value = String.init(format: "Noch %@", reasonableTimeString(from: timeTillShowStart))
+            }
+        }
+        
+        
+        
+    
+        
         return value
     }
 
