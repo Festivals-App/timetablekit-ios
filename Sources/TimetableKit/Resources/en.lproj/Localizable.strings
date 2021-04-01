@@ -1,0 +1,20 @@
+/* UI String - String describing how much time is left till the start of the time interval. */
+"%@ left" = "%@ left";
+
+/* UI String - Approximately <time> */
+"approx. %@" = "approx. %@";
+
+/* UI String - String describing how much time is left until the end of the the time interval. */
+"Approx. %@ left" = "Approx. %@ left";
+
+/* UI String - More than 24 hours. */
+"more than 24 hours" = "more than 24 hours";
+
+/* UI String - String describing NOW!. */
+"Now!" = "Now!";
+
+/* UI String - String describing how long the date is after the time interval. */
+"Over since %@" = "Over since %@";
+
+/* UI String - String describing how long the date is after the start of the time interval. */
+"Running since %@" = "Running since %@";
