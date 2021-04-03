@@ -72,8 +72,11 @@ public class TimeFormatter {
         if timeTillShowStart < 0 {
             
             let timeTillShowEnd = interval.end.timeIntervalSince(date)
-            // interval.end is earlier than date the show is over!
-            if timeTillShowEnd < 0 {
+            // interval.end is earlier than date / the show is over!
+            if timeTillShowEnd == 0 {
+                value = NSLocalizedString("Over", comment: "UI String - String describing Over.")
+            }
+            else if timeTillShowEnd < 0 {
                 let formatString = NSLocalizedString("Over since %@", comment: "UI String - String describing how long the date is after the time interval.")
                 value = String.init(format: formatString, reasonableTimeString(from: timeTillShowEnd))
             }

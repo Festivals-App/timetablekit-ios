@@ -13,6 +13,9 @@
 /* UI String - String describing NOW!. */
 "Now!" = "Jetzt!";
 
+/* UI String - String describing Over. */
+"Over" = "Vorbei";
+
 /* UI String - String describing how long the date is after the time interval. */
 "Over since %@" = "Seit %@ vorbei";
 
