@@ -50,11 +50,15 @@ class TimeFormatterTests: XCTestCase {
         let start = Date(timeIntervalSince1970: 1617410987)
         let interval = DateInterval(start: start, duration: 60*60)
         
+        XCTAssertEqual(formatter.description(of: date.advanced(by:-(60*60*25)), relativeTo:interval), "Noch mehr als 24 Stunden")
+        XCTAssertEqual(formatter.description(of: date.advanced(by:-(60*60*7)), relativeTo:interval), "Noch 7 Stunden")
         XCTAssertEqual(formatter.description(of: date.advanced(by:-(60*5)), relativeTo:interval), "Noch 5 Minuten")
         XCTAssertEqual(formatter.description(of: date, relativeTo:interval), "Jetzt!")
         XCTAssertEqual(formatter.description(of: date.advanced(by:(60*5)), relativeTo:interval), "Läuft seit 5 Minuten")
         XCTAssertEqual(formatter.description(of: date.advanced(by:((60*60)-(60*5))), relativeTo:interval), "Läuft noch ca. 5 Minuten")
         XCTAssertEqual(formatter.description(of: date.advanced(by:60*60), relativeTo:interval), "Vorbei")
         XCTAssertEqual(formatter.description(of: date.advanced(by:((60*60)+(60*5))), relativeTo:interval), "Seit 5 Minuten vorbei")
+        XCTAssertEqual(formatter.description(of: date.advanced(by:(60*60*7)), relativeTo:interval), "Seit 6 Stunden vorbei")
+        XCTAssertEqual(formatter.description(of: date.advanced(by:(60*60*25)), relativeTo:interval), "Seit mehr als 24 Stunden vorbei")
     }
 }

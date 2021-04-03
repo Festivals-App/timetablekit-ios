@@ -78,7 +78,7 @@ public class TimeFormatter {
             }
             else if timeTillShowEnd < 0 {
                 let formatString = NSLocalizedString("Over since %@", comment: "UI String - String describing how long the date is after the time interval.")
-                value = String.init(format: formatString, reasonableTimeString(from: timeTillShowEnd))
+                value = String.init(format: formatString, reasonableTimeString(from: timeTillShowEnd, false))
             }
             // the show is still running ...
             else {
@@ -106,7 +106,7 @@ public class TimeFormatter {
             }
             else {
                 let formatString = NSLocalizedString("%@ left", comment: "UI String - String describing how much time is left till the start of the time interval.")
-                value = String.init(format: formatString, reasonableTimeString(from: timeTillShowStart))
+                value = String.init(format: formatString, reasonableTimeString(from: timeTillShowStart, false, true))
             }
         }
         
@@ -119,7 +119,7 @@ public class TimeFormatter {
     ///   - duration: The duration to describe.
     ///   - approx: Boolean value indicating if approximately should be included in the description.
     /// - Returns: The description of the duration.
-    private func reasonableTimeString(from duration: TimeInterval, _ approx: Bool = true) -> String {
+    private func reasonableTimeString(from duration: TimeInterval, _ approx: Bool = true, _ capital: Bool = false) -> String {
 
         let absoluteDuration = abs(duration)
                 
@@ -129,6 +129,9 @@ public class TimeFormatter {
         
         if hours >= 24 {
             value = NSLocalizedString("more than 24 hours", comment: "UI String - More than 24 hours.")
+            if capital {
+                value = NSLocalizedString("More than 24 hours", comment: "UI String - EN captialization - More than 24 hours.")
+            }
         }
         else if hours > 4 {
             var components = DateComponents.init()

@@ -10,6 +10,9 @@
 /* UI String - More than 24 hours. */
 "more than 24 hours" = "mehr als 24 Stunden";
 
+/* UI String - EN captialization - More than 24 hours. */
+"More than 24 hours" = "mehr als 24 Stunden";
+
 /* UI String - String describing NOW!. */
 "Now!" = "Jetzt!";
 
