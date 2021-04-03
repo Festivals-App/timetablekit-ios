@@ -74,10 +74,10 @@ public class TimeFormatter {
             let timeTillShowEnd = interval.end.timeIntervalSince(date)
             // interval.end is earlier than date / the show is over!
             if timeTillShowEnd == 0 {
-                value = NSLocalizedString("Over", comment: "UI String - String describing Over.")
+                value = NSLocalizedString("Over", bundle: .module, comment: "UI String - String describing Over.")
             }
             else if timeTillShowEnd < 0 {
-                let formatString = NSLocalizedString("Over since %@", comment: "UI String - String describing how long the date is after the time interval.")
+                let formatString = NSLocalizedString("Over since %@", bundle: .module, comment: "UI String - String describing how long the date is after the time interval.")
                 value = String.init(format: formatString, reasonableTimeString(from: timeTillShowEnd, false))
             }
             // the show is still running ...
@@ -86,12 +86,12 @@ public class TimeFormatter {
                 let timePlayed = lengthOfShow-timeTillShowEnd
                 // there is more than half of the event left
                 if timePlayed < lengthOfShow/1.8 {
-                    let formatString = NSLocalizedString("Running since %@", comment: "UI String - String describing how long the date is after the start of the time interval.")
+                    let formatString = NSLocalizedString("Running since %@", bundle: .module, comment: "UI String - String describing how long the date is after the start of the time interval.")
                     value = String.init(format: formatString, reasonableTimeString(from: timePlayed))
                 }
                 // There is less than half of the event left
                 else {
-                    let formatString = NSLocalizedString("Approx. %@ left", comment: "UI String - String describing how much time is left until the end of the the time interval.")
+                    let formatString = NSLocalizedString("Approx. %@ left", bundle: .module, comment: "UI String - String describing how much time is left until the end of the the time interval.")
                     value = String.init(format: formatString, reasonableTimeString(from: timeTillShowEnd, false))
                 }
             }
@@ -102,10 +102,10 @@ public class TimeFormatter {
             timeTillShowStart = abs(timeTillShowStart)
             
             if timeTillShowStart.minutes < 1.0 {
-                value = NSLocalizedString("Now!", comment: "UI String - String describing NOW!.")
+                value = NSLocalizedString("Now!", bundle: .module, comment: "UI String - String describing NOW!.")
             }
             else {
-                let formatString = NSLocalizedString("%@ left", comment: "UI String - String describing how much time is left till the start of the time interval.")
+                let formatString = NSLocalizedString("%@ left", bundle: .module, comment: "UI String - String describing how much time is left till the start of the time interval.")
                 value = String.init(format: formatString, reasonableTimeString(from: timeTillShowStart, false, true))
             }
         }
@@ -128,9 +128,9 @@ public class TimeFormatter {
         let minutes = Int(absoluteDuration) % 3600 / 60
         
         if hours >= 24 {
-            value = NSLocalizedString("more than 24 hours", comment: "UI String - More than 24 hours.")
+            value = NSLocalizedString("more than 24 hours", bundle: .module, comment: "UI String - More than 24 hours.")
             if capital {
-                value = NSLocalizedString("More than 24 hours", comment: "UI String - EN captialization - More than 24 hours.")
+                value = NSLocalizedString("More than 24 hours", bundle: .module, comment: "UI String - EN captialization - More than 24 hours.")
             }
         }
         else if hours > 4 {
@@ -138,7 +138,7 @@ public class TimeFormatter {
             components.hour = hours
             let hoursString = componentsFormatter.string(from: components) ?? "<invalid>"
             if approx {
-                let formatString = NSLocalizedString("approx. %@", comment: "UI String - Approximately <time>")
+                let formatString = NSLocalizedString("approx. %@", bundle: .module, comment: "UI String - Approximately <time>")
                 value = String.init(format: formatString, hoursString)
             }
             else {
