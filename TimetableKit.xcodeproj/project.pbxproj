@@ -18,7 +18,6 @@
 		4A49B394251C0CBC00D79D72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B393251C0CBC00D79D72 /* ContentView.swift */; };
 		4A49B396251C0CBF00D79D72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B395251C0CBF00D79D72 /* Assets.xcassets */; };
 		4A49B399251C0CBF00D79D72 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B398251C0CBF00D79D72 /* Preview Assets.xcassets */; };
-		4A49B3DE251C108D00D79D72 /* .jazzy.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 4A49B3DD251C108D00D79D72 /* .jazzy.yaml */; };
 		4A49B3F5251C162D00D79D72 /* TimescaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B6251C0FCA00D79D72 /* TimescaleView.swift */; };
 		4A49B3F6251C162D00D79D72 /* TimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */; };
 		4A49B3F7251C162D00D79D72 /* Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3B1251C0FCA00D79D72 /* Autolayout.swift */; };
@@ -358,7 +357,6 @@
 				4A54049F25D235BC00DBAD3C /* Localizable.strings in Resources */,
 				4A5404A725D236C400DBAD3C /* README.md in Resources */,
 				4A49B396251C0CBF00D79D72 /* Assets.xcassets in Resources */,
-				4A49B3DE251C108D00D79D72 /* .jazzy.yaml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
