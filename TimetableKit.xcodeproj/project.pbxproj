@@ -50,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A2ADE2A261EA461005B58C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A41C645251D7936006E763B /* TimetableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRowController.swift; sourceTree = "<group>"; };
 		4A41C648251D7C41006E763B /* EventTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTile.swift; sourceTree = "<group>"; };
 		4A41C64C251D83F2006E763B /* TimetableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRow.swift; sourceTree = "<group>"; };
@@ -215,6 +216,7 @@
 		4A49B3CD251C0FF200D79D72 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4A2ADE2A261EA461005B58C8 /* Info.plist */,
 				4A49B3CE251C0FF200D79D72 /* LinuxMain.swift */,
 				4A49B3CF251C0FF200D79D72 /* TimetableKitTests */,
 			);
