@@ -289,7 +289,7 @@
 				4A49B38A251C0CBC00D79D72 /* Sources */,
 				4A49B38B251C0CBC00D79D72 /* Frameworks */,
 				4A49B38C251C0CBC00D79D72 /* Resources */,
-				4AC2AEF826161727002FB403 /* Run Script */,
+				4AC2AEF826161727002FB403 /* Update localized resources */,
 			);
 			buildRules = (
 			);
@@ -383,7 +383,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4AC2AEF826161727002FB403 /* Run Script */ = {
+		4AC2AEF826161727002FB403 /* Update localized resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -392,7 +392,7 @@
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "Update localized resources";
 			outputFileListPaths = (
 			);
 			outputPaths = (
