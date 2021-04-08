@@ -7,7 +7,7 @@ let package = Package(
     name: "TimetableKit",
     defaultLocalization: "en",
     platforms: [
-        .iOS(SupportedPlatform.IOSVersion.v13)
+        .iOS(.v13)
     ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
