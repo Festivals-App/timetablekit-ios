@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A2ADD57261E9A6B005B58C8 /* TimetableKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3D0251C0FF200D79D72 /* TimetableKitTests.swift */; };
+		4A2ADD5A261E9A6F005B58C8 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */; };
 		4A41C646251D7936006E763B /* TimetableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C645251D7936006E763B /* TimetableRowController.swift */; };
 		4A41C649251D7C41006E763B /* EventTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C648251D7C41006E763B /* EventTile.swift */; };
 		4A41C64D251D83F2006E763B /* TimetableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C64C251D83F2006E763B /* TimetableRow.swift */; };
@@ -35,7 +37,6 @@
 		4AAB33AA252003A200ED38F2 /* AppearanceDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33A9252003A200ED38F2 /* AppearanceDelegateProxy.swift */; };
 		4AAB33AE25200C9200ED38F2 /* ScaleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */; };
 		4AAB33B125200D1E00ED38F2 /* ScrollingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */; };
-		4AC2AEEA26160A8B002FB403 /* TimetableKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2AEE926160A8B002FB403 /* TimetableKitTests.swift */; };
 		4AC2AEF426160AF9002FB403 /* TimeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2AEF326160AF9002FB403 /* TimeFormatterTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,8 +88,6 @@
 		4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleCoordinator.swift; sourceTree = "<group>"; };
 		4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollingCoordinator.swift; sourceTree = "<group>"; };
 		4AC2AEE726160A8B002FB403 /* TimetableKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimetableKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4AC2AEE926160A8B002FB403 /* TimetableKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableKitTests.swift; sourceTree = "<group>"; };
-		4AC2AEEB26160A8B002FB403 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AC2AEF326160AF9002FB403 /* TimeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatterTests.swift; sourceTree = "<group>"; };
 		4AC2AEF7261615A3002FB403 /* .bartycrouch.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .bartycrouch.toml; sourceTree = "<group>"; };
 		4ADA00742535C1860058810C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -151,7 +150,6 @@
 				4A49B390251C0CBC00D79D72 /* ExampleApp */,
 				4A49B3AF251C0FCA00D79D72 /* Sources */,
 				4A49B3CD251C0FF200D79D72 /* Tests */,
-				4AC2AEE826160A8B002FB403 /* TimetableKitTests */,
 				4A49B38F251C0CBC00D79D72 /* Products */,
 				4A49B3DD251C108D00D79D72 /* .jazzy.yaml */,
 				4AC2AEF7261615A3002FB403 /* .bartycrouch.toml */,
@@ -268,15 +266,6 @@
 				4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */,
 			);
 			path = Misc;
-			sourceTree = "<group>";
-		};
-		4AC2AEE826160A8B002FB403 /* TimetableKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				4AC2AEE926160A8B002FB403 /* TimetableKitTests.swift */,
-				4AC2AEEB26160A8B002FB403 /* Info.plist */,
-			);
-			path = TimetableKitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,8 +427,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AC2AEEA26160A8B002FB403 /* TimetableKitTests.swift in Sources */,
+				4A2ADD57261E9A6B005B58C8 /* TimetableKitTests.swift in Sources */,
 				4AC2AEF426160AF9002FB403 /* TimeFormatterTests.swift in Sources */,
+				4A2ADD5A261E9A6F005B58C8 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,7 +632,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N67G6688LK;
-				INFOPLIST_FILE = TimetableKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -663,7 +653,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N67G6688LK;
-				INFOPLIST_FILE = TimetableKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
