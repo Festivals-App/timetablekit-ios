@@ -45,6 +45,6 @@ struct TimetableView_wrapper: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: TimetableView, context: Context) {
-
+        
     }
 }
