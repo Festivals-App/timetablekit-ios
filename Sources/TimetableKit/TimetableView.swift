@@ -572,7 +572,10 @@ struct TimetableClockProxy: TimetableClock {
     /// - Parameter timetableView: The timetable asaking for the date.
     /// - Returns: The current date.
     func currentDate(_ timetableView: TimetableView) -> Date {
-        return (timetableView.clock != nil) ? timetableView.clock!.currentDate(timetableView) : Date()
+        if let clock = timetableView.clock {
+            return clock.currentDate(timetableView)
+        }
+        return Date()
     }
 }
 
