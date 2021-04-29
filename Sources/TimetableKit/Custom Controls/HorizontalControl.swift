@@ -20,9 +20,9 @@ public class HorizontalControl: UIView {
     
     var numberOfSegmentsToDisplay = Int(3)
     
-    var textColor = UIColor.darkText { didSet { updateTextColor() } }
-    var highlightTextColor = UIColor.red { didSet { updateTextColor() } }
-    var font = UIFont.systemFont(ofSize: UIFont.systemFontSize) { didSet { updateFont() } }
+    public var textColor = UIColor.darkText { didSet { updateTextColor() } }
+    public var highlightTextColor = UIColor.red { didSet { updateTextColor() } }
+    public var font = UIFont.systemFont(ofSize: UIFont.systemFontSize) { didSet { updateFont() } }
     
     var scrollView: UIScrollView!
     var contentView: UIView!
