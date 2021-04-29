@@ -258,7 +258,7 @@ extension TimetableView {
 
 extension TimetableView: HorizontalControlDelegate {
     
-    func selectedSegment(at index: Int) {
+    public func selectedSegment(at index: Int) {
         
         guard let dataSource = dataSource else { return }
         

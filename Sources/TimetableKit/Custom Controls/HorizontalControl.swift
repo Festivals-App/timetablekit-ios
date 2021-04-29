@@ -7,14 +7,14 @@
 
 import UIKit
 
-@objc protocol HorizontalControlDelegate {
+@objc public protocol HorizontalControlDelegate {
     
     func selectedSegment(at index: Int)
 }
 
-class HorizontalControl: UIView {
+public class HorizontalControl: UIView {
     
-    @IBOutlet var delegate: HorizontalControlDelegate!
+    @IBOutlet public var delegate: HorizontalControlDelegate!
     var numberOfSegments: Int { return segments.count }
     var selectedSegmentIndex = Int(0)
     
@@ -34,25 +34,25 @@ class HorizontalControl: UIView {
     var widthPerElement: CGFloat = 0
     var isScrolling: Bool = false
     
-    convenience init(frame: CGRect, and items: [String]) {
+    public convenience init(frame: CGRect, and items: [String]) {
         self.init(frame: frame)
         configure(with: items)
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    func configure(with items: [String]) {
+    public func configure(with items: [String]) {
         
         if items.count > 0 {
             
             subviews.forEach { $0.removeFromSuperview() }
-                    
+            
             scrollView = UIScrollView.init(frame: bounds)
             scrollView.delegate = self
             scrollView.showsHorizontalScrollIndicator = false
@@ -74,7 +74,7 @@ class HorizontalControl: UIView {
             let heightsConstraint_container = contentView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1.0)
             let widhtConstraint_container = contentView.widthAnchor.constraint(equalToConstant: 0.0)
             
-
+            
             leadingAnchor.isActive = true
             trailingAnchor.isActive = true
             topAnchor.isActive = true
@@ -94,7 +94,7 @@ class HorizontalControl: UIView {
             var leftAnchor_content = contentView.leadingAnchor
             
             contentView.subviews.forEach({ $0.removeFromSuperview() })
-           
+            
             var newSegments = [HorizontalControlSegment]()
             for index in 0..<numberOfItems {
                 
@@ -121,7 +121,7 @@ class HorizontalControl: UIView {
                 cell.text = items[index]
                 cell.selected = (index == selectedIndex)
                 cell.index = index
-            
+                
                 newSegments.append(cell)
             }
             
@@ -130,9 +130,9 @@ class HorizontalControl: UIView {
         }
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
-   
+        
         guard let scrollView = scrollView else { return }
         
         let offsetInNumberOfSegments = scrollView.contentOffset.x/widthPerElement
@@ -158,7 +158,7 @@ class HorizontalControl: UIView {
         }
     }
     
-    func selectSegment(at index: Int) {
+    public func selectSegment(at index: Int) {
         clicked(at: index, fromDelegate: false)
     }
     
@@ -225,13 +225,13 @@ class HorizontalControl: UIView {
 
 extension HorizontalControl: UIScrollViewDelegate {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         isScrolling = true
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         perform(#selector(scrollViewDidEndScrollingAnimation(_:)), with: scrollView, afterDelay: 0.3)
     }
     
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         
         NSObject.cancelPreviousPerformRequests(withTarget: self)
         let fRemainder = CGFloat(fmodf(Float(scrollView.contentOffset.x), Float(widthPerElement)))
@@ -304,7 +304,7 @@ class HorizontalControlSegment: UIView {
         tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(handle(tap:)))
         addGestureRecognizer(tapGestureRecognizer)
     }
-
+    
     @objc func handle(tap: UITapGestureRecognizer) {
         
         delegate.clicked(at: index)
