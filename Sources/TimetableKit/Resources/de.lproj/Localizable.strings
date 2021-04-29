@@ -1,5 +1,5 @@
 /* UI String - String describing how much time is left till the start of the time interval. */
-"%@ left" = "Noch %@";
+"%@ left" = "In %@";
 
 /* UI String - Approximately <time> */
 "approx. %@" = "ca. %@";
