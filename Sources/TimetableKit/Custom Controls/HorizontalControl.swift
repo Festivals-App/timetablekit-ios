@@ -18,7 +18,7 @@ public class HorizontalControl: UIView {
     var numberOfSegments: Int { return segments.count }
     var selectedSegmentIndex = Int(0)
     
-    var numberOfSegmentsToDisplay = Int(3)
+    public var numberOfSegmentsToDisplay = Int(3)
     
     public var textColor = UIColor.darkText { didSet { updateTextColor() } }
     public var highlightTextColor = UIColor.red { didSet { updateTextColor() } }
