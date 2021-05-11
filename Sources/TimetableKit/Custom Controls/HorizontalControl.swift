@@ -146,7 +146,6 @@ public class HorizontalControl: UIView {
             
             if oldWidth != newWidthPerElement {
                 
-                
                 containerViewWidthConstraint.constant = CGFloat(numberOfSegments)*newWidthPerElement
                 scrollView.contentSize = CGSize.init(width: CGFloat(numberOfSegments)*newWidthPerElement, height: frame.size.height)
                 segments.forEach({ $0.widthConstraint!.constant = newWidthPerElement })
@@ -155,6 +154,36 @@ public class HorizontalControl: UIView {
                 scrollView.bounds = scrollBounds
                 widthPerElement = newWidthPerElement
             }
+            
+            if segments.count > numberOfSegmentsToDisplay {
+                
+                let index = selectedIndex
+                
+                var currentOffset = scrollView.contentOffset.x
+                let offsetOfSegment = offsetForSegment(at: index)
+                var needToScroll = true
+                if currentOffset.isNearlyEqual(to: offsetOfSegment) {
+                    if index != 0 {
+                        currentOffset = currentOffset - widthPerElement
+                        needToScroll = true
+                    }
+                }
+                else if (currentOffset+(widthPerElement*CGFloat(numberOfSegmentsToDisplay-1))).isNearlyEqual(to: offsetOfSegment) {
+                    if index != numberOfSegments-1 {
+                        currentOffset = currentOffset + widthPerElement
+                        needToScroll = true
+                    }
+                }
+                
+                if needToScroll {
+                    UIView.animate(withDuration: 0.2) {
+                        var scrollBounds = self.scrollView.bounds
+                        scrollBounds.origin = CGPoint.init(x: currentOffset, y: 0.0)
+                        self.scrollView.bounds = scrollBounds
+                    }
+                }
+            }
+            
         }
     }
     
