@@ -39,8 +39,8 @@ struct HorizontalControllWrapperView: UIViewRepresentable {
     func makeUIView(context: Context) -> HorizontalControl {
     
         print("HorizontalControl makeUIView")
-        let hctrl = HorizontalControl(frame: .zero, items: ["1", "2", "3", "4", "5", "6"], initialIndex:3)
-        hctrl.numberOfSegmentsToDisplay = 2
+        let hctrl = HorizontalControl(frame: .zero, items: ["0", "1", "2", "3", "4", "5", "6"], initialIndex:3)
+        hctrl.numberOfSegmentsToDisplay = 4
         hctrl.delegate = delegate
         return hctrl
     }

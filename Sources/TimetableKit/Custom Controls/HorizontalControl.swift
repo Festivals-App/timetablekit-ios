@@ -157,31 +157,18 @@ public class HorizontalControl: UIView {
             }
             
             var currentOffset = scrollView.contentOffset.x
-            let offsetOfSegment = offsetForSegment(at: selectedIndex)
-            var needToScroll = false
-            if currentOffset.isNearlyEqual(to: offsetOfSegment) {
-                if selectedIndex != 0 {
-                    currentOffset = currentOffset - widthPerElement
-                    needToScroll = true
+            if currentOffset == 0 && selectedIndex != 0 {
+                
+                let mostLeftSegmentIndex = selectedIndex-1
+                if mostLeftSegmentIndex >= 0 {
+       
+                    currentOffset = offsetForSegment(at: mostLeftSegmentIndex)
+                    var scrollBounds = scrollView.bounds
+                    scrollBounds.origin = CGPoint.init(x: currentOffset, y: 0.0)
+                    scrollView.bounds = scrollBounds
                 }
-            }
-            else if (currentOffset+(widthPerElement*CGFloat(numberOfSegmentsToDisplay-1))).isNearlyEqual(to: offsetOfSegment) {
-                if selectedIndex != numberOfSegments-1 {
-                    currentOffset = currentOffset + widthPerElement
-                    needToScroll = true
-                }
-            }
-            // scroll to initial offset
-            else if currentOffset == 0 && selectedIndex != 0 {
-                currentOffset = (CGFloat(numberOfSegments)*widthPerElement)-offsetOfSegment
-                needToScroll = true
             }
             
-            if needToScroll {
-                var scrollBounds = scrollView.bounds
-                scrollBounds.origin = CGPoint.init(x: currentOffset, y: 0.0)
-                scrollView.bounds = scrollBounds
-            }
         }
     }
     
