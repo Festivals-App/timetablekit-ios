@@ -9,14 +9,24 @@ import SwiftUI
 
 @main
 struct TimetableKitApp: App {
+    
+    let del = Del()
+    
     var body: some Scene {
         WindowGroup {
             ZStack {
                 
                 Color.init(UIColor.with(34.0, 34.0, 34.0)).ignoresSafeArea()
                 
-                TimetableView_wrapper()
-                            .ignoresSafeArea(.all, edges: .horizontal)
+                
+                
+                VStack {
+                    
+                    HorizontalControllWrapperView(delegate: del)
+                    
+                    TimetableView_wrapper()
+                                .ignoresSafeArea(.all, edges: .horizontal)
+                }
             }
         }
     }

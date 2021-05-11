@@ -36,23 +36,26 @@ struct HorizontalControllWrapperView: UIViewRepresentable {
     
     var delegate: HorizontalControlDelegate
 
-    let hctrl = HorizontalControl(frame: .zero, and: ["1", "2", "3"])
-    
     func makeUIView(context: Context) -> HorizontalControl {
-        
-        print("HorizontalControllWrapperView makeUIView")
+    
+        print("HorizontalControl makeUIView")
+        let hctrl = HorizontalControl(frame: .zero, items: ["1", "2", "3", "4", "5", "6"], initialIndex:3)
+        hctrl.numberOfSegmentsToDisplay = 2
+        hctrl.delegate = delegate
         return hctrl
     }
 
     func updateUIView(_ uiView: HorizontalControl, context: Context) {
         
         //hctrl.setNeedsLayout()
+        // uiView.selectSegment(at: 3)
+        //uiView.setNeedsLayout()
     }
 }
 
 class Del: HorizontalControlDelegate {
     func selectedSegment(at index: Int) {
-        print("selected segment")
+        print("selected segment \(index)")
     }
     
     
