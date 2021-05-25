@@ -250,7 +250,7 @@ extension TimetableView {
 
         guard let delegate = delegate else { return }
         guard let event = (notification.object as? EventTile)?.event else { return }
-        delegate.timetableView(self, didSelectEventWith: event.id)
+        delegate.timetableView(self, didSelectEventWith: event.eventID)
     }
 }
 

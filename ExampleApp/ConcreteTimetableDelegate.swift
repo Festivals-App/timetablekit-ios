@@ -117,7 +117,7 @@ class EVENT: TimetableEvent {
     var title: String
     var interval: DateInterval
     var isFavourite: Bool
-    var id: Int { title.hash }
+    var eventID: Int { title.hash }
     
     init(_ title: String = "", _ interval: DateInterval = DateInterval(), _ isFavourite: Bool = false) {
         self.title = title
