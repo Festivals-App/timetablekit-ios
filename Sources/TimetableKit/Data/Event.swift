@@ -21,6 +21,6 @@ public protocol TimetableEvent: AnyObject {
     var interval: DateInterval { get }
     /// The favourite status of the item.
     var isFavourite: Bool { get }
-    /// The stable identity of the entity associated with this instance.
-    var eventID: Int { get }
+    /// The unique identifier of the timetable event.
+    var uniqueIdentifier: Int { get }
 }
