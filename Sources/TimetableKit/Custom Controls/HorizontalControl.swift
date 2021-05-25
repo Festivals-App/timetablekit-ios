@@ -131,6 +131,10 @@ public class HorizontalControl: UIView {
         }
     }
     
+    public func updateUIView() {
+        
+    }
+    
     public override func layoutSubviews() {
         super.layoutSubviews()
         
