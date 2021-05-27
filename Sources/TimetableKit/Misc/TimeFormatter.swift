@@ -12,7 +12,7 @@ import UIKit
 public class TimeFormatter {
     
     public static let shared = TimeFormatter()
-    static func prepare() { let _ = TimeFormatter.shared }
+    public static func prepare() { let _ = TimeFormatter.shared }
     
     public var componentsFormatter: DateComponentsFormatter
     
