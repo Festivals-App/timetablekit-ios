@@ -32,7 +32,7 @@ class EventTile: UICollectionViewCell {
     }
     
     var textLabel: InsetLabel!
-    private var timeFormatter: TimeFormatter = TimeFormatter()
+    private var timeFormatter: TimeFormatter = TimeFormatter.shared
     private var tileState: EventTileState = .showTitle
     private var getsLongPressed = false
     

@@ -11,32 +11,35 @@ import UIKit
 /// The time formatter can be used to create representations of dates, times and of dates and times relative to each other.
 public class TimeFormatter {
     
-    public init() { }
+    public static let shared = TimeFormatter()
+    static func prepare() { let _ = TimeFormatter.shared }
     
-    lazy private var calendar: Calendar = {
+    public var componentsFormatter: DateComponentsFormatter
+    
+    private var calendar: Calendar
+    private var houreFormatter: DateFormatter
+    private var dayFormatter: DateFormatter
+    
+    public init() {
+        print("Initilizing TimeFormatter")
+        
         var cal = Calendar.current
         cal.timeZone = TimeZone.current
-        return cal
-    }()
-    
-    lazy private var houreFormatter: DateFormatter = {
-        var houreFormatter = DateFormatter.init()
-        houreFormatter.dateFormat = "HH:mm"
-        return houreFormatter
-    }()
-    
-    lazy private var dayFormatter: DateFormatter = {
-        var dayFormatter = DateFormatter.init()
-        dayFormatter.dateFormat = "EEEE, d MMM"
-        return dayFormatter
-    }()
-    
-    lazy private var componentsFormatter: DateComponentsFormatter = {
-        var formatter = DateComponentsFormatter.init()
+        calendar = cal
+        
+        let hFormatter = DateFormatter.init()
+        hFormatter.dateFormat = "HH:mm"
+        houreFormatter = hFormatter
+        
+        let dFormatter = DateFormatter.init()
+        dFormatter.dateFormat = "EEEE, d MMM"
+        dayFormatter = dFormatter
+        
+        let formatter = DateComponentsFormatter.init()
         formatter.unitsStyle = .full
-        formatter.calendar = self.calendar
-        return formatter
-    }()
+        formatter.calendar = cal
+        componentsFormatter = formatter
+    }
     
     /// Creates a string represetation of the given date using only the time information. Format: HH:mm
     /// - Parameter date: The date to get the string representation from.

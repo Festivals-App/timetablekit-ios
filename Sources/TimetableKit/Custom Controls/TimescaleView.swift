@@ -27,7 +27,7 @@ class TimescaleView: UICollectionView, UICollectionViewDelegate, UICollectionVie
     var timescaleStrokeColor = UIColor.white { didSet { reloadData() } }
     
     let timeIntervalFactor = 1
-    let timeFormatter = TimeFormatter()
+    let timeFormatter = TimeFormatter.shared
     
     init(frame: CGRect) {
         

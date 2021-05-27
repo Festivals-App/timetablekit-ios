@@ -409,11 +409,13 @@ public class TimetableBaseView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        TimeFormatter.prepare()
         setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        TimeFormatter.prepare()
         setupView()
     }
      
