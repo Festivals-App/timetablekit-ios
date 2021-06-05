@@ -21,7 +21,6 @@ public class TimeFormatter {
     private var dayFormatter: DateFormatter
     
     public init() {
-        print("Initilizing TimeFormatter")
         
         var cal = Calendar.current
         cal.timeZone = TimeZone.current
