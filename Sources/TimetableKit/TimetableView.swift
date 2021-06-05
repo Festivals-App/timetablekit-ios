@@ -143,6 +143,33 @@ public class TimetableView: TimetableBaseView {
         }
     }
     
+    public func scrollToCurrentDate() {
+            
+        guard let dataSource = dataSource else { return }
+        
+        let timetableInterval = dataSource.interval(for: self)
+        let pointsPerMinute = scaleCoordinator.pointsPerMinute
+        let halfTimetabelWidth = frame.size.width/2.0
+        let currentDate = clockProxy.currentDate(self)
+        
+        // scroll to current date if possible
+        let nowIsInsideTimtable = timetableInterval.contains(currentDate)
+        if nowIsInsideTimtable {
+            let numberOfDays = dataSource.numberOfDays(in: self)
+            for index in 0 ..< numberOfDays {
+                let intervalForSelectedDay = dataSource.timetableView(self, intervalForDayAt: index)
+                let nowIsInsideSelectedDay = intervalForSelectedDay.contains(currentDate)
+                if nowIsInsideSelectedDay {
+                    var currentTimeOffset = DateInterval.safely(start: timetableInterval.start, end: currentDate).duration.minutes.floaty*pointsPerMinute
+                    currentTimeOffset = currentTimeOffset - halfTimetabelWidth
+                    if currentTimeOffset < 0 { currentTimeOffset = 0 }
+                    scrollingCoordinator.set(CGPoint(x: currentTimeOffset.round(nearest: 0.5), y: tableView.contentOffset.y), animated: true)
+                    return
+                }
+            }
+        }
+    }
+    
     /// Reloads the rows, tiles and sections of the timetable view.
     ///
     /// Call this method to reload all the data that is used to construct the timetable, including cells, section headers, index arrays, tiles and so on.

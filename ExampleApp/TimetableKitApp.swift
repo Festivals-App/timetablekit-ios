@@ -54,6 +54,7 @@ struct TimetableView_wrapper: UIViewRepresentable {
 
     func updateUIView(_ uiView: TimetableView, context: Context) {
         uiView.reloadData()
+        uiView.scrollToCurrentDate()
     }
     
     func makeCoordinator() -> TimetableCoordinator {
