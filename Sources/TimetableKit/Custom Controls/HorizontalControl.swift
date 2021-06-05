@@ -14,7 +14,7 @@ import UIKit
 
 public class HorizontalControl: UIView {
     
-    @IBOutlet public var delegate: HorizontalControlDelegate!
+    weak var delegate: HorizontalControlDelegate? = nil
     var numberOfSegments: Int { return segments.count }
 
     public var numberOfSegmentsToDisplay = Int(3)
@@ -131,10 +131,6 @@ public class HorizontalControl: UIView {
         }
     }
     
-    public func updateUIView() {
-        
-    }
-    
     public override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -222,7 +218,11 @@ public class HorizontalControl: UIView {
             selectedIndex = index
         }
         
-        if fromDelegate { delegate.selectedSegment(at: index) }
+        if fromDelegate {
+            if let delegate = delegate {
+                delegate.selectedSegment(at: index)
+            }
+        }
     }
     
     func updateTextColor() {
@@ -277,7 +277,7 @@ protocol HorizontalControlSegmentDelegate {
 
 class HorizontalControlSegment: UIView {
     
-    var delegate: HorizontalControlSegmentDelegate!
+    var delegate: HorizontalControlSegmentDelegate? = nil
     var index = Int(0)
     
     var text = "Segment<>" { didSet { label.text = text } }
@@ -325,7 +325,9 @@ class HorizontalControlSegment: UIView {
     
     @objc func handle(tap: UITapGestureRecognizer) {
         
-        delegate.clicked(at: index)
+        if  let delegate = delegate {
+            delegate.clicked(at: index)
+        }
     }
     
     private func updateAppearance() {
