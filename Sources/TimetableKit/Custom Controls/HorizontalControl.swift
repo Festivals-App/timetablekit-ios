@@ -14,7 +14,7 @@ import UIKit
 
 public class HorizontalControl: UIView {
     
-    weak var delegate: HorizontalControlDelegate? = nil
+    public weak var delegate: HorizontalControlDelegate? = nil
     var numberOfSegments: Int { return segments.count }
 
     public var numberOfSegmentsToDisplay = Int(3)
