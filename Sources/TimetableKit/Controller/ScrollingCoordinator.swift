@@ -61,6 +61,10 @@ class ScrollingCoordinator: NSObject {
         if !timetable.navigationScrollView.contentOffset.equalTo(contentOffset) {
             timetable.navigationScrollView.contentOffset = contentOffset
         }
+        
+        if let _ = timetable.delegate {
+            //delegate.timetableView(timetable, didScrollTo: contentOffset)
+        }
     }
 
     func willScroll(to XAxisOffset: CGFloat) {
@@ -91,17 +95,6 @@ extension ScrollingCoordinator: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         set(scrollView.contentOffset, animated: false)
     }
-    
-    /*
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        
-        print("scrollViewDidEndScrollingAnimation")
-        
-        NSObject.cancelPreviousPerformRequests(withTarget: self)
-        if !skipDidEndScrollingMethodOnce { scrollingDidEnd() }
-        else { skipDidEndScrollingMethodOnce = false }
-    }
-    */
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
@@ -193,12 +186,24 @@ extension ScrollingCoordinator: UIScrollViewDelegate {
     }
     
     /*
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        
+        print("scrollViewDidEndScrollingAnimation")
+        
+        NSObject.cancelPreviousPerformRequests(withTarget: self)
+        if !skipDidEndScrollingMethodOnce { scrollingDidEnd() }
+        else { skipDidEndScrollingMethodOnce = false }
+    }
+    */
+    
+    /*
     func scrollingDidEnd() {
         
         print("scrollingDidEnd()")
         
         if !scaleCoordinator.isScaling {
             
+            /*
             // this method is fired when the user lifts his/her finger from the screen (or the finger left the touch area of the screen)
             // we want to check the content offset the subsequent scrolling will lead to (target offset)
             // if the target offset will be above (or below) a trashhold we wannt to scroll (segue) to the opposit end of the pause
@@ -243,9 +248,10 @@ extension ScrollingCoordinator: UIScrollViewDelegate {
                     return
                 }
             }
+            */
         }
     }
-     */
+    */
 }
 
 // MARK: Interval Calculations

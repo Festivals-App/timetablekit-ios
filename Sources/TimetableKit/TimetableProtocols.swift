@@ -107,6 +107,12 @@ public protocol TimetableDelegate {
     ///   - timetableView: The timetable view informing the delegate about the selected event.
     ///   - identifier: The identifier of the selected event in the timetable view.
     func timetableView(_ timetableView: TimetableView, didSelectEventWith identifier: Int) -> Void
+    
+    /// Tells the delegate that the timteable scrolled to the given offset.
+    /// - Parameters:
+    ///   - timetableView: The timetable view informing the delegate about the offset.
+    ///   - offset: The new offset of the timetable.
+    func timetableView(_ timetableView: TimetableView, didScrollTo offset: CGPoint) -> Void
 }
 
 // MARK: Timetable Appearance Delegate

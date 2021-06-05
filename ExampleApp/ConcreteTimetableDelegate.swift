@@ -11,26 +11,25 @@ import UIKit
 let kMONTH = 9
 let kDAY = 29
 
-class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegate, TimetableClock, TimetableDelegate {
+class TimetableCoordinator: NSObject, TimetableDataSource, TimetableDelegate, TimetableAppearanceDelegate, TimetableClock {
     
-    func timetableView(_ timetableView: TimetableView, didSelectRowAt indexPath: IndexPath) {
-            
-    }
     
-    func timetableView(_ timetableView: TimetableView, didSelectEventAt indexPath: IndexPath) {
-                
+    var parent: TimetableView_wrapper
+    
+    init(_ parent: TimetableView_wrapper) {
+        self.parent = parent
     }
     
     func timetableView(_ timetableView: TimetableView, didSelectEventWith identifier: Int) {
         print("didSelectEventWith: \(identifier)")
     }
     
+    func timetableView(_ timetableView: TimetableView, didScrollTo offset: CGPoint) {
+        print("timetableView didScrollTo: \(offset)")
+        parent.offset = offset
+    }
     
     var sections: [SECTION] = SECTION.testData()
-    
-    init() {
-        
-    }
     
     func timetableView(_ timetableView: TimetableView, eventsForRowAt indexPath: IndexPath) -> [TimetableEvent] {
         return sections[indexPath.section].rows[indexPath.row].events
@@ -110,6 +109,14 @@ class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegat
     
     func currentDate(_ timetableView: TimetableView) -> Date {
         return Date.date(m: kMONTH, d: kDAY, H: 15, M: 7)
+    }
+    
+    func timetableView(_ timetableView: TimetableView, didSelectRowAt indexPath: IndexPath) {
+            
+    }
+    
+    func timetableView(_ timetableView: TimetableView, didSelectEventAt indexPath: IndexPath) {
+                
     }
 }
 
