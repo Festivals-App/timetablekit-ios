@@ -277,7 +277,7 @@ extension TimetableView: HorizontalControlDelegate {
                 var currentTimeOffset = DateInterval.safely(start: timetableInterval.start, end: currentDate).duration.minutes.floaty*pointsPerMinute
                 currentTimeOffset = currentTimeOffset - halfTimetabelWidth
                 if currentTimeOffset < 0 { currentTimeOffset = 0 }
-                scrollingCoordinator.set(CGPoint(x: currentTimeOffset, y: tableView.contentOffset.y), animated: true)
+                scrollingCoordinator.set(CGPoint(x: currentTimeOffset.round(nearest: 0.5), y: tableView.contentOffset.y), animated: true)
                 return
             }
         }
@@ -300,8 +300,17 @@ extension TimetableView: HorizontalControlDelegate {
             // scroll to left bound of the day or to the end
             var offsetToScrollTo = (currentOffset <= dayStartOffset) ? dayStartOffset : dayEndOffset
             if offsetToScrollTo < 0 { offsetToScrollTo = 0 }
-            scrollingCoordinator.set(CGPoint(x: offsetToScrollTo, y: tableView.contentOffset.y), animated: true)
+            scrollingCoordinator.set(CGPoint(x: offsetToScrollTo.round(nearest: 0.5), y: tableView.contentOffset.y), animated: true)
         }
+    }
+}
+
+extension CGFloat {
+    
+    func round(nearest: CGFloat) -> CGFloat {
+            let n = 1/nearest
+            let numberToRound = self * n
+            return numberToRound.rounded() / n
     }
 }
 
