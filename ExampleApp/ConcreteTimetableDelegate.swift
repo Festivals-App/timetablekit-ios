@@ -11,7 +11,20 @@ import UIKit
 let kMONTH = 9
 let kDAY = 29
 
-class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegate, TimetableClock {
+class ConcreteTimetableDelegate: TimetableDataSource, TimetableAppearanceDelegate, TimetableClock, TimetableDelegate {
+    
+    func timetableView(_ timetableView: TimetableView, didSelectRowAt indexPath: IndexPath) {
+            
+    }
+    
+    func timetableView(_ timetableView: TimetableView, didSelectEventAt indexPath: IndexPath) {
+                
+    }
+    
+    func timetableView(_ timetableView: TimetableView, didSelectEventWith identifier: Int) {
+        print("didSelectEventWith: \(identifier)")
+    }
+    
     
     var sections: [SECTION] = SECTION.testData()
     

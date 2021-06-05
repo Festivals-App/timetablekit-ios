@@ -8,13 +8,7 @@
 import UIKit
 
 extension Notification.Name {
-
-    static let eventTileWasLongPressed = Notification.Name("SGEventTileWasLongPressedNotification")
-}
-
-/// The state describing what informtion is displayed by the tile.
-enum EventTileState {
-    case showTitle, showTime, showTimeTillShow
+    static let eventTileWasTapped = Notification.Name("SGEventTileWasTappedPressedNotification")
 }
 
 /// A tile view representing an event in the timetable.
@@ -33,8 +27,6 @@ class EventTile: UICollectionViewCell {
     
     var textLabel: InsetLabel!
     private var timeFormatter: TimeFormatter = TimeFormatter.shared
-    private var tileState: EventTileState = .showTitle
-    private var getsLongPressed = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +42,6 @@ class EventTile: UICollectionViewCell {
         textLabel.fit(to: contentView)
         
         NotificationCenter.default.addObserver(self, selector: #selector(EventTile.cellWasTapped(with:)), name: .tapWasRegistered, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(EventTile.longPressBeganOnCell(with:)), name: .longPressBegan, object: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,7 +56,6 @@ class EventTile: UICollectionViewCell {
         super.prepareForReuse()
         
         event = nil
-        tileState = .showTitle
         textLabel.text = nil
     }
     
@@ -77,39 +67,11 @@ class EventTile: UICollectionViewCell {
     
     @objc func cellWasTapped(with notification: NSNotification) {
         
-        let recognizer = notification.object as! UIGestureRecognizer
-        let touchPoint = recognizer.location(in: self)
-        
-        if touchPoint != .zero && self.bounds.contains(touchPoint) {
-
-            if let event = event {
-                
-                switch tileState {
-                case .showTitle:
-                    tileState = .showTime
-                    textLabel.numberOfLines = 3
-                    textLabel.text = timeFormatter.string(from: event.interval)
-                case .showTime:
-                    tileState = .showTimeTillShow
-                    textLabel.numberOfLines = 3
-                    textLabel.text = timeFormatter.description(of: Date(), relativeTo: event.interval)
-                case .showTimeTillShow:
-                    tileState = .showTitle
-                    textLabel.numberOfLines = event.title.components(separatedBy: " ").count
-                    textLabel.text = event.title
-                }
+        if let recognizer = notification.object as? UIGestureRecognizer {
+            let touchPoint = recognizer.location(in: self)
+            if touchPoint != .zero && self.bounds.contains(touchPoint) {
+                NotificationCenter.default.post(name: .eventTileWasTapped, object: self)
             }
-        }
-    }
-    
-    @objc func longPressBeganOnCell(with notification: NSNotification) {
-        
-        let recognizer = notification.object as! UILongPressGestureRecognizer
-        let touchPoint = recognizer.location(in: self)
-        
-        if touchPoint != .zero && self.bounds.contains(touchPoint) {
-            textLabel.backgroundColor = textLabel.backgroundColor?.darker(0.2)
-            NotificationCenter.default.post(name: .eventTileWasLongPressed, object: self)
         }
     }
 }

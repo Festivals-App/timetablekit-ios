@@ -98,7 +98,7 @@ public class TimetableView: TimetableBaseView {
         self.scaleCoordinator = ScaleCoordinator.init(with: self, and: self.scrollingCoordinator)
         self.scrollingCoordinator.scaleCoordinator = self.scaleCoordinator
 
-        NotificationCenter.default.addObserver(self, selector: #selector(TimetableView.eventTileWasLongPressed(with:)), name: .eventTileWasLongPressed, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TimetableView.eventTileWasTapped(with:)), name: .eventTileWasTapped, object: nil)
     }
     
     public override func awakeFromNib() {
@@ -246,7 +246,7 @@ public class TimetableView: TimetableBaseView {
 
 extension TimetableView {
     
-    @objc func eventTileWasLongPressed(with notification: NSNotification) {
+    @objc func eventTileWasTapped(with notification: NSNotification) {
 
         guard let delegate = delegate else { return }
         guard let event = (notification.object as? EventTile)?.event else { return }
@@ -387,7 +387,6 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource, UITableView
 extension Notification.Name {
 
     static let tapWasRegistered = Notification.Name("SGTapWasRegisteredNotification")
-    static let longPressBegan = Notification.Name("SGLongPressBeganNotification")
 }
 
 public class TimetableBaseView: UIView {
@@ -401,7 +400,6 @@ public class TimetableBaseView: UIView {
     var navigationScrollView: UIScrollView!
     
     var tapGestureRecognizer: UITapGestureRecognizer!
-    var longPressGestureRecognizer: UILongPressGestureRecognizer!
     
     var rowController = [TimetableRowController]()
     var unusedRowController: Set<TimetableRowController> = Set.init()
@@ -477,11 +475,7 @@ public class TimetableBaseView: UIView {
         navigationScrollView.fit(to: self, leading: 0, trailing: 0, top: 88.0, bottom: 0)
         
         tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(TimetableBaseView.tapped(recognizer:)))
-        longPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action: #selector(TimetableBaseView.longPress(recognizer:)))
         self.addGestureRecognizer(tapGestureRecognizer)
-        self.addGestureRecognizer(longPressGestureRecognizer)
-        
-        
     }
     
     @objc func tapped(recognizer: UIPinchGestureRecognizer) {
@@ -495,24 +489,6 @@ public class TimetableBaseView: UIView {
         // let wasTapped = self.myTappableView.bounds.contains(touchPoint)
         //
         NotificationCenter.default.post(name: .tapWasRegistered, object: recognizer)
-    }
-    
-    @objc func longPress(recognizer: UILongPressGestureRecognizer) {
-        
-        // views (or their controllers) that could be long pressed should register
-        // as observers for the 'SGLongPressWasRegisteredNotification' notification and
-        // test if the touch event happend inside their bounds.
-        //
-        // let recognizer = notification.object as! UILongPressGestureRecognizer
-        // let touchPoint = recognizer.location(in: self.myTappableView)
-        // let wasTapped = self.myTappableView.bounds.contains(touchPoint)
-        //
-        switch recognizer.state {
-        case .began:
-            NotificationCenter.default.post(name: .longPressBegan, object: recognizer)
-        default:
-            break
-        }
     }
     
     public override func layoutSubviews() {

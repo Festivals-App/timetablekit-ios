@@ -42,9 +42,9 @@ struct TimetableView_wrapper: UIViewRepresentable {
         let timetable = TimetableView(.infinite, with: TimetableStyle.dark)
         let delegate = ConcreteTimetableDelegate.init()
         timetable.dataSource = delegate
+        timetable.delegate = delegate
         timetable.clock = delegate
         //timetable.appearanceDelegate = ConcreteTimetableDelegate.init()
-        
         timetable.reloadData()
         return timetable
     
