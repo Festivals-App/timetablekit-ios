@@ -16,7 +16,7 @@ import UIKit
 class ScrollingCoordinator: NSObject {
     
     weak var timetable: TimetableView?
-    var scaleCoordinator: ScaleCoordinator!
+    weak var scaleCoordinator: ScaleCoordinator?
     
     lazy var breakIntervals: [DateInterval] = { return calculateBreakIntervals(for: timetableDays) }()
     lazy var timetableDays: [DateInterval] = { return calculateTimetableDays() }()
@@ -72,6 +72,7 @@ class ScrollingCoordinator: NSObject {
     func willScroll(to XAxisOffset: CGFloat) {
         
         guard let timetable = timetable else { return }
+        guard let scaleCoordinator = scaleCoordinator else { return }
         guard let dataSource = timetable.dataSource else { return }
         
         let currentOffsetX = XAxisOffset+(timetable.tableView.frame.size.width/2.0)
@@ -100,6 +101,8 @@ extension ScrollingCoordinator: UIScrollViewDelegate {
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        guard let scaleCoordinator = scaleCoordinator else { return }
         
         if !scaleCoordinator.isScaling {
             

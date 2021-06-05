@@ -29,12 +29,12 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
     }()
     
     weak var timetable: TimetableView?
+    weak var scrollingCoordinator: ScrollingCoordinator?
     
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     
     var pinchCenter: CGPoint = .zero
     var pinchCenterInMinutes: CGFloat = 0
-    var scrollingCoordinator: ScrollingCoordinator!
     
     init(with timetable: TimetableView, and scrollingCoordinator: ScrollingCoordinator) {
         
@@ -152,7 +152,7 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
             timetable.timescale.pointsPerMinute = self?.pointsPerMinute ?? 0
             timetable.rowController.forEach({ $0.collectionView.reloadData() })
             timetable.setNeedsLayout()
-            self?.scrollingCoordinator.set(navigationContentOffset, animated: false)
+            self?.scrollingCoordinator?.set(navigationContentOffset, animated: false)
         }
     }
     
