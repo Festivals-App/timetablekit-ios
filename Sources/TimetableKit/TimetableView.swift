@@ -95,6 +95,7 @@ public class TimetableView: TimetableBaseView {
         self.automaticStyle = (UIScreen.main.brightness > kBrightnessTreshold) ? .light : .dark
         
         self.proxyAppearanceDelegate = AppearanceDelegateProxy.init(with: self)
+        
         self.scaleCoordinator = ScaleCoordinator.init(with: self, and: self.scrollingCoordinator)
         self.scrollingCoordinator.scaleCoordinator = self.scaleCoordinator
 

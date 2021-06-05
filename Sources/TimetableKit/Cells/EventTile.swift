@@ -26,6 +26,7 @@ class EventTile: UICollectionViewCell {
     }
     
     var textLabel: InsetLabel!
+    
     private var timeFormatter: TimeFormatter = TimeFormatter.shared
     
     override init(frame: CGRect) {

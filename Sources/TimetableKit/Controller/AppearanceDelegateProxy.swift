@@ -14,7 +14,7 @@ import UIKit
  */
 class AppearanceDelegateProxy: TimetableAppearanceDelegate {
     
-    weak private var timetable: TimetableView!
+    private weak var timetable: TimetableView?
     
     required init(with timetable: TimetableView) {
         self.timetable = timetable
@@ -37,42 +37,52 @@ class AppearanceDelegateProxy: TimetableAppearanceDelegate {
     private var eventTileTextColor: UIColor = UIColor.white
 
     func timetabelBackgroundColor() -> UIColor {
-        
+    
         if self.appearanceDelegate != nil { return self.appearanceDelegate!.timetabelBackgroundColor() }
+        guard let timetable = timetable else { return .systemBlue }
         return (timetable.style == .light) ? backgroundColor_light : backgroundColor
     }
     
     func timetabelSectionHeaderColor() -> UIColor {
         if self.appearanceDelegate != nil { return self.appearanceDelegate!.timetabelSectionHeaderColor() }
+        guard let timetable = timetable else { return .systemBlue }
         return (timetable.style == .light) ? sectionHeaderColor_light : sectionHeaderColor
     }
     
     func timetabelRowHeaderColor() -> UIColor {
         if self.appearanceDelegate != nil { return self.appearanceDelegate!.timetabelRowHeaderColor() }
+        guard let timetable = timetable else { return .systemBlue }
         return (timetable.style == .light) ? rowHeaderColor_light : rowHeaderColor
     }
     
     func timetabelRowColor() -> UIColor {
         if self.appearanceDelegate != nil { return self.appearanceDelegate!.timetabelRowColor() }
+        guard let timetable = timetable else { return .systemBlue }
         return (timetable.style == .light) ? rowColor_light : rowColor
     }
     
     func timetabelEventTileColor() -> UIColor {
         if self.appearanceDelegate != nil { return self.appearanceDelegate!.timetabelEventTileColor() }
+        guard let timetable = timetable else { return .systemBlue }
         return (timetable.style == .light) ? eventTileColor_light : eventTileColor
     }
     
     func timetabelEventTileHighlightColor() -> UIColor {
         if self.appearanceDelegate != nil { return self.appearanceDelegate!.timetabelEventTileHighlightColor() }
+        guard let timetable = timetable else { return .systemBlue }
         return (timetable.style == .light) ? eventTileHighlightColor_light : eventTileHighlightColor
     }
     
     func timetabelEventTileTextColor() -> UIColor {
         if self.appearanceDelegate != nil { return self.appearanceDelegate!.timetabelEventTileTextColor() }
+        guard let timetable = timetable else { return .systemBlue }
         return (timetable.style == .light) ? eventTileTextColor_light : eventTileTextColor
     }
     
-    private var appearanceDelegate: TimetableAppearanceDelegate? { return timetable.appearanceDelegate }
+    private var appearanceDelegate: TimetableAppearanceDelegate? {
+        guard let timetable = timetable else { return nil }
+        return timetable.appearanceDelegate
+    }
 
 }
 

@@ -23,11 +23,12 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
     
     var pointsPerMinute: CGFloat = kDefaultPointsPerMinute
     lazy var intervalOfTimetable: DateInterval = {
+        guard let timetable = timetable else { return DateInterval() }
         guard let dataSource = timetable.dataSource else { return DateInterval() }
         return dataSource.interval(for: timetable)
     }()
     
-    var timetable: TimetableView!
+    weak var timetable: TimetableView?
     
     var pinchGestureRecognizer: UIPinchGestureRecognizer!
     
@@ -74,6 +75,8 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
     
     func pinchingDidStart(recognizer: UIPinchGestureRecognizer) {
         
+        guard let timetable = timetable else { return }
+        
         isScaling = true
         
         // save the pinch center for later reconstructing the content offset
@@ -104,6 +107,8 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
     
     func scaleTimetableIfNeeded(recognizer: UIPinchGestureRecognizer) {
         
+        guard let timetable = timetable else { return }
+        
         DispatchQueue.global(qos: .userInteractive).sync {
             let dampedScale = recognizer.scale
             
@@ -125,6 +130,8 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
     
     func scaleTimetable(to width: CGFloat, _ height: CGFloat) {
         
+        guard let timetable = timetable else { return }
+        
         // see comment in pinchingDidStart: for an explanation ...
         let pinchCenterOffsetToTimeTableToLeftEdge = pinchCenterInMinutes * pointsPerMinute
         let offsetToTableViewLeftEdge = pinchCenter.x
@@ -140,12 +147,12 @@ class ScaleCoordinator: NSObject, UIGestureRecognizerDelegate, TimetableLayoutDe
         if newContentOffsetXAxis > maxOffset { newContentOffsetXAxis = maxOffset }
         let navigationContentOffset = CGPoint.init(x: newContentOffsetXAxis, y: timetable.navigationScrollView.contentOffset.y)
         
-        DispatchQueue.main.async {
-            self.timetable.navigationScrollView.contentSize = CGSize.init(width: width, height: height)
-            self.timetable.timescale.pointsPerMinute = self.pointsPerMinute
-            self.timetable.rowController.forEach({ $0.collectionView.reloadData() })
-            self.timetable.setNeedsLayout()
-            self.scrollingCoordinator.set(navigationContentOffset, animated: false)
+        DispatchQueue.main.async { [weak self] in
+            timetable.navigationScrollView.contentSize = CGSize.init(width: width, height: height)
+            timetable.timescale.pointsPerMinute = self?.pointsPerMinute ?? 0
+            timetable.rowController.forEach({ $0.collectionView.reloadData() })
+            timetable.setNeedsLayout()
+            self?.scrollingCoordinator.set(navigationContentOffset, animated: false)
         }
     }
     

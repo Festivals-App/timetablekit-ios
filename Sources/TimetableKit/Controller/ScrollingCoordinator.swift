@@ -15,7 +15,7 @@ import UIKit
  */
 class ScrollingCoordinator: NSObject {
     
-    var timetable: TimetableView
+    weak var timetable: TimetableView?
     var scaleCoordinator: ScaleCoordinator!
     
     lazy var breakIntervals: [DateInterval] = { return calculateBreakIntervals(for: timetableDays) }()
@@ -47,6 +47,8 @@ class ScrollingCoordinator: NSObject {
     
     func set( _ contentOffset: CGPoint) {
         
+        guard let timetable = timetable else { return }
+        
         let collectionViewOffset = CGPoint.init(x: contentOffset.x, y: 0)
         let tableViewOffset = CGPoint.init(x: 0, y: contentOffset.y)
         
@@ -69,6 +71,7 @@ class ScrollingCoordinator: NSObject {
 
     func willScroll(to XAxisOffset: CGFloat) {
         
+        guard let timetable = timetable else { return }
         guard let dataSource = timetable.dataSource else { return }
         
         let currentOffsetX = XAxisOffset+(timetable.tableView.frame.size.width/2.0)
@@ -100,6 +103,7 @@ extension ScrollingCoordinator: UIScrollViewDelegate {
         
         if !scaleCoordinator.isScaling {
             
+            guard let timetable = timetable else { return }
             guard let dataSource = timetable.dataSource else { return }
             
             // this method is fired when the user lifts his/her finger from the screen (or the finger left the touch area of the screen)
@@ -277,6 +281,7 @@ extension ScrollingCoordinator {
     
     func calculateTimetableDays() -> [DateInterval] {
         
+        guard let timetable = timetable else { return [] }
         guard let dataSource = timetable.dataSource else { return [] }
     
         let numberOfDays = dataSource.numberOfDays(in: timetable)
