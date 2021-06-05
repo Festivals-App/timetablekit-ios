@@ -163,7 +163,7 @@ public class TimetableView: TimetableBaseView {
                     var currentTimeOffset = DateInterval.safely(start: timetableInterval.start, end: currentDate).duration.minutes.floaty*pointsPerMinute
                     currentTimeOffset = currentTimeOffset - halfTimetabelWidth
                     if currentTimeOffset < 0 { currentTimeOffset = 0 }
-                    scrollingCoordinator.set(CGPoint(x: currentTimeOffset.round(nearest: 0.5), y: tableView.contentOffset.y), animated: true)
+                    scrollingCoordinator.set(CGPoint(x: currentTimeOffset.round(nearest: 0.5), y: tableView.contentOffset.y), animated: false)
                     return
                 }
             }
