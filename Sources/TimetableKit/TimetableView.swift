@@ -50,10 +50,10 @@ let kBrightnessTreshold: CGFloat = 0.35
  */
 public class TimetableView: TimetableBaseView {
 
-    public var dataSource: TimetableDataSource?
-    public var appearanceDelegate: TimetableAppearanceDelegate?
-    public var delegate: TimetableDelegate?
-    public var clock: TimetableClock?
+    public weak var dataSource: TimetableDataSource?
+    public weak var appearanceDelegate: TimetableAppearanceDelegate?
+    public weak var delegate: TimetableDelegate?
+    public weak var clock: TimetableClock?
     
     private(set) var style: TimetableStyle = .automatic
     private var automaticStyle: TimetableStyle = .automatic
@@ -553,7 +553,7 @@ class SGTableView: UITableView {
 }
 
 /// A default `TimetableClock` implementation returning default values if the timetableView has no `clock` set.
-struct TimetableClockProxy: TimetableClock {
+class TimetableClockProxy: TimetableClock {
     
     /// Returns the default value or asks the clock for the current date.
     /// - Parameter timetableView: The timetable asaking for the date.

@@ -11,7 +11,7 @@ import UIKit
 
 /// The `TimetableDataSource` protocol is adopted by an object that mediates the application’s data model for a `TimetableView` object.
 /// The data source provides the timetable view object with the information it needs to construct a timetable.
-public protocol TimetableDataSource {
+public protocol TimetableDataSource: AnyObject {
 
     /// Asks the data source for the events associated with a row at a particular row in the timetable.
     /// - Parameters:
@@ -88,7 +88,7 @@ public protocol TimetableDataSource {
 
 /// The delegate of a `TimetableView` object must adopt the `TimetableDelegate` protocol.
 /// The methods of the protocol allow the delegate to manage selections and configure section headers and rows.
-public protocol TimetableDelegate {
+public protocol TimetableDelegate: AnyObject {
 
     /// Tells the delegate that the specified row was taped by the user.
     /// - Parameters:
@@ -127,7 +127,7 @@ The timetable comes with two styles, dark and light. If you want to have your ow
 ## Important
 If you set the appearance delegate it will always be favoured over the set TimetableViewStyle.
 */
-public protocol TimetableAppearanceDelegate {
+public protocol TimetableAppearanceDelegate: AnyObject {
     
     // MARK: Specifying the Color of the Timetable View
     
@@ -156,7 +156,7 @@ Most of the timetable components depend on a conversion from time to pixels (or 
 This could be achived by using an easly accessible singleton objet, but that would mean an user of the `TimetableView` class would be left behind with an indestructible object in their apps memory.
 I decided to put all properties that influence these frame defining conversion into this category, so they are some kind of logically grouped together, thereby i maybe won't lose overview.
 */
-public protocol TimetableLayoutDelegate {
+public protocol TimetableLayoutDelegate: AnyObject {
     
     /// A float value that defines by how many points a minute is represented.
     var pointsPerMinute: CGFloat { get set }
@@ -168,7 +168,7 @@ public protocol TimetableLayoutDelegate {
 
 /// The clock of a `TimetableView` object must adopt the `TimetableClock` protocol.
 /// The methods of the protocol allow the delegate to determin the current date and time displayed by the timetable.
-public protocol TimetableClock {
+public protocol TimetableClock: AnyObject {
 
     /// Asks the clock for the current date and time.
     /// - Parameters:

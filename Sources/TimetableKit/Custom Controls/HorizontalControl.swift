@@ -270,16 +270,16 @@ extension HorizontalControl: HorizontalControlSegmentDelegate  {
     }
 }
 
-protocol HorizontalControlSegmentDelegate {
+protocol HorizontalControlSegmentDelegate: AnyObject {
     
     func clicked(at index: Int)
 }
 
 class HorizontalControlSegment: UIView {
     
-    var delegate: HorizontalControlSegmentDelegate? = nil
-    var index = Int(0)
+    weak var delegate: HorizontalControlSegmentDelegate? = nil
     
+    var index = Int(0)
     var text = "Segment<>" { didSet { label.text = text } }
     var font = UIFont.systemFont(ofSize: 17.0) { didSet { label.font = font } }
     var textColor = UIColor.darkText { didSet { updateAppearance() } }
