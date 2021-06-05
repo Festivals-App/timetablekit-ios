@@ -18,11 +18,7 @@ struct TimetableKitApp: App {
                 
                 Color.init(UIColor.with(34.0, 34.0, 34.0)).ignoresSafeArea()
                 
-                
-                
                 VStack {
-                    
-                    HorizontalControllWrapperView(delegate: del)
                     
                     TimetableView_wrapper()
                                 .ignoresSafeArea(.all, edges: .horizontal)
