@@ -16,7 +16,7 @@ public class TimeFormatter {
     
     public var componentsFormatter: DateComponentsFormatter
     
-    private var calendar: Calendar
+    public private(set) var calendar: Calendar
     private var houreFormatter: DateFormatter
     private var dayFormatter: DateFormatter
     
