@@ -391,7 +391,7 @@ extension TimetableView: UITableViewDelegate, UITableViewDataSource, UITableView
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return kTimetableSectionHeaderHeight
+        return tableView.numberOfSections == 1 ? 0.0 : kTimetableSectionHeaderHeight
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
