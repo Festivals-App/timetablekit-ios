@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A2ADD57261E9A6B005B58C8 /* TimetableKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3D0251C0FF200D79D72 /* TimetableKitTests.swift */; };
 		4A2ADD5A261E9A6F005B58C8 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */; };
 		4A41C646251D7936006E763B /* TimetableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C645251D7936006E763B /* TimetableRowController.swift */; };
 		4A41C649251D7C41006E763B /* EventTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C648251D7C41006E763B /* EventTile.swift */; };
@@ -37,6 +36,7 @@
 		4AAB33AE25200C9200ED38F2 /* ScaleCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33AD25200C9200ED38F2 /* ScaleCoordinator.swift */; };
 		4AAB33B125200D1E00ED38F2 /* ScrollingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */; };
 		4AC2AEF426160AF9002FB403 /* TimeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2AEF326160AF9002FB403 /* TimeFormatterTests.swift */; };
+		4AC5309C274AAB4E008B803A /* TimetableView_wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5309B274AAB4E008B803A /* TimetableView_wrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +72,6 @@
 		4A49B3B6251C0FCA00D79D72 /* TimescaleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimescaleView.swift; sourceTree = "<group>"; };
 		4A49B3B8251C0FCA00D79D72 /* TimetableProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableProtocols.swift; sourceTree = "<group>"; };
 		4A49B3CE251C0FF200D79D72 /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
-		4A49B3D0251C0FF200D79D72 /* TimetableKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimetableKitTests.swift; sourceTree = "<group>"; };
 		4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		4A49B3DD251C108D00D79D72 /* .jazzy.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .jazzy.yaml; sourceTree = "<group>"; };
 		4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcreteTimetableDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +89,8 @@
 		4AC2AEE726160A8B002FB403 /* TimetableKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimetableKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC2AEF326160AF9002FB403 /* TimeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatterTests.swift; sourceTree = "<group>"; };
 		4AC2AEF7261615A3002FB403 /* .bartycrouch.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .bartycrouch.toml; sourceTree = "<group>"; };
+		4AC5309A274AA6DC008B803A /* timetable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timetable.png; path = ../../../../../../Desktop/timetable.png; sourceTree = "<group>"; };
+		4AC5309B274AAB4E008B803A /* TimetableView_wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView_wrapper.swift; sourceTree = "<group>"; };
 		4ADA00742535C1860058810C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				4A49B3B5251C0FCA00D79D72 /* HorizontalControl.swift */,
-				4A49B3B6251C0FCA00D79D72 /* TimescaleView.swift */,
 				4A41C650251D852A006E763B /* InsetLabel.swift */,
+				4A49B3B6251C0FCA00D79D72 /* TimescaleView.swift */,
 			);
 			path = "Custom Controls";
 			sourceTree = "<group>";
@@ -172,9 +173,11 @@
 			children = (
 				4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */,
 				4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */,
+				4AC5309B274AAB4E008B803A /* TimetableView_wrapper.swift */,
 				4A49B393251C0CBC00D79D72 /* ContentView.swift */,
 				4A49B395251C0CBF00D79D72 /* Assets.xcassets */,
 				4A49B39A251C0CBF00D79D72 /* Info.plist */,
+				4AC53099274AA6CB008B803A /* Screenshots */,
 				4A49B397251C0CBF00D79D72 /* Preview Content */,
 			);
 			path = ExampleApp;
@@ -226,7 +229,6 @@
 		4A49B3CF251C0FF200D79D72 /* TimetableKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				4A49B3D0251C0FF200D79D72 /* TimetableKitTests.swift */,
 				4AC2AEF326160AF9002FB403 /* TimeFormatterTests.swift */,
 				4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */,
 			);
@@ -267,6 +269,14 @@
 				4A49B3B2251C0FCA00D79D72 /* TimeFormatter.swift */,
 			);
 			path = Misc;
+			sourceTree = "<group>";
+		};
+		4AC53099274AA6CB008B803A /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				4AC5309A274AA6DC008B803A /* timetable.png */,
+			);
+			path = Screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,6 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AC5309C274AAB4E008B803A /* TimetableView_wrapper.swift in Sources */,
 				4A49B3FC251C162D00D79D72 /* HorizontalControl.swift in Sources */,
 				4A6448A125DA02F800CBF32E /* BundleModuleFix.swift in Sources */,
 				4A49B3F5251C162D00D79D72 /* TimescaleView.swift in Sources */,
@@ -427,7 +438,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A2ADD57261E9A6B005B58C8 /* TimetableKitTests.swift in Sources */,
 				4AC2AEF426160AF9002FB403 /* TimeFormatterTests.swift in Sources */,
 				4A2ADD5A261E9A6F005B58C8 /* XCTestManifests.swift in Sources */,
 			);
