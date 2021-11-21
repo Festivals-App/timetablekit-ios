@@ -17,15 +17,13 @@
   <a href="#licensing">Licensing</a>
 </p>
 
-The TimetableKit provides you with a timetable view that manages an ordered collection of event items and presents them in the planned order.
+The TimetableKit provides you with a timetable view that manages an ordered collection of events and presents them in the planned order.
 
 ## Overview
 
-A timetable view is made up of sections, each with its own locations. Sections are identified by their index number within the timetable view, and locations are identified by their index number within a section. Each row has one ore more event tiles. Event tiles are identified by their index number within the location.
+A timetable view is made up of sections, each with its own locations. Each location has one ore more event tiles. When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view.
 
 ![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
-
-When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view.
 
 ### Data Structure
 
@@ -39,6 +37,8 @@ The structure of the timetable includes following components:
 
 * Section
     A number of locations which are grouped together by theme or motto. This can be anything, for a festival there could be one section for the stages and one for the food shops.
+    
+Sections are identified by their index number within the timetable view, and locations are identified by their index number within a section. Event tiles are identified by their index number within the location.
     
 ### Limitations
 
