@@ -30,13 +30,11 @@ class TimescaleView: UICollectionView, UICollectionViewDelegate, UICollectionVie
     let timeFormatter = TimeFormatter.shared
     
     init(frame: CGRect) {
-        
         super.init(frame: frame, collectionViewLayout: TimescaleView.flowLayout())
         configure()
     }
     
     required init?(coder: NSCoder) {
-        
         super.init(coder: coder)
         configure()
     }
@@ -51,7 +49,6 @@ class TimescaleView: UICollectionView, UICollectionViewDelegate, UICollectionVie
     }
     
     func configure() {
-        
         self.contentInset = .zero
         self.register(TimescaleCell.self, forCellWithReuseIdentifier: TimescaleCell.identifier)
         self.delegate = self
