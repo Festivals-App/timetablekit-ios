@@ -40,8 +40,8 @@ Sections are identified by their index number within the timetable view, and loc
     
 ### Limitations
 
-    * The timetable view is not able to display overlapping or simultan occuring events at the same location, you have to split these locations into sub-locations if this happens in your scenario.
-    * The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
+* The timetable view is not able to display overlapping or simultan occuring events at the same location, you have to split these locations into sub-locations if this happens in your scenario.
+* The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
 
 ## Development
 
@@ -51,12 +51,10 @@ TBA
 
 1. Install and setup Xcode 13.1 or higher
 2. Install jazzy
-
    ```console
    brew install jazzy
    ```
 3. Install bartycrouch
-
    ```console
    brew install bartycrouch
    ```
@@ -76,7 +74,7 @@ There is an [ExampleApp](https://github.com/Festivals-App/festivals-api-ios/blob
 
 After installing the TimtableKit in your project you can use the [TimetableView](https://github.com/Festivals-App/timetablekit-ios/blob/main/Sources/TimetableKit/TimetableView.swift) the same way you use the build-in UIViews. If you want to use the timetable in a SwiftUI based project you can see an example [wrapper implementation](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/TimetableView_wrapper.swift).  For more information about using UIViews within SwiftUI see [UIViewRepresentable](https://developer.apple.com/documentation/swiftui/uiviewrepresentable).
     
-The timetable view is driven by the delegation pattern. After you created and installed the view the way you need it, the tableview will ask its delegate to determin what and how to display its content. You can implemen four different delegate protocols to influence the behavior of the timetable: `TimetableDataSource` `TimetableDelegate` `TimetableAppearanceDelegate` and `TimetableClock`
+The timetable view is driven by the delegation pattern. After you created and installed the view the way you need it, the tableview will ask its delegate to determin what and how to display its content. You can implemen four different delegate protocols to influence the behavior of the timetable: `TimetableDataSource`, `TimetableDelegate`, `TimetableAppearanceDelegate` and `TimetableClock`
     
 - You are *required* to implement the `TimetableDataSource` as it provides the data to display.
 - The `TimetableDelegate` allows you to react to the user interacting with the timetable and is also *required* to implement. 
@@ -120,7 +118,7 @@ The following channels are available for discussions, feedback, and support requ
 | ------------------------ | ------------------------------------------------------ |
 | **General Discussion**   | <a href="https://github.com/festivals-app/festivals-documentation/issues/new/choose" title="General Discussion"><img src="https://img.shields.io/github/issues/festivals-app/festivals-documentation/question.svg?style=flat-square"></a> </a>   |
 | **Concept Feedback**    | <a href="https://github.com/festivals-app/festivals-documentation/issues/new/choose" title="Open Concept Feedback"><img src="https://img.shields.io/github/issues/festivals-app/festivals-documentation/architecture.svg?style=flat-square"></a>  |
-| **Other Requests**    | <a href="mailto:phisto05@gmail.com" title="Email Festivals Team"><img src="https://img.shields.io/badge/email-Festivals%20team-green?logo=mail.ru&style=flat-square&logoColor=white"></a>   |
+| **Other Requests**    | <a href="mailto:phisto05@gmail.com" title="Simon"><img src="https://img.shields.io/badge/email-Simon-green?logo=mail.ru&style=flat-square&logoColor=white"></a>   |
 
 ## Licensing
 
