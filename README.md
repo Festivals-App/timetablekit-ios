@@ -23,7 +23,7 @@ The TimetableKit provides you with a timetable view that manages an ordered coll
 
 A timetable view is made up of sections, each with its own locations. Sections are identified by their index number within the timetable view, and locations are identified by their index number within a section. Each row has one ore more event tiles. Event tiles are identified by their index number within the location.
 
-![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/festivals-api-ios/blob/master/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
+![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
 
 When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view. The timetable view gets its data from the data source object, which is an object that conforms to the `TimetableDataSource` protocol and is provided by your app. Data in the timetable view is organized into individual event items, which are grouped into sections and locations for presentation. An event item is the elementary data for the timetable view.
 
