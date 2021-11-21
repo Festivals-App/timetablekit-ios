@@ -37,6 +37,7 @@
 		4AAB33B125200D1E00ED38F2 /* ScrollingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAB33B025200D1E00ED38F2 /* ScrollingCoordinator.swift */; };
 		4AC2AEF426160AF9002FB403 /* TimeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2AEF326160AF9002FB403 /* TimeFormatterTests.swift */; };
 		4AC5309C274AAB4E008B803A /* TimetableView_wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC5309B274AAB4E008B803A /* TimetableView_wrapper.swift */; };
+		4AC530A0274AB647008B803A /* timetable.png in Resources */ = {isa = PBXBuildFile; fileRef = 4AC5309F274AB647008B803A /* timetable.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,8 +90,8 @@
 		4AC2AEE726160A8B002FB403 /* TimetableKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimetableKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AC2AEF326160AF9002FB403 /* TimeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeFormatterTests.swift; sourceTree = "<group>"; };
 		4AC2AEF7261615A3002FB403 /* .bartycrouch.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .bartycrouch.toml; sourceTree = "<group>"; };
-		4AC5309A274AA6DC008B803A /* timetable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = timetable.png; path = ../../../../../../Desktop/timetable.png; sourceTree = "<group>"; };
 		4AC5309B274AAB4E008B803A /* TimetableView_wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView_wrapper.swift; sourceTree = "<group>"; };
+		4AC5309F274AB647008B803A /* timetable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetable.png; sourceTree = "<group>"; };
 		4ADA00742535C1860058810C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,13 +172,13 @@
 		4A49B390251C0CBC00D79D72 /* ExampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				4AC5309E274AB647008B803A /* Screenshots */,
 				4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */,
 				4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */,
 				4AC5309B274AAB4E008B803A /* TimetableView_wrapper.swift */,
 				4A49B393251C0CBC00D79D72 /* ContentView.swift */,
 				4A49B395251C0CBF00D79D72 /* Assets.xcassets */,
 				4A49B39A251C0CBF00D79D72 /* Info.plist */,
-				4AC53099274AA6CB008B803A /* Screenshots */,
 				4A49B397251C0CBF00D79D72 /* Preview Content */,
 			);
 			path = ExampleApp;
@@ -271,10 +272,10 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
-		4AC53099274AA6CB008B803A /* Screenshots */ = {
+		4AC5309E274AB647008B803A /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
-				4AC5309A274AA6DC008B803A /* timetable.png */,
+				4AC5309F274AB647008B803A /* timetable.png */,
 			);
 			path = Screenshots;
 			sourceTree = "<group>";
@@ -369,6 +370,7 @@
 				4A54049F25D235BC00DBAD3C /* Localizable.strings in Resources */,
 				4A5404A725D236C400DBAD3C /* README.md in Resources */,
 				4A49B396251C0CBF00D79D72 /* Assets.xcassets in Resources */,
+				4AC530A0274AB647008B803A /* timetable.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
