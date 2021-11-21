@@ -21,7 +21,7 @@ The TimetableKit provides you with a timetable view that manages an ordered coll
 
 ## Overview
 
-A timetable view is made up of sections, each with its own locations. Each location has one ore more event tiles. When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view.
+A timetable view is made up of sections each with its own locations. Each location has one ore more event tiles. When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view.
 
 ![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
 
@@ -29,21 +29,21 @@ A timetable view is made up of sections, each with its own locations. Each locat
 
 The structure of the timetable includes following components:
 
-* Event
+* Event:
     Events are the elementary data for the timetable. An event is basically an entity which is defined by it's occurence in time specified by a time interval a name attribute and a location where it occures.
 
-* Location
+* Location:
     A group of events associated with the same location where they occure.
 
-* Section
+* Section:
     A number of locations which are grouped together by theme or motto. This can be anything, for a festival there could be one section for the stages and one for the food shops.
     
 Sections are identified by their index number within the timetable view, and locations are identified by their index number within a section. Event tiles are identified by their index number within the location.
     
 ### Limitations
 
-* The timetable view is not able to display overlapping or simultan occuring events at the same location, you have to split these locations into sub-locations if this happens in your scenario.
-* The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
+    * The timetable view is not able to display overlapping or simultan occuring events at the same location, you have to split these locations into sub-locations if this happens in your scenario.
+    * The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
 
 ## Development
 
@@ -64,7 +64,7 @@ TBA
    ```
 ### Build
     
-    There is an [ExampleApp](https://github.com/Festivals-App/festivals-api-ios/blob/master/ExampleApp) for developing and testing which you can build using Xcode.
+There is an [ExampleApp](https://github.com/Festivals-App/festivals-api-ios/blob/master/ExampleApp) for developing and testing which you can build using Xcode.
     
 ### Requirements
 
@@ -76,14 +76,14 @@ TBA
 
 ## Usage
 
-    After installing the TimtableKit in your project you can use the [TimetableView](https://github.com/Festivals-App/timetablekit-ios/blob/main/Sources/TimetableKit/TimetableView.swift) the same way you use the build-in UIViews. If you want to use the timetable in a SwiftUI based project you can see an example [wrapper implementation](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/TimetableView_wrapper.swift).  For more information about using UIViews within SwiftUI see [UIViewRepresentable](https://developer.apple.com/documentation/swiftui/uiviewrepresentable).
+After installing the TimtableKit in your project you can use the [TimetableView](https://github.com/Festivals-App/timetablekit-ios/blob/main/Sources/TimetableKit/TimetableView.swift) the same way you use the build-in UIViews. If you want to use the timetable in a SwiftUI based project you can see an example [wrapper implementation](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/TimetableView_wrapper.swift).  For more information about using UIViews within SwiftUI see [UIViewRepresentable](https://developer.apple.com/documentation/swiftui/uiviewrepresentable).
     
-    The timetable view is driven by the delegation pattern. After you created and installed the view the way you need it, the tableview will ask its delegate to determin what and how to display its content. You can implemen four different delegate protocols to influence the behavior of the timetable: `TimetableDataSource` `TimetableDelegate` `TimetableAppearanceDelegate` and `TimetableClock`
+The timetable view is driven by the delegation pattern. After you created and installed the view the way you need it, the tableview will ask its delegate to determin what and how to display its content. You can implemen four different delegate protocols to influence the behavior of the timetable: `TimetableDataSource` `TimetableDelegate` `TimetableAppearanceDelegate` and `TimetableClock`
     
-    - You are *required* to implement the `TimetableDataSource` as it provides the data to display.
-    - The `TimetableDelegate` allows you to react to the user interacting with the timetable and is also *required* to implement. 
-    - By implementing the `TimetableAppearanceDelegate` you can fine tune the timetables appearance.
-    - Implementing `TimetableClock` allows the delegate to determin the current date and time displayed by the timetable.
+- You are *required* to implement the `TimetableDataSource` as it provides the data to display.
+- The `TimetableDelegate` allows you to react to the user interacting with the timetable and is also *required* to implement. 
+- By implementing the `TimetableAppearanceDelegate` you can fine tune the timetables appearance.
+- Implementing `TimetableClock` allows the delegate to determin the current date and time displayed by the timetable.
     
 ## Installation
 
