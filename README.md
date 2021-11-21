@@ -25,7 +25,7 @@ A timetable view is made up of sections, each with its own locations. Sections a
 
 ![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
 
-When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view. The timetable view gets its data from the data source object, which is an object that conforms to the `TimetableDataSource` protocol and is provided by your app. Data in the timetable view is organized into individual event items, which are grouped into sections and locations for presentation. An event item is the elementary data for the timetable view.
+When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view.
 
 ### Data Structure
 
@@ -64,7 +64,7 @@ TBA
    ```
 ### Build
     
-    There is an [ExampleApp](https://github.com/Festivals-App/festivals-api-ios/blob/master/ExampleApp) for developing and testing the timetable kit which you can build using xcode.
+    There is an [ExampleApp](https://github.com/Festivals-App/festivals-api-ios/blob/master/ExampleApp) for developing and testing which you can build using Xcode.
     
 ### Requirements
 
@@ -78,7 +78,7 @@ TBA
 
     After installing the TimtableKit in your project you can use the [TimetableView](https://github.com/Festivals-App/timetablekit-ios/blob/main/Sources/TimetableKit/TimetableView.swift) the same way you use the build-in UIViews. If you want to use the timetable in a SwiftUI based project you can see an example [wrapper implementation](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/TimetableView_wrapper.swift).  For more information about using UIViews within SwiftUI see [UIViewRepresentable](https://developer.apple.com/documentation/swiftui/uiviewrepresentable).
     
-    The timetable view is driven by the delegation pattern. After you created and installed the view the way you need it the tableview will ask its delegate to determin what and how to display its content. You can implemen four different delegate protocols to influence the behavior of the timetable: `TimetableDataSource` `TimetableDelegate` `TimetableAppearanceDelegate` and `TimetableClock`
+    The timetable view is driven by the delegation pattern. After you created and installed the view the way you need it, the tableview will ask its delegate to determin what and how to display its content. You can implemen four different delegate protocols to influence the behavior of the timetable: `TimetableDataSource` `TimetableDelegate` `TimetableAppearanceDelegate` and `TimetableClock`
     
     - You are *required* to implement the `TimetableDataSource` as it provides the data to display.
     - The `TimetableDelegate` allows you to react to the user interacting with the timetable and is also *required* to implement. 
