@@ -25,17 +25,15 @@ A timetable view is made up of sections each with its own locations. Each locati
 
 ![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
 
-### Data Structure
-
 The structure of the timetable includes following components:
 
-* Event:
+* **Event**:
     Events are the elementary data for the timetable. An event is basically an entity which is defined by it's occurence in time specified by a time interval a name attribute and a location where it occures.
 
-* Location:
+* **Location**:
     A group of events associated with the same location where they occure.
 
-* Section:
+* **Section**:
     A number of locations which are grouped together by theme or motto. This can be anything, for a festival there could be one section for the stages and one for the food shops.
     
 Sections are identified by their index number within the timetable view, and locations are identified by their index number within a section. Event tiles are identified by their index number within the location.
