@@ -56,6 +56,7 @@ Sections are identified by their index number within the timetable view, and loc
    ```console
    brew install bartycrouch
    ```
+   
 ### Build
     
 There is an [ExampleApp](https://github.com/Festivals-App/festivals-api-ios/blob/master/ExampleApp) for developing and testing which you can build using Xcode.

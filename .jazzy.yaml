@@ -5,7 +5,7 @@ clean: true
 sdk: macosx
 author: Simon Gaus
 author_url: https://festivalsapp.org
-module: FestivalsAPI
+module: TimetableKit
 github_url: https://github.com/Festivals-App/timetablekit-ios
 github_file_prefix: https://github.com/Festivals-App/timetablekit-ios/tree/master/
 skip_undocumented: false
