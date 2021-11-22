@@ -45,8 +45,6 @@ Sections are identified by their index number within the timetable view, and loc
 
 ## Development
 
-TBA
-
 ### Setup
 
 1. Install and setup Xcode 13.1 or higher
