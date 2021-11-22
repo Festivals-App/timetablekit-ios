@@ -70,6 +70,14 @@ There is an [ExampleApp](https://github.com/Festivals-App/timetablekit-ios/blob/
 -  [jazzy](https://github.com/realm/jazzy) 0.13.6+ for building the documentation
 -  [bartycrouch](https://github.com/Flinesoft/BartyCrouch) 4.8.0+ for string localization
 
+### Architecture
+
+The TimetableKit is not coupled with other projects from the FestivalsApp project and can be used within any other project urelated to the FestivalsApp.
+
+![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/overview_timetable.png "Figure 1: Architecture Overview Highlighted")
+
+The full documentation for the FestivalsApp is in the [festivals-documentation](https://github.com/festivals-app/festivals-documentation) repository. The documentation repository contains technical documents, architecture information, UI/UX specifications, and whitepapers related to this implementation.
+
 ## Usage
 
 After installing the TimtableKit in your project you can use the [TimetableView](https://github.com/Festivals-App/timetablekit-ios/blob/main/Sources/TimetableKit/TimetableView.swift) the same way you use the build-in UIViews. If you want to use the timetable in a SwiftUI based project you can see an example [wrapper implementation](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/TimetableView_wrapper.swift).  For more information about using UIViews within SwiftUI see [UIViewRepresentable](https://developer.apple.com/documentation/swiftui/uiviewrepresentable).
