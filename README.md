@@ -3,9 +3,10 @@
 </h1>
 
 <p align="center">
-   <a href="https://github.com/festivals-App/timetablekit-ios/commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/festivals-App/timetablekit-ios?style=flat"></a>
-   <a href="https://github.com/festivals-app/timetablekit-ios/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/festivals-app/timetablekit-ios?style=flat"></a>
-   <a href="./LICENSE" title="License"><img src="https://img.shields.io/github/license/festivals-app/timetablekit-ios.svg"></a>
+    <a href="https://github.com/festivals-App/timetablekit-ios/commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/festivals-App/timetablekit-ios?style=flat"></a>
+    <a href="https://github.com/festivals-app/timetablekit-ios/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/festivals-app/timetablekit-ios?style=flat"></a>
+    <a href="https://github.com/Carthage/Carthage" title="License"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
+    <a href="./LICENSE" title="License"><img src="https://img.shields.io/github/license/festivals-app/timetablekit-ios.svg"></a>
 </p>
 
 <p align="center">
