@@ -55,6 +55,9 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 
+### jazzy ####
+Documentation
+
 ## Obj-C/Swift specific
 *.hmap
 *.ipa
