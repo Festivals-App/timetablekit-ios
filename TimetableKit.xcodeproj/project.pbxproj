@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		4AC530A1274B2333008B803A /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 4AC530A2274B2333008B803A /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				4AC530A5274B2343008B803A /* Build Documentation */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		4A2ADD5A261E9A6F005B58C8 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */; };
 		4A41C646251D7936006E763B /* TimetableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C645251D7936006E763B /* TimetableRowController.swift */; };
@@ -337,6 +351,9 @@
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = 4A49B38D251C0CBC00D79D72;
 					};
+					4AC530A1274B2333008B803A = {
+						CreatedOnToolsVersion = 13.1;
+					};
 				};
 			};
 			buildConfigurationList = 4A49B389251C0CBC00D79D72 /* Build configuration list for PBXProject "TimetableKit" */;
@@ -357,6 +374,7 @@
 			targets = (
 				4A49B38D251C0CBC00D79D72 /* TimetableKit */,
 				4AC2AEE626160A8B002FB403 /* TimetableKitTests */,
+				4AC530A1274B2333008B803A /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -401,6 +419,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which bartycrouch > /dev/null; then\n    bartycrouch update -x\n    bartycrouch lint -x\nelse\n    echo \"warning: BartyCrouch not installed, download it from https://github.com/Flinesoft/BartyCrouch\"\nfi\n";
+		};
+		4AC530A5274B2343008B803A /* Build Documentation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build Documentation";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#jazzy Xcode script\nif which jazzy > /dev/null; then\n\njazzy \\\n--theme apple \\\n--min-acl internal\n\nelse\necho \"warning: jazzy not installed, download it from https://github.com/realm/jazzy\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -682,6 +718,24 @@
 			};
 			name = Release;
 		};
+		4AC530A3274B2333008B803A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N67G6688LK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4AC530A4274B2333008B803A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N67G6688LK;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -708,6 +762,15 @@
 			buildConfigurations = (
 				4AC2AEEE26160A8B002FB403 /* Debug */,
 				4AC2AEEF26160A8B002FB403 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4AC530A2274B2333008B803A /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AC530A3274B2333008B803A /* Debug */,
+				4AC530A4274B2333008B803A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
