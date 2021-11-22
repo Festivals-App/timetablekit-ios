@@ -11,3 +11,4 @@ github_file_prefix: https://github.com/Festivals-App/timetablekit-ios/tree/maste
 skip_undocumented: false
 hide_documentation_coverage: false
 use_safe_filenames: true
+exclude: ExampleApp/*
