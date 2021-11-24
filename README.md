@@ -41,7 +41,7 @@ Sections are identified by their index number within the timetable view, and loc
     
 ### Limitations
 
-* The timetable view is not able to display overlapping or simultan occuring events at the same location, you have to split these locations into sub-locations if this happens in your scenario.
+* The timetable view is not able to display overlapping or simultan occuring events at the same location, you have to split these locations into multiple locations.
 * The timetable view is meant for displaying events that have a duration of hours not days. If you need to display lengthy events please consider to use a calendar view.
 
 ## Development
@@ -72,9 +72,7 @@ There is an [ExampleApp](https://github.com/Festivals-App/timetablekit-ios/blob/
 
 ### Architecture
 
-
-
-The TimetableKit is not coupled with other projects from the FestivalsApp project and can be used within any other project unrelated to the FestivalsApp.
+The TimetableKit is not coupled with other projects from the FestivalsApp and can be used within any other project unrelated to it. To find out more about architecture and technical information see the [ARCHITECTURE](./ARCHITECTURE.md) document.
 
 ![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/overview_timetable.png "Figure 1: Architecture Overview Highlighted")
 
@@ -115,14 +113,12 @@ dependencies: [
 
 ## Engage
 
-As part of the FestivalsApp 
-
-The following channels are available for discussions, feedback, and support requests:
+I welcome every contribution, whether it is a pull request or a fixed typo. More general information and a good starting point if you want to get involved is the [festival-documentation](https://github.com/Festivals-App/festivals-documentation) repository. The best place to discuss questions and suggestions regarding the timetable is the projects [issues](https://github.com/Festivals-App/timetablekit-ios/issues) section. If this doesn't fit you proposal or reason to contact me, there are some more general purpose communication channels where you can reach me, listed in the following table.
 
 | Type                     | Channel                                                |
 | ------------------------ | ------------------------------------------------------ |
-| **General Discussion**   | <a href="https://github.com/Festivals-App/timetablekit-ios/issues/new/choose" title="General Discussion"><img src="https://img.shields.io/github/issues/festivals-app/timetablekit-ios/question.svg?style=flat-square"></a> </a>   |
-| **Other Requests**    | <a href="mailto:phisto05@gmail.com" title="Simon"><img src="https://img.shields.io/badge/email-Simon-green?logo=mail.ru&style=flat-square&logoColor=white"></a>   |
+| **General Discussion**   | <a href="https://github.com/festivals-app/festivals-documentation/issues/new/choose" title="General Discussion"><img src="https://img.shields.io/github/issues/festivals-app/festivals-documentation/question.svg?style=flat-square"></a> </a>   |
+| **Other Requests**    | <a href="mailto:simon.cay.gaus@gmail.com" title="Email me"><img src="https://img.shields.io/badge/email-Simon-green?logo=mail.ru&style=flat-square&logoColor=white"></a>   |
 
 ## Licensing
 
