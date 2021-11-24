@@ -26,10 +26,10 @@ A timetable view is made up of sections each with its own locations. Each locati
 
 ![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
 
-The structure of the timetable includes following components:
+The structure of the timetable includes the following components:
 
 * **Event**:
-    Events are the elementary data for the timetable. An event is basically an entity which is defined by it's occurence in time specified by a time interval a name attribute and a location where it occures.
+    Events are the elementary data for the timetable. An event is an entity which is defined by it's occurence in time specified by a time interval a name attribute and a location where it occures.
 
 * **Location**:
     A group of events associated with the same location where they occure.
@@ -72,9 +72,9 @@ There is an [ExampleApp](https://github.com/Festivals-App/timetablekit-ios/blob/
 
 ### Architecture
 
-The TimetableKit is not coupled with other projects from the FestivalsApp and can be used within any other project unrelated to it. To find out more about architecture and technical information see the [ARCHITECTURE](./ARCHITECTURE.md) document.
-
 ![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/overview_timetable.png "Figure 1: Architecture Overview Highlighted")
+
+The TimetableKit is not coupled with other projects from the FestivalsApp and can be used within any other project unrelated to it. To find out more about architecture and technical information see the [ARCHITECTURE](./ARCHITECTURE.md) document.
 
 The full documentation for the FestivalsApp is in the [festivals-documentation](https://github.com/festivals-app/festivals-documentation) repository. The documentation repository contains technical documents, architecture information, UI/UX specifications, and whitepapers related to this implementation.
 
@@ -113,7 +113,9 @@ dependencies: [
 
 ## Engage
 
-I welcome every contribution, whether it is a pull request or a fixed typo. More general information and a good starting point if you want to get involved is the [festival-documentation](https://github.com/Festivals-App/festivals-documentation) repository. The best place to discuss questions and suggestions regarding the timetable is the projects [issues](https://github.com/Festivals-App/timetablekit-ios/issues) section. If this doesn't fit you proposal or reason to contact me, there are some more general purpose communication channels where you can reach me, listed in the following table.
+I welcome every contribution, whether it is a pull request or a fixed typo. The best place to discuss questions and suggestions regarding the timetable is the projects [issues](https://github.com/Festivals-App/timetablekit-ios/issues) section. More general information and a good starting point if you want to get involved is the [festival-documentation](https://github.com/Festivals-App/festivals-documentation) repository.
+
+If this doesn't fit you proposal or reason to contact me, there are some more general purpose communication channels where you can reach me, listed in the following table.
 
 | Type                     | Channel                                                |
 | ------------------------ | ------------------------------------------------------ |
