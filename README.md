@@ -5,7 +5,7 @@
 <p align="center">
     <a href="https://github.com/festivals-App/timetablekit-ios/commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/festivals-App/timetablekit-ios?style=flat"></a>
     <a href="https://github.com/festivals-app/timetablekit-ios/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/festivals-app/timetablekit-ios?style=flat"></a>
-    <a href="https://github.com/Carthage/Carthage" title="License"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
+    <a href="https://github.com/Carthage/Carthage" title="Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat"></a>
     <a href="./LICENSE" title="License"><img src="https://img.shields.io/github/license/festivals-app/timetablekit-ios.svg"></a>
 </p>
 
@@ -14,6 +14,7 @@
   <a href="#development">Development</a> •
   <a href="#usage">Usage</a> •
   <a href="#installation">Installation</a> •
+    <a href="#architecture">Architecture</a> •
   <a href="#engage">Engage</a> •
   <a href="#licensing">Licensing</a>
 </p>
@@ -70,14 +71,6 @@ There is an [ExampleApp](https://github.com/Festivals-App/timetablekit-ios/blob/
 -  [jazzy](https://github.com/realm/jazzy) 0.13.6+ for building the documentation
 -  [bartycrouch](https://github.com/Flinesoft/BartyCrouch) 4.8.0+ for string localization
 
-### Architecture
-
-![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/overview_timetable.png "Figure 1: Architecture Overview Highlighted")
-
-The TimetableKit is not coupled with other projects from the FestivalsApp and can be used within any other project unrelated to it. To find out more about architecture and technical information see the [ARCHITECTURE](./ARCHITECTURE.md) document.
-
-The full documentation for the FestivalsApp is in the [festivals-documentation](https://github.com/festivals-app/festivals-documentation) repository. The documentation repository contains technical documents, architecture information, UI/UX specifications, and whitepapers related to this implementation.
-
 ## Usage
 
 After installing the TimtableKit in your project you can use the [TimetableView](https://github.com/Festivals-App/timetablekit-ios/blob/main/Sources/TimetableKit/TimetableView.swift) the same way you use the build-in UIViews. If you want to use the timetable in a SwiftUI based project you can see an example [wrapper implementation](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/TimetableView_wrapper.swift).  For more information about using UIViews within SwiftUI see [UIViewRepresentable](https://developer.apple.com/documentation/swiftui/uiviewrepresentable).
@@ -110,6 +103,14 @@ dependencies: [
     .package(url: "https://github.com/Festivals-App/timetablekit-ios.git", .upToNextMajor(from: "0.1"))
 ]
 ```
+
+## Architecture
+
+![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/overview_timetable.png "Figure 1: Architecture Overview Highlighted")
+
+The TimetableKit is not coupled with other projects from the FestivalsApp and can be used within any other project unrelated to it. To find out more about architecture and technical information see the [ARCHITECTURE](./ARCHITECTURE.md) document.
+
+The full documentation for the FestivalsApp is in the [festivals-documentation](https://github.com/festivals-app/festivals-documentation) repository. The documentation repository contains technical documents, architecture information, UI/UX specifications, and whitepapers related to this implementation.
 
 ## Engage
 
