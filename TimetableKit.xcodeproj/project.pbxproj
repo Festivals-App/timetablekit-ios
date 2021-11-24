@@ -106,6 +106,7 @@
 		4AC2AEF7261615A3002FB403 /* .bartycrouch.toml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .bartycrouch.toml; sourceTree = "<group>"; };
 		4AC5309B274AAB4E008B803A /* TimetableView_wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView_wrapper.swift; sourceTree = "<group>"; };
 		4AC5309F274AB647008B803A /* timetable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timetable.png; sourceTree = "<group>"; };
+		4AC530A6274C80CB008B803A /* ARCHITECTURE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ARCHITECTURE.md; sourceTree = "<group>"; };
 		4ADA00742535C1860058810C /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,9 +168,10 @@
 				4A49B3AF251C0FCA00D79D72 /* Sources */,
 				4A49B3CD251C0FF200D79D72 /* Tests */,
 				4A49B38F251C0CBC00D79D72 /* Products */,
+				4AC530A6274C80CB008B803A /* ARCHITECTURE.md */,
+				4ADA00742535C1860058810C /* LICENSE */,
 				4A49B3DD251C108D00D79D72 /* .jazzy.yaml */,
 				4AC2AEF7261615A3002FB403 /* .bartycrouch.toml */,
-				4ADA00742535C1860058810C /* LICENSE */,
 				4A49B3A3251C0FB100D79D72 /* .gitignore */,
 			);
 			sourceTree = "<group>";

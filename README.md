@@ -72,7 +72,9 @@ There is an [ExampleApp](https://github.com/Festivals-App/timetablekit-ios/blob/
 
 ### Architecture
 
-The TimetableKit is not coupled with other projects from the FestivalsApp project and can be used within any other project urelated to the FestivalsApp.
+
+
+The TimetableKit is not coupled with other projects from the FestivalsApp project and can be used within any other project unrelated to the FestivalsApp.
 
 ![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/overview_timetable.png "Figure 1: Architecture Overview Highlighted")
 
@@ -82,7 +84,7 @@ The full documentation for the FestivalsApp is in the [festivals-documentation](
 
 After installing the TimtableKit in your project you can use the [TimetableView](https://github.com/Festivals-App/timetablekit-ios/blob/main/Sources/TimetableKit/TimetableView.swift) the same way you use the build-in UIViews. If you want to use the timetable in a SwiftUI based project you can see an example [wrapper implementation](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/TimetableView_wrapper.swift).  For more information about using UIViews within SwiftUI see [UIViewRepresentable](https://developer.apple.com/documentation/swiftui/uiviewrepresentable).
     
-The timetable view is driven by the delegation pattern. After you created and installed the view the way you need it, the tableview will ask its delegate to determin what and how to display its content. You can implemen four different delegate protocols to influence the behavior of the timetable: `TimetableDataSource`, `TimetableDelegate`, `TimetableAppearanceDelegate` and `TimetableClock`
+The timetable view is driven by the delegation pattern. After you created and installed the view the way you need it, the timetable will ask its delegate to determin what and how to display its content. You can implemen four different delegate protocols to influence the behavior of the timetable: `TimetableDataSource`, `TimetableDelegate`, `TimetableAppearanceDelegate` and `TimetableClock`
     
 - You are *required* to implement the `TimetableDataSource` as it provides the data to display.
 - The `TimetableDelegate` allows you to react to the user interacting with the timetable and is also *required* to implement. 
@@ -111,21 +113,15 @@ dependencies: [
 ]
 ```
 
-### Manually
-
-If you prefer not to use Carthage or the Swift Package Manager, you can integrate TimetableKit into your project manually.
-You only need to build and add the TimetableKit framework (TimetableKit.framework) to your project. 
-
 ## Engage
 
-TBA
+As part of the FestivalsApp 
 
 The following channels are available for discussions, feedback, and support requests:
 
 | Type                     | Channel                                                |
 | ------------------------ | ------------------------------------------------------ |
-| **General Discussion**   | <a href="https://github.com/festivals-app/festivals-documentation/issues/new/choose" title="General Discussion"><img src="https://img.shields.io/github/issues/festivals-app/festivals-documentation/question.svg?style=flat-square"></a> </a>   |
-| **Concept Feedback**    | <a href="https://github.com/festivals-app/festivals-documentation/issues/new/choose" title="Open Concept Feedback"><img src="https://img.shields.io/github/issues/festivals-app/festivals-documentation/architecture.svg?style=flat-square"></a>  |
+| **General Discussion**   | <a href="https://github.com/Festivals-App/timetablekit-ios/issues/new/choose" title="General Discussion"><img src="https://img.shields.io/github/issues/festivals-app/timetablekit-ios/question.svg?style=flat-square"></a> </a>   |
 | **Other Requests**    | <a href="mailto:phisto05@gmail.com" title="Simon"><img src="https://img.shields.io/badge/email-Simon-green?logo=mail.ru&style=flat-square&logoColor=white"></a>   |
 
 ## Licensing
