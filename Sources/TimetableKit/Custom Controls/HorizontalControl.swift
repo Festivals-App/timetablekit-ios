@@ -301,7 +301,8 @@ class HorizontalControlSegment: UIView {
         super.init(frame: frame)
         
         self.addSubview(label)
-        label.fit(to: self)
+        //label.fit(to: self)
+        label.fit(to: self, leading: 8, trailing: 8, top: 0, bottom: 0)
         
         tapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(handle(tap:)))
         addGestureRecognizer(tapGestureRecognizer)
