@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4A1709B2286BAD56007678AA /* HorizontalControlTestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1709B1286BAD56007678AA /* HorizontalControlTestWrapper.swift */; };
 		4A2ADD5A261E9A6F005B58C8 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A49B3D1251C0FF200D79D72 /* XCTestManifests.swift */; };
 		4A41C646251D7936006E763B /* TimetableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C645251D7936006E763B /* TimetableRowController.swift */; };
 		4A41C649251D7C41006E763B /* EventTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A41C648251D7C41006E763B /* EventTile.swift */; };
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A1709B1286BAD56007678AA /* HorizontalControlTestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalControlTestWrapper.swift; sourceTree = "<group>"; };
 		4A2ADE2A261EA461005B58C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A41C645251D7936006E763B /* TimetableRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRowController.swift; sourceTree = "<group>"; };
 		4A41C648251D7C41006E763B /* EventTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTile.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				4A49B391251C0CBC00D79D72 /* TimetableKitApp.swift */,
 				4A4F66AE25237CB900D04FCF /* ConcreteTimetableDelegate.swift */,
 				4AC5309B274AAB4E008B803A /* TimetableView_wrapper.swift */,
+				4A1709B1286BAD56007678AA /* HorizontalControlTestWrapper.swift */,
 				4A49B393251C0CBC00D79D72 /* ContentView.swift */,
 				4A49B395251C0CBF00D79D72 /* Assets.xcassets */,
 				4A49B39A251C0CBF00D79D72 /* Info.plist */,
@@ -462,6 +465,7 @@
 				4A4F66AF25237CB900D04FCF /* ConcreteTimetableDelegate.swift in Sources */,
 				4A49B394251C0CBC00D79D72 /* ContentView.swift in Sources */,
 				4AAB33B125200D1E00ED38F2 /* ScrollingCoordinator.swift in Sources */,
+				4A1709B2286BAD56007678AA /* HorizontalControlTestWrapper.swift in Sources */,
 				4A49B3F6251C162D00D79D72 /* TimeFormatter.swift in Sources */,
 				4A49B392251C0CBC00D79D72 /* TimetableKitApp.swift in Sources */,
 				4A41C64D251D83F2006E763B /* TimetableRow.swift in Sources */,

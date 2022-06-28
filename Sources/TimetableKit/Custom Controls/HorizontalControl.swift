@@ -159,7 +159,13 @@ public class HorizontalControl: UIView {
             var currentOffset = scrollView.contentOffset.x
             if currentOffset == 0 && selectedIndex != 0 {
                 
-                let mostLeftSegmentIndex = selectedIndex-1
+                var mostLeftSegmentIndex = selectedIndex-1
+                
+                // last segemnt
+                if selectedIndex == segments.count-1 {
+                    mostLeftSegmentIndex = selectedIndex-2
+                }
+                
                 if mostLeftSegmentIndex >= 0 {
        
                     currentOffset = offsetForSegment(at: mostLeftSegmentIndex)
@@ -206,11 +212,14 @@ public class HorizontalControl: UIView {
                     }
                 }
             }
-            
+        
+            // test for out of bounds indey, not for logic
+            // just deselect the old selected segment
             if segments.count > selectedIndex {
                 segments[selectedIndex].selected = false
             }
             
+            // same test
             if segments.count > index {
                 segments[index].selected = true
             }

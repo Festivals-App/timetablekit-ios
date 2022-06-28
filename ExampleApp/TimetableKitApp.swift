@@ -21,6 +21,10 @@ struct TimetableKitApp: App {
                 Color.init(UIColor.with(34.0, 34.0, 34.0)).ignoresSafeArea()
                 
                 VStack {
+                
+                    HorizontalControlTestWrapper(items: ["One", "Two", "Three"], index: 2) { newIndex in
+                        print("new index \(newIndex))")
+                    }
                     
                     TimetableView_wrapper(offset: $timetableOffset)
                                 .ignoresSafeArea(.all, edges: .horizontal)
