@@ -1,7 +1,3 @@
-<h1 align="center">
-    TimetableKit
-</h1>
-
 <p align="center">
     <a href="https://github.com/festivals-App/timetablekit-ios/commits/" title="Last Commit"><img src="https://img.shields.io/github/last-commit/festivals-App/timetablekit-ios?style=flat"></a>
     <a href="https://github.com/festivals-app/timetablekit-ios/issues" title="Open Issues"><img src="https://img.shields.io/github/issues/festivals-app/timetablekit-ios?style=flat"></a>
@@ -9,6 +5,17 @@
     <a href="./LICENSE" title="License"><img src="https://img.shields.io/github/license/festivals-app/timetablekit-ios.svg"></a>
 </p>
 
+<h1 align="center">
+    <br/><br/>
+    TimetableKit
+    <br/><br/>
+</h1>
+
+The TimetableKit provides you with a timetable view that manages an ordered collection of events and presents them in the planned order.
+
+![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
+
+<hr/>
 <p align="center">
   <a href="#overview">Overview</a> •
   <a href="#development">Development</a> •
@@ -18,14 +25,11 @@
   <a href="#engage">Engage</a> •
   <a href="#licensing">Licensing</a>
 </p>
-
-The TimetableKit provides you with a timetable view that manages an ordered collection of events and presents them in the planned order.
+<hr/>
 
 ## Overview
 
-A timetable view is made up of sections each with its own locations. Each location has one ore more event tiles. When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view.
-
-![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
+A timetable view is made up of sections each with its own locations. Each location has one or more event tiles. When adding a timetable view to your user interface, your app’s main job is to manage the event data associated with that timetable view.
 
 The structure of the timetable includes the following components:
 
@@ -49,7 +53,7 @@ Sections are identified by their index number within the timetable view, and loc
 
 ### Setup
 
-1. Install and setup Xcode 13.1 or higher
+1. Install and setup Xcode 15 or higher
 2. Install jazzy
    ```console
    brew install jazzy
@@ -106,8 +110,6 @@ dependencies: [
 
 ## Architecture
 
-![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/overview_timetable.png "Figure 1: Architecture Overview Highlighted")
-
 The TimetableKit is not coupled with other projects from the FestivalsApp and can be used within any other project unrelated to it. To find out more about architecture and technical information see the [ARCHITECTURE](./ARCHITECTURE.md) document.
 
 The full documentation for the FestivalsApp is in the [festivals-documentation](https://github.com/festivals-app/festivals-documentation) repository. The documentation repository contains technical documents, architecture information, UI/UX specifications, and whitepapers related to this implementation.
@@ -125,7 +127,7 @@ If this doesn't fit you proposal or reason to contact me, there are some more ge
 
 ## Licensing
 
-Copyright (c) 2020-2021 Simon Gaus.
+Copyright (c) 2020-2023 Simon Gaus.
 
 Licensed under the **GNU Lesser General Public License v3.0** (the "License"); you may not use this file except in compliance with the License.
 
