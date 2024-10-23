@@ -13,7 +13,7 @@
 
 The TimetableKit provides you with a timetable view that manages an ordered collection of events and presents them in the planned order.
 
-![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/architecture_overview_timetable.svg "Figure 1: UI Screens for Apple iOS")
+![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
 
 <hr/>
 <p align="center">
@@ -111,6 +111,8 @@ dependencies: [
 ## Architecture
 
 The TimetableKit is not coupled with other projects from the FestivalsApp and can be used within any other project unrelated to it. To find out more about architecture and technical information see the [ARCHITECTURE](./ARCHITECTURE.md) document.
+
+![Figure 1: Architecture Overview Highlighted](https://github.com/Festivals-App/festivals-documentation/blob/main/images/architecture/architecture_overview_timetable.svg "Figure 1: Architecture Overview Highlighted")
 
 The full documentation for the FestivalsApp is in the [festivals-documentation](https://github.com/festivals-app/festivals-documentation) repository. The documentation repository contains technical documents, architecture information, UI/UX specifications, and whitepapers related to this implementation.
 
