@@ -13,7 +13,7 @@
 
 The TimetableKit provides you with a timetable view that manages an ordered collection of events and presents them in the planned order.
 
-![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/timetable.png "Figure 1: UI Screens for Apple iOS")
+![Figure 1: UI Screens for Apple iOS](https://github.com/Festivals-App/timetablekit-ios/blob/main/ExampleApp/Screenshots/architecture_overview_timetable.svg "Figure 1: UI Screens for Apple iOS")
 
 <hr/>
 <p align="center">
@@ -127,10 +127,4 @@ If this doesn't fit you proposal or reason to contact me, there are some more ge
 
 ## Licensing
 
-Copyright (c) 2020-2023 Simon Gaus.
-
-Licensed under the **GNU Lesser General Public License v3.0** (the "License"); you may not use this file except in compliance with the License.
-
-You may obtain a copy of the License at https://www.gnu.org/licenses/lgpl-3.0.html.
-
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the [LICENSE](./LICENSE) for the specific language governing permissions and limitations under the License.
+Copyright (c) 2020-2024 Simon Gaus. Licensed under the [**GNU Lesser General Public License v3.0**](./LICENSE)
